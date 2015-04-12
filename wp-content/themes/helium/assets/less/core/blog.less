@@ -1,0 +1,350 @@
+
+/* ==========================================================================
+	10.1 Post Header
+============================================================================= */
+
+.post-header {
+	.post-date {
+		display: block;
+		color: @post-date-color;
+		font-size: @post-date-font-size;
+		letter-spacing: @post-date-letter-spacing;
+	}
+
+	.post-title {
+		margin: 0 0 0.2em;
+		line-height: @post-title-line-height;
+		a {
+			color: @headings-color;
+			&:hover {
+				color: @brand-primary;
+			}
+		}
+	}
+
+	.post-meta {
+		font-size: @post-meta-font-size;
+		color: @post-meta-color;
+		.post-meta-list {
+			li {
+				vertical-align: top;
+				margin-right: @post-meta-list-horizontal-margin;
+				a {
+					color: @post-meta-color;
+				}
+				.slicon, .fa {
+					display: inline-block;
+					margin-right: @post-meta-list-icon-margin;
+				}
+				&:last-child {
+					margin-right: 0;
+				}
+			}
+		}
+	}
+
+	+ .post-entry {
+		.content-wrap-inner {
+			padding-top: 0;
+		}
+	}
+}
+
+/* ==========================================================================
+	10.2 Post Media
+============================================================================= */
+
+.post .post-media {
+	img {
+		width: 100%;
+	}
+}
+
+/* ==========================================================================
+	10.3 Post Section
+============================================================================= */
+
+.post {
+	&.sticky {
+		color: inherit;
+	}
+
+	.post-entry {
+		section {
+			padding: @content-wrap-inner-padding-vert * 0.45 0;
+
+			+ section {
+				border-top: 1px dotted @dotted-border-color;
+			}
+
+			&.post-body {
+				padding: 0;
+				+ section {
+					margin-top: @content-wrap-inner-padding-vert;
+					border-top-style: solid;
+					border-top-color: @base-border-color;
+				}
+			}
+
+			&.post-sharing, &.posts-pages-nav, &.post-tags {
+				padding: @content-wrap-inner-padding-vert / 4 0;
+			}
+		}
+	}
+
+	.post-section-title {
+		margin: 0 0 @content-wrap-inner-padding-vert * 0.3;
+	}
+}
+
+/* ==========================================================================
+	10.4 Post Body
+============================================================================= */
+
+.post-body {
+	line-height: @post-body-line-height;
+
+	.more-link-wrap {
+		margin-top: @content-wrap-inner-padding-vert;
+		padding-top: @content-wrap-inner-padding-vert / 2;
+		border-top: 1px dotted @dotted-border-color;
+		
+		.more-link {
+			display: inline-block;
+			color: @text-color;
+		}
+	}
+}
+
+/* ==========================================================================
+	10.5 Post Tags
+============================================================================= */
+
+.post-tags {
+	a {
+		position: relative;
+		z-index: 1;
+		display: inline-block;
+		padding: 0 15px;
+		font-size: @font-size-base;
+		line-height: 2;
+		background-color: #f8f8f8;
+		border-radius: 3px;
+		margin-right: 1.4142135623730950488016887242097em;
+		color: @text-muted;
+		&:hover {
+			color: #fff;
+			background-color: @brand-primary;
+		}
+		&:after {
+			content: '';
+			z-index: -1;
+			width: 1.4142135623730950488016887242097em;
+			height: 1.4142135623730950488016887242097em;
+			background-color: inherit;
+			border-radius: inherit;
+			.rotate(45deg);
+			position: absolute;
+			margin-right: 1.5px;
+			top: 0.29289321881345247559915563789515em;
+			right: -0.70710678118654752440084436210485em;
+		}
+		&:before {
+			content: '';
+			width: 0.28571428571428571428571428571429em;
+			height: 0.28571428571428571428571428571429em;
+			background-color: #fff;
+			border-radius: 50%;
+			position: absolute;
+			top: 50%;
+			margin-top: -0.14285714285714285714285714285714em;
+			margin-left: -0.14285714285714285714285714285714em;
+			left: 100%;
+		}
+	}
+}
+
+/* ==========================================================================
+	10.6 Post Author
+============================================================================= */
+
+.post-author {
+	.post-author-avatar {
+		float: left;
+		width: @post-author-avatar-width;
+		margin-right: @post-author-avatar-margin;
+	}
+
+	.post-author-info {
+		overflow: hidden;
+	}
+
+	.post-author-name {
+		margin: 0 0 8px;
+	}
+}
+
+/* ==========================================================================
+	10.7 Post Comments
+============================================================================= */
+
+.post-comments {
+	.comment-list {
+		margin-bottom: -@post-comment-spacing;
+		&, ul {
+			&:extend(ul.plain-list);
+		}
+
+		ul.children {
+			margin-left: ( @post-comment-avatar-width + @post-comment-avatar-margin ) / 2;
+		}
+
+		.comment.bypostauthor {
+			> .comment-entry {
+				background-color: #fdfdfd;
+				border: 1px solid @base-border-color;
+				padding: 30px;
+			}
+		}
+
+		.comment-entry, 
+		.comment-respond {
+			margin-bottom: @post-comment-spacing;
+		}
+
+		.comment-avatar {
+			float: left;
+			width: @post-comment-avatar-width;
+			margin-right: @post-comment-avatar-margin;
+		}
+
+		.comment-head {
+			line-height: 1;
+
+			.comment-author-name {
+				margin: 0 0 5px;
+				color: @headings-color;
+				a {
+					color: @headings-color;
+					&:hover {
+						color: @brand-primary;
+					}
+				}
+			}
+
+			.comment-time {
+				font-size: @post-comment-time-font-size;
+				font-style: @post-comment-time-font-style;
+				color: @post-comment-time-color;
+			}
+		}
+
+		.comment-body {
+			clear: both;
+			padding-top: @post-comment-body-padding-top;
+			p:last-child {
+				margin-bottom: 0;
+			}
+		}
+
+		.comment-links {
+			font-size: @post-comment-links-font-size;
+			line-height: 1;
+			> a {
+				margin-right: 10px;
+				&:last-child {
+					margin-right: 0;
+				}
+			}
+		}
+	}
+}
+
+/* ==========================================================================
+	10.8 Post Comments Nav
+============================================================================= */
+
+.post-comments-nav {
+	margin-top: @content-wrap-inner-padding-vert * 0.45;
+	padding-top: @content-wrap-inner-padding-vert * 0.45;
+	border-top: 1px dotted @dotted-border-color;
+
+	.nav-previous {
+		float: left;
+	}
+
+	.nav-next {
+		float: right;
+	}
+
+	.nav-previous, .nav-next {
+		a {
+			display: inline-block;
+			color: @text-muted;
+			background-color: #f8f8f8;
+			border-radius: 3px;
+			padding: 9px 12px;
+			line-height: 1;
+			&:hover {
+				background-color: @brand-primary;
+				color: #fff;
+			}
+		}
+	}
+}
+
+/* ==========================================================================
+	10.9 Post Comments Form
+============================================================================= */
+
+.post {
+	.post-comments-form {
+		.content-wrap-inner {
+			padding-top: 0;
+		}
+	}
+}
+
+.comment-reply-title {
+	font-size: @font-size-h4;
+	margin: 0 0 2px;
+	padding: 0;
+}
+
+#cancel-comment-reply-link {
+	font-size: @post-comment-links-font-size;
+	text-transform: none;
+	&:before {
+		content: '\0020\2014\0020';
+		color: @text-muted;
+	}
+}
+
+.comment-respond {
+	.comment-form-comment, 
+	.must-log-in, 
+	.logged-in-as, 
+	.comment-notes, 
+	.form-allowed-tags {
+		font-size: @post-comment-form-notes-font-size;
+	}
+
+	.form-submit {
+		margin: 0;
+	}
+
+	.comment-notes .required {
+		color: @brand-danger;
+	}
+
+	.form-allowed-tags {
+		padding: @content-spacing;
+		background-color: #f8f8f8;
+		border-radius: @border-radius-base;
+		code {
+			background: transparent;
+			display: block;
+			color: @text-muted;
+		}
+	}
+}

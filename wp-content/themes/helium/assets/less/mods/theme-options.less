@@ -1,0 +1,202 @@
+
+/* ==========================================================================
+	Layout
+============================================================================= */
+
+@logo-height: 0px;
+
+.header .brand {
+	> a > img {
+		& when not( @logo-height > 40px ) and not( @logo-height = 0px ) {
+			max-height: @logo-height;
+		}
+
+		& when not( @logo-height = 0px ) {
+			@media (min-width: 992px) {
+				max-height: @logo-height;
+			}
+		}
+	}
+}
+
+/* ==========================================================================
+	Fonts
+============================================================================= */
+
+@roboto-ff: e('"Roboto"');
+@lora-ff: e('"Lora"');
+
+@headings-1234-font-family: @roboto-ff;
+@headings-1234-font-weight: 700;
+@headings-1234-font-style: normal;
+
+h1, h2, h3, h4, 
+.h1, .h2, .h3, .h4, 
+strong, b {
+	& when not( @headings-1234-font-family = @roboto-ff ) {
+		font-family: @headings-1234-font-family;
+	}
+	& when not( @headings-1234-font-weight = 700 ) {
+		font-weight: @headings-1234-font-weight;
+	}
+	& when not( @headings-1234-font-style = normal ) {
+		font-style: @headings-1234-font-style;
+	}
+}
+
+@headings-56-font-family: @roboto-ff;
+@headings-56-font-weight: 500;
+@headings-56-font-style: normal;
+
+h5, h6, 
+.h5, .h6, 
+.lead b, 
+.lead strong {
+	& when not( @headings-56-font-family = @roboto-ff ) {
+		font-family: @headings-56-font-family;
+	}
+	& when not( @headings-56-font-weight = 500 ) {
+		font-weight: @headings-56-font-weight;
+	}
+	& when not( @headings-56-font-style = normal ) {
+		font-style: @headings-56-font-style;
+	}
+}
+
+@body-font-family: @roboto-ff;
+@body-font-weight: 300;
+@body-font-style: normal;
+
+body {
+	& when not( @body-font-family = @roboto-ff ) {
+		font-family: @body-font-family;
+	}
+	& when not( @body-font-weight = 300 ) {
+		font-weight: @body-font-weight;
+	}
+	& when not( @body-font-style = normal ) {
+		font-style: @body-font-style;
+	}
+}
+
+@menu-font-family: @roboto-ff;
+@menu-font-weight: 700;
+@menu-font-style: normal;
+
+.main-nav ul li a {
+	& when not( @menu-font-family = @roboto-ff ) {
+		font-family: @menu-font-family;
+	}
+	& when not( @menu-font-weight = 700 ) {
+		font-weight: @menu-font-weight;
+	}
+	& when not( @menu-font-style = normal ) {
+		font-style: @menu-font-style;
+	}
+}
+
+@blockquote-font-family: @lora-ff;
+@blockquote-font-weight: 400;
+@blockquote-font-style: italic;
+
+blockquote p {
+	& when not( @blockquote-font-family = @lora-ff ) {
+		font-family: @blockquote-font-family;
+	}
+	& when not( @blockquote-font-weight = 400 ) {
+		font-weight: @blockquote-font-weight;
+	}
+	& when not( @blockquote-font-style = italic ) {
+		font-style: @blockquote-font-style;
+	}
+}
+
+@gridlist-title-font-family: @roboto-ff;
+@gridlist-title-font-weight: 700;
+@gridlist-title-font-style: normal;
+
+@gridlist-subtitle-font-family: @roboto-ff;
+@gridlist-subtitle-font-weight: 300;
+@gridlist-subtitle-font-style: normal;
+
+.edd-download-info-wrap .edd-download-title, 
+.portfolio-info .portfolio-title, 
+.featured-portfolio-slider .entry-slide-caption .entry-title {
+	& when not( @gridlist-title-font-family = @roboto-ff ) {
+		font-family: @gridlist-title-font-family;
+	}
+	& when not( @gridlist-title-font-weight = 700 ) {
+		font-weight: @gridlist-title-font-weight;
+	}
+	& when not( @gridlist-title-font-style = normal ) {
+		font-style: @gridlist-title-font-style;
+	}
+}
+
+.edd-download-info-wrap .edd-download-price, 
+.portfolio-info .portfolio-meta, 
+.featured-portfolio-slider .entry-slide-caption .entry-meta {
+	& when not( @gridlist-subtitle-font-family = @roboto-ff ) {
+		font-family: @gridlist-subtitle-font-family;
+	}
+	& when not( @gridlist-subtitle-font-weight = 300 ) {
+		font-weight: @gridlist-subtitle-font-weight;
+	}
+	& when not( @gridlist-subtitle-font-style = normal ) {
+		font-style: @gridlist-subtitle-font-style;
+	}
+}
+
+@content-nav-font-family: @roboto-ff;
+@content-nav-font-weight: 700;
+@content-nav-font-style: normal;
+
+.content-nav {
+	& when not( @content-nav-font-family = @roboto-ff ) {
+		font-family: @content-nav-font-family;
+	}
+	& when not( @content-nav-font-weight = 700 ) {
+		font-weight: @content-nav-font-weight;
+	}
+	& when not( @content-nav-font-style = normal ) {
+		font-style: @content-nav-font-style;
+	}
+}
+
+/* ==========================================================================
+	Accent Color
+============================================================================= */
+
+@brand-primary: #3dc9b3;
+
+& when not( @brand-primary = #3dc9b3 ) {
+	.post-header .post-title a:hover, 
+	.post-comments .comment-list .comment-head .comment-author-name a:hover, 
+	.edd-download-info-wrap .edd-download-title a:hover, 
+	.search-entry .search-entry-title a:hover, 
+	.main-nav ul li.current-menu-item > a, 
+	.main-nav ul li > a:hover, 
+	.related-items .related-item .related-item-title a:hover {
+	  color: @brand-primary;
+	}
+	.post-tags a:hover, 
+	.post-comments-nav .nav-previous a:hover, 
+	.post-comments-nav .nav-next a:hover, 
+	.edd-download-info-wrap .edd-download-actions .edd-add-to-cart:after, 
+	.edd-download-info-wrap .edd-download-actions .edd_go_to_checkout:after, 
+	.edd-download-info-wrap .edd-download-actions .edd-download-view-details:after, 
+	.edd-download-info-wrap .edd-download-actions input.edd-add-to-cart:hover, 
+	.grid-list-filter .filter-items li:hover > a, 
+	.grid-list-filter .filter-items li > a.active, 
+	.grid-list-filter .filter-items li > a:after, 
+	.header-links .header-links-tooltip, 
+	.content-nav-link > a:before, 
+	.content-nav-link > span:before, 
+	.pages-nav ul li a:hover .pages-nav-item, 
+	.mejs-controls .mejs-time-rail .mejs-time-current, 
+	.mejs-controls .mejs-horizontal-volume-slider .mejs-horizontal-volume-current, 
+	.featured-portfolio-slider .entry-slide-caption:after, 
+	.portfolio-info:after {
+	  background-color: @brand-primary;
+	}
+}
