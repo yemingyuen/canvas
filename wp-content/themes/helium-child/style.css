@@ -9,3 +9,8 @@ Version: 1.0
 
 /* =Theme customization starts here
 ------------------------------------------------------- */
+
+.toc_list {
+    list-style: outside none none;
+    padding: 0;
+}

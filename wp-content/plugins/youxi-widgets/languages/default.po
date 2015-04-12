@@ -1,0 +1,283 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Youxi Widgets\n"
+"POT-Creation-Date: 2014-11-07 13:38+0700\n"
+"PO-Revision-Date: 2014-11-07 13:38+0700\n"
+"Last-Translator: \n"
+"Language-Team: YouxiThemes\n"
+"Language: en_US\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.6.10\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c\n"
+"X-Poedit-Basepath: .\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SearchPath-0: ..\n"
+
+#: ../class-widget-flickr.php:10
+msgid "Use this widget to display your Flickr feed."
+msgstr ""
+
+#: ../class-widget-flickr.php:14
+msgid "Youxi &raquo; Flickr"
+msgstr ""
+
+#: ../class-widget-flickr.php:42
+msgid "My Flickr Feed"
+msgstr ""
+
+#: ../class-widget-flickr.php:50 ../class-widget-gmap.php:71
+#: ../class-widget-instagram.php:67 ../class-widget-posts.php:77
+#: ../class-widget-quote.php:52 ../class-widget-recent-posts.php:71
+#: ../class-widget-rotating-quotes.php:50 ../class-widget-social.php:157
+#: ../class-widget-social.php:235 ../class-widget-twitter.php:66
+msgid "Title"
+msgstr ""
+
+#: ../class-widget-flickr.php:54
+msgid "Flickr ID"
+msgstr ""
+
+#: ../class-widget-flickr.php:58 ../class-widget-instagram.php:75
+msgid "Maximum Photos"
+msgstr ""
+
+#: ../class-widget-gmap.php:10
+msgid "Use this widget to display a Google Map."
+msgstr ""
+
+#: ../class-widget-gmap.php:14
+msgid "Youxi &raquo; Google Maps"
+msgstr ""
+
+#: ../class-widget-gmap.php:75
+msgid "Center Latitude"
+msgstr ""
+
+#: ../class-widget-gmap.php:79
+msgid "Center Longitude"
+msgstr ""
+
+#: ../class-widget-gmap.php:83
+msgid "Zoom"
+msgstr ""
+
+#: ../class-widget-gmap.php:91
+msgid "Map Type"
+msgstr ""
+
+#: ../class-widget-gmap.php:99
+msgid "Aspect Ratio (Width : Height)"
+msgstr ""
+
+#: ../class-widget-gmap.php:106
+msgid "Display in grayscale"
+msgstr ""
+
+#: ../class-widget-gmap.php:112
+#, php-format
+msgid "Display %s Control"
+msgstr ""
+
+#: ../class-widget-gmap.php:119
+msgid "Markers"
+msgstr ""
+
+#: ../class-widget-gmap.php:129
+msgid "Add Marker"
+msgstr ""
+
+#: ../class-widget-gmap.php:186
+msgid "Marker"
+msgstr ""
+
+#: ../class-widget-gmap.php:196
+msgid "Latitude"
+msgstr ""
+
+#: ../class-widget-gmap.php:202
+msgid "Longitude"
+msgstr ""
+
+#: ../class-widget-instagram.php:12
+msgid "Use this widget to display your Instagram feed."
+msgstr ""
+
+#: ../class-widget-instagram.php:16
+msgid "Youxi &raquo; Instagram"
+msgstr ""
+
+#: ../class-widget-instagram.php:59
+msgid "My Instagram Feed"
+msgstr ""
+
+#: ../class-widget-instagram.php:71
+msgid "Instagram Username"
+msgstr ""
+
+#: ../class-widget-instagram.php:170
+msgid "The username "
+msgstr ""
+
+#: ../class-widget-posts.php:10
+msgid "Use this widget to display your posts based on a specific criteria."
+msgstr ""
+
+#: ../class-widget-posts.php:14
+msgid "Youxi &raquo; Posts"
+msgstr ""
+
+#: ../class-widget-posts.php:81 ../class-widget-recent-posts.php:75
+msgid "Number of Posts"
+msgstr ""
+
+#: ../class-widget-posts.php:86 ../class-widget-recent-posts.php:80
+msgid "Categories to Exclude"
+msgstr ""
+
+#: ../class-widget-posts.php:97 ../class-widget-recent-posts.php:91
+msgid "Tags to Exclude"
+msgstr ""
+
+#: ../class-widget-posts.php:107
+msgid "Order"
+msgstr ""
+
+#: ../class-widget-posts.php:109
+msgid "Descending"
+msgstr ""
+
+#: ../class-widget-posts.php:109
+msgid "Ascending"
+msgstr ""
+
+#: ../class-widget-posts.php:117
+msgid "Order By"
+msgstr ""
+
+#: ../class-widget-posts.php:119
+msgid "Date"
+msgstr ""
+
+#: ../class-widget-posts.php:119
+msgid "Comment Count"
+msgstr ""
+
+#: ../class-widget-posts.php:119 ../class-widget-rotating-quotes.php:145
+msgid "Author"
+msgstr ""
+
+#: ../class-widget-posts.php:119
+msgid "Post Title"
+msgstr ""
+
+#: ../class-widget-posts.php:119
+msgid "Last Modified Date"
+msgstr ""
+
+#: ../class-widget-posts.php:119
+msgid "Random"
+msgstr ""
+
+#: ../class-widget-quote.php:10
+msgid "Use this widget to display a quote"
+msgstr ""
+
+#: ../class-widget-quote.php:14
+msgid "Youxi &raquo; Quote"
+msgstr ""
+
+#: ../class-widget-quote.php:56
+msgid "Content"
+msgstr ""
+
+#: ../class-widget-quote.php:60
+msgid "Name"
+msgstr ""
+
+#: ../class-widget-quote.php:64 ../class-widget-rotating-quotes.php:151
+msgid "Source"
+msgstr ""
+
+#: ../class-widget-recent-posts.php:10
+msgid "Use this widget to display your recent posts"
+msgstr ""
+
+#: ../class-widget-recent-posts.php:14
+msgid "Youxi &raquo; Recent Posts"
+msgstr ""
+
+#: ../class-widget-rotating-quotes.php:10
+msgid "Use this widget to display a set of rotating quotes."
+msgstr ""
+
+#: ../class-widget-rotating-quotes.php:14
+msgid "Youxi &raquo; Rotating Quotes"
+msgstr ""
+
+#: ../class-widget-rotating-quotes.php:54
+msgid "Duration"
+msgstr ""
+
+#: ../class-widget-rotating-quotes.php:61
+msgid "Quotes"
+msgstr ""
+
+#: ../class-widget-rotating-quotes.php:72
+msgid "Add Quote"
+msgstr ""
+
+#: ../class-widget-rotating-quotes.php:127
+msgid "Quote"
+msgstr ""
+
+#: ../class-widget-rotating-quotes.php:137
+msgid "Text"
+msgstr ""
+
+#: ../class-widget-social.php:119
+msgid ""
+"Use this widget to link your social profiles using a set of retina ready "
+"icons."
+msgstr ""
+
+#: ../class-widget-social.php:123
+msgid "Youxi &raquo; Social"
+msgstr ""
+
+#: ../class-widget-social.php:164
+msgid "Items"
+msgstr ""
+
+#: ../class-widget-social.php:174
+msgid "Add Item"
+msgstr ""
+
+#: ../class-widget-social.php:219
+msgid "Item"
+msgstr ""
+
+#: ../class-widget-social.php:229
+msgid "URL"
+msgstr ""
+
+#: ../class-widget-social.php:243
+msgid "Icon"
+msgstr ""
+
+#: ../class-widget-twitter.php:12
+msgid "Use this widget to display your twitter feed."
+msgstr ""
+
+#: ../class-widget-twitter.php:16
+msgid "Youxi &raquo; Twitter"
+msgstr ""
+
+#: ../class-widget-twitter.php:70
+msgid "Username"
+msgstr ""
+
+#: ../class-widget-twitter.php:74
+msgid "Number of Tweets"
+msgstr ""
