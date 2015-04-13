@@ -14,17 +14,27 @@ Version: 1.0
 .content-box .content-wrap-inner {
   padding: 15px 0;
  }
-.fixnav {
-	width: 15%;
-	right: 35px;
+ div.fixnav {
 	margin-top: 14px;
-	padding: 5px 5px 8px;
-	background-color: #fbfbfb;
-	border: 1px solid #ccc;
+ }
+.fixnav {
+    background-color: #fbfbfb;
+    border: 1px solid #ccc;
+    padding: 3px 8px 5px;
+    right: 50px;
+    top: 125px;
+    width: 15%;
+}
+.fixnav i {
+	color: #231f20;
+	margin-right: 5px;
 }
 
 }
 
+p {
+    margin-bottom: 1.6em;
+}
 
 @media (min-width: 768px and media="screen"){
 .content-box .content-wrap-inner {
@@ -44,12 +54,24 @@ Version: 1.0
 #Contents {
 	margin: 0;
 	text-align: left;
+	border-bottom: 1px solid #ccc;
+	padding-bottom: 5px;
+	margin-bottom: 10px;
 }
 
 .breadcrumbs{
 	margin-left: 40px;
 	line-height: 60px;
 	vertical-align: middle;
+}
+
+.breadcrumbs i{color: #231f20;}
+
+.spacer-25 {
+    clear: both;
+    font-size: 0;
+    margin: 25px 0;
+    width: 100%;
 }
 
 .entry-title-page {

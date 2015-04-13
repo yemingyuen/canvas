@@ -4,7 +4,7 @@ get_header();
 
 if( have_posts() ): the_post();
 
-$layout = wp_parse_args( $post->layout, array(
+	$layout = wp_parse_args( $post->layout, array(
 	'page_layout'  => 'boxed', 
 	'wrap_content' => true
 ));
@@ -50,7 +50,7 @@ $layout = wp_parse_args( $post->layout, array(
 							<div class="col-lg-12">
 							<?php endif; ?>
 							<div class="entry-title-page">
-								<?php the_title('<h2>', '</h2>'); ?>
+								<?php the_title('<h2 class="bordered">', '</h2>'); ?>
 							</div>
 								<div class="entry-content">
 									<?php the_content(); ?>
