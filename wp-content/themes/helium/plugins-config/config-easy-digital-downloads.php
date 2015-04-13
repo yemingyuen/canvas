@@ -6,6 +6,24 @@ if( ! class_exists( 'Easy_Digital_Downloads' ) ) {
 	return;
 }
 
+/**
+ * Add the tinymce and page builder to downloads
+ */
+if( ! function_exists( 'helium_edd_tinymce_post_types' ) ) {
+
+	function helium_edd_tinymce_post_types( $post_types ) {
+		
+		if( function_exists( 'youxi_portfolio_cpt_name' ) ) {
+			if( ! is_array( $post_types ) ) {
+				$post_types = array( $post_types );
+			}
+			$post_types[] = 'download';
+		}
+		return $post_types;
+	}
+}
+add_filter( 'youxi_shortcode_tinymce_post_types', 'helium_edd_tinymce_post_types' );
+
 /* ==========================================================================
 	Remove Download Button
 ============================================================================= */
@@ -56,8 +74,6 @@ if( ! function_exists( 'helium_add_edd_metabox' ) ) {
 		$metaboxes['edd_grid_settings'] = array(
 
 			'title' => __( 'Page Template: EDD Store', 'helium' ), 
-
-			'page_template' => 'archive-download', 
 
 			'fields' => array(
 				'use_defaults' => array(

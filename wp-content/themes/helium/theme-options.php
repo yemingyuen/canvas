@@ -2,15 +2,15 @@
 /**
  * Initialize the custom theme options.
  */
-add_action( 'init', 'custom_theme_options' );
+add_action( 'admin_init', 'custom_theme_options' );
 
 /**
  * Build the custom settings & update OptionTree.
  */
 function custom_theme_options() {
   
-  /* OptionTree is not loaded yet, or this is not an admin request */
-  if ( ! function_exists( 'ot_settings_id' ) || ! is_admin() )
+  /* OptionTree is not loaded yet */
+  if ( ! function_exists( 'ot_settings_id' ) )
     return false;
     
   /**

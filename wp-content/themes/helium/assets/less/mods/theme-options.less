@@ -1,8 +1,4 @@
 
-/* ==========================================================================
-	Layout
-============================================================================= */
-
 @logo-height: 0px;
 
 .header .brand {
@@ -18,10 +14,6 @@
 		}
 	}
 }
-
-/* ==========================================================================
-	Fonts
-============================================================================= */
 
 @roboto-ff: e('"Roboto"');
 @lora-ff: e('"Lora"');
@@ -160,43 +152,5 @@ blockquote p {
 	}
 	& when not( @content-nav-font-style = normal ) {
 		font-style: @content-nav-font-style;
-	}
-}
-
-/* ==========================================================================
-	Accent Color
-============================================================================= */
-
-@brand-primary: #3dc9b3;
-
-& when not( @brand-primary = #3dc9b3 ) {
-	.post-header .post-title a:hover, 
-	.post-comments .comment-list .comment-head .comment-author-name a:hover, 
-	.edd-download-info-wrap .edd-download-title a:hover, 
-	.search-entry .search-entry-title a:hover, 
-	.main-nav ul li.current-menu-item > a, 
-	.main-nav ul li > a:hover, 
-	.related-items .related-item .related-item-title a:hover {
-	  color: @brand-primary;
-	}
-	.post-tags a:hover, 
-	.post-comments-nav .nav-previous a:hover, 
-	.post-comments-nav .nav-next a:hover, 
-	.edd-download-info-wrap .edd-download-actions .edd-add-to-cart:after, 
-	.edd-download-info-wrap .edd-download-actions .edd_go_to_checkout:after, 
-	.edd-download-info-wrap .edd-download-actions .edd-download-view-details:after, 
-	.edd-download-info-wrap .edd-download-actions input.edd-add-to-cart:hover, 
-	.grid-list-filter .filter-items li:hover > a, 
-	.grid-list-filter .filter-items li > a.active, 
-	.grid-list-filter .filter-items li > a:after, 
-	.header-links .header-links-tooltip, 
-	.content-nav-link > a:before, 
-	.content-nav-link > span:before, 
-	.pages-nav ul li a:hover .pages-nav-item, 
-	.mejs-controls .mejs-time-rail .mejs-time-current, 
-	.mejs-controls .mejs-horizontal-volume-slider .mejs-horizontal-volume-current, 
-	.featured-portfolio-slider .entry-slide-caption:after, 
-	.portfolio-info:after {
-	  background-color: @brand-primary;
 	}
 }

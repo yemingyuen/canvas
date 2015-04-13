@@ -252,51 +252,40 @@ function handle_ot_import( $data ) {
 
 	try {
 
-		/* decode the theme options data */
+		/* textarea value */
 		$options = unserialize( ot_decode( $data ) );
+
+		/* get settings array */
+		$settings = get_option( ot_settings_id() );
 
 		/* has options */
 		if ( is_array( $options ) ) {
-			/* update the option tree options */
-			update_option( ot_options_id(), $options );
-		} else {
-			return new WP_Error( 'theme_options_invalid_data', __( 'The supplied theme options data is not valid.', 'youxi' ) );	
-		}
 
+			/* validate options */
+			if ( is_array( $settings ) ) {
+
+				foreach( $settings['settings'] as $setting ) {
+
+					if ( isset( $options[$setting['id']] ) ) {
+
+						$content = ot_stripslashes( $options[$setting['id']] );
+
+						$options[$setting['id']] = ot_validate_setting( $content, $setting['type'], $setting['id'] );
+
+					}
+
+				}
+
+			}
+
+			/* update the option tree array */
+			update_option( ot_options_id(), $options );
+		}
 	} catch( Exception $e ) {
 		return new WP_Error( 'theme_options_unknown_error', $e->getMessage() );
 	}
 
 	return __( 'Theme options successfully imported.', 'youxi' );
-}
-
-function handle_customizer_import( $data ) {
-
-	$data = wp_parse_args( $data, array(
-		'data' => '', 
-		'type' => 'theme_mod', 
-		'key'  => ''
-	));
-
-	try {
-
-		$options = unserialize( $data['data'] );
-
-		if( is_array( $options ) ) {
-			if( 'theme_mod' == $data['type'] ) {
-				set_theme_mod( $data['key'], $options );
-			} else {
-				update_option( $data['key'], $options );
-			}
-		} else {
-			return new WP_Error( 'customizer_options_invalid_data', __( 'The supplied customizer options data is not valid.', 'youxi' ) );	
-		}
-
-	} catch( Exception $e ) {
-		return new WP_Error( 'customizer_options_unknown_error', $e->getMessage() );
-	}
-
-	return __( 'Customizer options successfully imported.', 'youxi' );
 }
 
 final class Youxi_Demo_Importer_Page {
@@ -385,7 +374,11 @@ final class Youxi_Demo_Importer_Page {
 			wp_send_json_success( compact( 'result' ) );
 
 		} else {
-			$this->wp_ajax_error( $result->get_error_message() );
+			if( is_wp_error( $result ) ) {
+				$this->wp_ajax_error( $result->get_error_message() );
+			} else {
+				$this->wp_ajax_error( __( 'An unknown error has occured.', 'youxi' ) );
+			}
 		}
 	}
 
@@ -424,10 +417,6 @@ final class Youxi_Demo_Importer_Page {
 				'status' => __( 'Importing theme options', 'youxi' ), 
 				'handler' => 'handle_ot_import'
 			), 
-			'customizer-options' => array(
-				'status' => __( 'Importing customizer options', 'youxi' ), 
-				'handler' => 'handle_customizer_import'
-			), 
 			'widgets' => array(
 				'status' => __( 'Importing widgets', 'youxi' ), 
 				'handler' => 'handle_widgets_import'
@@ -455,9 +444,9 @@ final class Youxi_Demo_Importer_Page {
 			'ajaxUrl'                  => admin_url( 'admin-ajax.php' ), 
 			'ajaxAction'               => 'youxi_import_demo', 
 			'importTasks'              => $this->get_import_tasks(), 
-			'successMessage'           => __( 'Import Completed Successfully', 'youxi' ), 
-			'failureMessage'           => __( 'Import Completed with {count} Failure(s)', 'youxi' ), 
-			'hasPreviousImportMessage' => __( 'You have previously imported a demo content, are you sure you want to import again?', 'youxi' ), 
+			'doneMessage'              => __( 'Import Completed', 'youxi' ), 
+			'failMessage'              => __( 'Import Failed', 'youxi' ), 
+			'hasPreviousImportMessage' => __( 'You have previously imported a demo content, are you sure you want to import again?' ), 
 			'beforeUnloadMessage'      => __( 'You haven\'t finishid importing the demo content. If you leave now, the demo content will not be imported.', 'youxi' ), 
 			'importFinishTimeout'      => 2000, 
 			'importDebug'              => defined( 'WP_DEBUG' ) && WP_DEBUG, 

@@ -1,5 +1,5 @@
 <article <?php post_class( 'search-entry' ); ?> itemscope itemtype="http://schema.org/Article">
-	<div class="search-entry-wrap clearfix">
+	<div class="search-entry-wrap">
 		<?php if( has_post_thumbnail() ):
 		?>
 		<figure class="search-entry-thumbnail">

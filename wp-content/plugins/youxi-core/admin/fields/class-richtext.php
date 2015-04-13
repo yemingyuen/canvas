@@ -8,8 +8,8 @@ if ( ! defined( 'ABSPATH' ) ) {
  * This class renders a TinyMCE control using native WordPress functions.
  *
  * @package   Youxi Core
- * @author    Mairel Theafila <maimairel@gmail.com>
- * @copyright Copyright (c) 2013-2015, Mairel Theafila
+ * @author    Mairel Theafila <maimairel@yahoo.com>
+ * @copyright Copyright (c) 2013, Mairel Theafila
  */
 if( ! class_exists( 'Youxi_Richtext_Form_Field' ) ) {
 
@@ -81,20 +81,10 @@ if( ! class_exists( 'Youxi_Richtext_Form_Field' ) ) {
 				);
 				wp_enqueue_script( 'youxi-richtext' );
 
-				if ( is_admin() ) {
-					add_action( 'admin_print_footer_scripts', array( $this, 'add_editor_settings' ), 40 );
-				} else {
-					add_action( 'wp_print_footer_scripts', array( $this, 'add_editor_settings' ), 40 );
-				}				
+				// Setup an extra tinymce settings for use in AJAX fetched editors
+				$ajax_settings = _WP_Editors::parse_settings( $this->get_the_ID(), $this->get_tinymce_settings() );
+				_WP_Editors::editor_settings( $this->get_the_ID(), $ajax_settings );
 			}
-		}
-
-		/**
-		 * Setup an extra TinyMCE setting for use in AJAX editors
-		 */
-		public function add_editor_settings() {
-			$ajax_settings = _WP_Editors::parse_settings( $this->get_the_ID(), $this->get_tinymce_settings() );
-			_WP_Editors::editor_settings( $this->get_the_ID(), $ajax_settings );
 		}
 
 		/**

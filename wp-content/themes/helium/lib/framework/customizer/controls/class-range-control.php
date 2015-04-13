@@ -1,18 +1,4 @@
 <?php
-if ( ! defined( 'ABSPATH' ) ) {
-	die();
-}
-
-/**
- * Youxi Customize Range Control
- *
- * This class adds an jQuery UI slider control to WordPress customizer
- *
- * @package   Youxi Themes Theme Utils
- * @author    Mairel Theafila <maimairel@yahoo.com>
- * @copyright Copyright (c) 2014-2015, Mairel Theafila
- */
-
 class Youxi_Customize_Range_Control extends WP_Customize_Control {
 
 	public $type = 'youxi_range';
@@ -23,6 +9,12 @@ class Youxi_Customize_Range_Control extends WP_Customize_Control {
 
 	public $step = null;
 
+	/**
+	 * Refresh the parameters passed to the JavaScript via JSON.
+	 *
+	 * @since 3.4.0
+	 * @uses WP_Customize_Control::to_json()
+	 */
 	public function to_json() {
 		parent::to_json();
 		$this->json['ui'] = array(
@@ -32,9 +24,12 @@ class Youxi_Customize_Range_Control extends WP_Customize_Control {
 		);
 	}
 
+	/**
+	 * Enqueue control related scripts/styles.
+	 *
+	 * @since 3.4.0
+	 */
 	public function enqueue() {
-
-		$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
 
 		wp_enqueue_script( 'jquery-ui-slider' );
 
@@ -43,7 +38,7 @@ class Youxi_Customize_Range_Control extends WP_Customize_Control {
 			array(), '1.0', 'screen'
 		);
 		wp_enqueue_script( 'youxi-range-control', 
-			get_template_directory_uri() . "/lib/framework/customizer/controls/assets/js/range-control{$suffix}.js", 
+			get_template_directory_uri() . '/lib/framework/customizer/controls/assets/js/range-control.js', 
 			array( 'jquery-ui-slider' ), '1.0', true
 		);
 	}

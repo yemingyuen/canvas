@@ -3,19 +3,12 @@
 Plugin Name: Youxi Widgets
 Plugin URI: http://www.themeforest.net/user/nagaemas
 Description: This plugin provides a set of commonly used widgets whose output can be dynamically customized with templates and filters. The widgets are also able to detect the widget area it's located on, making it possible to output different layouts on different widget areas.
-Version: 1.2.6
+Version: 1.2.4
 Author: YouxiThemes
 Author URI: http://www.themeforest.net/user/nagaemas
 License: Envato Marketplace Licence
 
 Changelog:
-1.2.6 - 10/03/2015
-- Fix a bug on the instagram widget that causes multiple widgets on the same page to break
-
-1.2.5 - 31/01/2015
-- Added image size option for instagram widget
-- Make sure instagram widget pulls images through the same HTTP protocol
-
 1.2.4 - 16/12/2014
 - Added `Open links in a new window/tab` option on Social Widget
 - Refactor Social Widget
@@ -72,7 +65,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	die( 'Hi there!  I\'m just a plugin, not much I can do when called directly.' );
 }
 
-define( 'YOUXI_WIDGETS_VERSION', '1.2.6' );
+define( 'YOUXI_WIDGETS_VERSION', '1.2' );
 
 define( 'YOUXI_WIDGETS_DIR', plugin_dir_path( __FILE__ ) );
 

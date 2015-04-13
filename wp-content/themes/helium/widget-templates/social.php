@@ -1,6 +1,6 @@
 <?php if( ! empty( $items ) ): ?>
 <div class="social-list">
-	<ul class="plain-list"><?php
+	<ul><?php
 		foreach( $items as $item ):
 			$item = wp_parse_args( $item, array(
 				'url'    => '', 

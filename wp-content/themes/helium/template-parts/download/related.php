@@ -4,7 +4,7 @@ $related_posts = helium_related_posts( $related_items_count );
 
 if( ! empty( $related_posts ) ):
 
-?><div class="content-box clearfix">
+?><div class="content-box">
 
 	<div class="content-wrap-inner three-quarters-vertical-padding">
 

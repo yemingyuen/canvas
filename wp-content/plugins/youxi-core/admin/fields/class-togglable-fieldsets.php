@@ -8,8 +8,8 @@ if ( ! defined( 'ABSPATH' ) ) {
  * This class creates a group of togglable fieldsets
  *
  * @package   Youxi Core
- * @author    Mairel Theafila <maimairel@gmail.com>
- * @copyright Copyright (c) 2013-2015, Mairel Theafila
+ * @author    Mairel Theafila <maimairel@yahoo.com>
+ * @copyright Copyright (c) 2013, Mairel Theafila
  */
 if( ! class_exists( 'Youxi_Togglable_Fieldsets_Form_Field' ) ) {
 

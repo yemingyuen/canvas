@@ -73,19 +73,27 @@ table#wp-calendar {
 	12.3 Post List Widget
 ============================================================================= */
 
-.post-list {
-	.post-list-entry + .post-list-entry {
-		margin-top: 20px;
+.widget {
+	.post-list {
+		ul {
+			&:extend(ul.plain-list);
+			li + li {
+				margin-top: 20px;
+			}
+		}
 	}
+}
 
-	.post-list-media {
+.post-list-widget {
+	.clearfix();
+	.post-list-widget-media {
 		width: 56px;
 		height: 56px;
 		float: left;
 		margin-right: 15px;
 	}
 
-	.post-list-featured-image {
+	.post-list-widget-featured-image {
 		a {
 			position: relative;
 			display: block;
@@ -136,21 +144,21 @@ table#wp-calendar {
 		}
 	}
 
-	.post-list-info {
+	.post-list-widget-info {
 		overflow: hidden;
 	}
 	
-	.post-list-title {
+	.post-list-widget-title {
 		margin: 0;
 		font-size: @font-size-base;
 		a {
 			color: @headings-color;
 			&:hover {
-				color: @brand-primary;
+				color: @link-color;
 			}
 		}
 	}
-	.post-list-time {
+	.post-list-widget-time {
 		font-size: 13px;
 		color: @text-muted;
 		font-style: italic;
@@ -163,6 +171,7 @@ table#wp-calendar {
 
 .social-list {
 	ul {
+		&:extend(ul.plain-list all);
 		margin-bottom: -4px;
 	}
 

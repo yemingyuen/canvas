@@ -26,7 +26,7 @@ if( have_comments() ):
 	</ul>
 
 	<?php if( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : 
-	?><nav class="post-comments-nav clearfix">
+	?><nav class="post-comments-nav">
 		<div class="nav-previous"><?php previous_comments_link( __( '&larr; Older Comments', 'helium' ) ); ?></div>
 		<div class="nav-next"><?php next_comments_link( __( 'Newer Comments &rarr;', 'helium' ) ); ?></div>
 	</nav>

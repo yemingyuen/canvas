@@ -6,7 +6,7 @@
 
 		<div class="content-header">
 
-			<div class="content-header-affix clearfix"><?php
+			<div class="content-header-affix"><?php
 
 				?><h1 class="content-title">
 					<?php echo helium_get_option( 'blog_index_title' ); ?>

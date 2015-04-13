@@ -1,4 +1,5 @@
 <?php get_header();
+}
 
 if( have_posts() ): the_post();
 
@@ -8,14 +9,14 @@ if( have_posts() ): the_post();
 
 		<div class="content-header">
 
-			<div class="content-header-affix clearfix"><?php
+			<div class="content-header-affix"><?php
 
 				?><h1 class="content-title">
 					<?php echo strtr( helium_get_option( 'blog_single_title' ), array( '{title}' => get_the_title() ) ); ?>
 				</h1><?php
 
 				?><nav class="content-nav" role="navigation" itemscope itemtype="http://schema.org/SiteNavigationElement">
-					<ul class="plain-list"><?php
+					<ul><?php
 						
 						previous_post_link(
 							'<li class="content-nav-link">%link</li>', 
@@ -39,7 +40,7 @@ if( have_posts() ): the_post();
 		</div>
 
 		<div class="content-wrap">
-			<?php get_template_part( 'template-parts/post/' . 'default' . '/entry', get_post_format() ); ?>
+			<?php get_template_part( 'template-parts/post/' . '/entry' . 'default' get_post_format() ); ?>
 		</div>
 
 	</div>

@@ -20,32 +20,6 @@ add_filter( 'youxi_shortcode_enqueue_assets', '__return_false' );
 add_filter( 'youxi_shortcode_prefix', '__return_empty_string' );
 
 /**
- * Add the tinymce and page builder to posts
- */
-if( ! function_exists( 'helium_shortcode_tinymce_post_types' ) ) {
-
-	function helium_shortcode_tinymce_post_types( $post_types ) {
-
-		if( ! is_array( $post_types ) ) {
-			$post_types = array();
-		}
-
-		$post_types[] = 'post';
-		
-		if( function_exists( 'youxi_portfolio_cpt_name' ) ) {
-			$post_types[] = youxi_portfolio_cpt_name();
-		}
-
-		if( class_exists( 'Easy_Digital_Downloads' ) ) {
-			$post_types[] = 'download';
-		}
-
-		return $post_types;
-	}
-}
-add_filter( 'youxi_shortcode_tinymce_post_types', 'helium_shortcode_tinymce_post_types' );
-
-/**
  * Hook to modify some shortcodes
  */
 if( ! function_exists( 'helium_youxi_shortcode_register' ) ) {
@@ -85,7 +59,7 @@ if( ! function_exists( 'helium_clients_shortcode_cb' ) ):
 
 	function helium_clients_shortcode_cb( $atts, $content, $tag ) {
 
-		$output = '<div class="client-list"><ul class="clearfix plain-list">' . do_shortcode( $content ) . '</ul></div>';
+		$output = '<div class="client-list"><ul>' . do_shortcode( $content ) . '</ul></div>';
 
 		return $output;
 	}

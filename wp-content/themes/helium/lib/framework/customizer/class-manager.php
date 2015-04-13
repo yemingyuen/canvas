@@ -1,18 +1,4 @@
 <?php
-if ( ! defined( 'ABSPATH' ) ) {
-	die();
-}
-
-/**
- * Youxi Customize Manager Base Class
- *
- * This class provides the base class for themes to extend
- *
- * @package   Youxi Themes Theme Utils
- * @author    Mairel Theafila <maimairel@yahoo.com>
- * @copyright Copyright (c) 2014-2015, Mairel Theafila
- */
-
 abstract class Youxi_Customize_Manager {
 
 	/**

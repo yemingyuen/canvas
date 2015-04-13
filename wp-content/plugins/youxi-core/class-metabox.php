@@ -8,8 +8,8 @@ if ( ! defined( 'ABSPATH' ) ) {
  * This class is a helper wrapper class for easily adding meta boxes in WordPress admin.
  *
  * @package   Youxi Core
- * @author    Mairel Theafila <maimairel@gmail.com>
- * @copyright Copyright (c) 2013-2015, Mairel Theafila
+ * @author    Mairel Theafila <maimairel@yahoo.com>
+ * @copyright Copyright (c) 2013, Mairel Theafila
  */
 if( ! class_exists( 'Youxi_Metabox' ) ) {
 
@@ -38,6 +38,14 @@ if( ! class_exists( 'Youxi_Metabox' ) ) {
 		 * @var mixed
 		 */
 		private $callback;
+
+		/**
+		 * Form object that will output the metabox contents
+		 *
+		 * @access private
+		 * @var mixed
+		 */
+		private $post_type;
 
 		/**
 		 * Context of the metabox
@@ -80,14 +88,6 @@ if( ! class_exists( 'Youxi_Metabox' ) ) {
 		private $fieldsets;
 
 		/**
-		 * Page template of the metabox
-		 *
-		 * @access private
-		 * @var string
-		 */
-		private $page_template;
-
-		/**
 		 * List of HTML classes to be added to the metabox
 		 *
 		 * @access private
@@ -112,12 +112,12 @@ if( ! class_exists( 'Youxi_Metabox' ) ) {
 		private static $defaults = array(
 			'title' => '', 
 			'callback' => null, 
+			'post_type' => '', 
 			'context' => 'normal', 
 			'priority' => 'default', 
 			'as_array' => true, 
 			'fields' => array(), 
-			'fieldsets' => array(), 
-			'page_template' => null
+			'fieldsets' => array()
 		);
 
 		/**
@@ -183,11 +183,7 @@ if( ! class_exists( 'Youxi_Metabox' ) ) {
 			);
 
 			/* Add the metabox classes filter */
-			add_filter( "postbox_classes_{$post_type}_{$this->id}", array( $this, 'postbox_classes' ) );
-
-			if( 'page' == $post_type && ! is_null( $this->page_template ) ) {
-				add_filter( "postbox_classes_page_{$this->id}", array( $this, 'postbox_classes_page_template' ) );				
-			}
+			add_filter( "postbox_classes_{$post_type}_{$this->id}", array( $this, 'filter_metabox_class' ) );
 
 			/* Register hook for enqueuing the registered field assets */
 			add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_scripts' ) );
@@ -242,27 +238,9 @@ if( ! class_exists( 'Youxi_Metabox' ) ) {
 		 * @param string The current screen hook
 		 */
 		public function admin_enqueue_scripts( $hook ) {
-
 			if( in_array( $hook, array( 'post.php', 'post-new.php' ) ) ) {
-
-				$post_type = get_post_type();
-
-				$this->get_form( $post_type )->enqueue( $hook );
-
-				if( 'page' == $post_type && ! is_null( $this->page_template ) ) {
-
-					wp_enqueue_script( 
-						'youxi-page-template', 
-						YOUXI_CORE_URL . 'admin/assets/js/youxi.page-template.js', 
-						array( 'jquery' ), 
-						YOUXI_CORE_VERSION, 
-						true
-					);
-
-				}
-
+				$this->get_form( get_post_type() )->enqueue( $hook );
 			}
-
 		}
 
 		/**
@@ -401,7 +379,7 @@ if( ! class_exists( 'Youxi_Metabox' ) ) {
 					'class' => array(
 						'youxi-form-row', 
 						'youxi-form-block' => array(
-							'type' => array( 'checkbox', 'gallery' )
+							'type' => array( 'checkbox' )
 						)
 					)
 				), 
@@ -432,17 +410,8 @@ if( ! class_exists( 'Youxi_Metabox' ) ) {
 		 *
 		 * @param array The current classes of the metabox
 		 */
-		public function postbox_classes( $classes ) {
+		public function filter_metabox_class( $classes ) {
 			return array_merge( $classes, $this->html_classes );
-		}
-
-		/**
-		 * Metabox class names filter for page templates
-		 *
-		 * @param array The current classes of the metabox
-		 */
-		public function postbox_classes_page_template( $classes ) {
-			return array_merge( $classes, array( 'youxi_page_template_' . preg_replace( '/\W/', '_', $this->page_template ) ) );
 		}
 
 		/**

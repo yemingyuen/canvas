@@ -1,22 +1,19 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Youxi Shortcode\n"
-"POT-Creation-Date: 2015-03-18 19:18+0700\n"
-"PO-Revision-Date: 2015-03-18 19:18+0700\n"
+"POT-Creation-Date: 2014-11-07 13:38+0700\n"
+"PO-Revision-Date: 2014-11-07 13:38+0700\n"
 "Last-Translator: \n"
 "Language-Team: YouxiThemes\n"
 "Language: en_US\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.7.1\n"
-"X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;"
-"_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;_ex:1,2c;"
-"esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c\n"
+"X-Generator: Poedit 1.6.10\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c\n"
 "X-Poedit-Basepath: .\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Poedit-SearchPath-0: .\n"
-"X-Poedit-SearchPath-1: ..\n"
+"X-Poedit-SearchPath-0: ..\n"
 
 #: ../class-admin-notice.php:84
 #, php-format
@@ -82,51 +79,51 @@ msgstr ""
 msgid "Configure here the animation properties."
 msgstr ""
 
-#: ../classes/class-shortcode.php:690
+#: ../classes/class-shortcode.php:679
 msgid "Column 1 / 12"
 msgstr ""
 
-#: ../classes/class-shortcode.php:695
+#: ../classes/class-shortcode.php:684
 msgid "Column 1 / 6"
 msgstr ""
 
-#: ../classes/class-shortcode.php:700
+#: ../classes/class-shortcode.php:689
 msgid "Column 1 / 4"
 msgstr ""
 
-#: ../classes/class-shortcode.php:705
+#: ../classes/class-shortcode.php:694
 msgid "Column 1 / 3"
 msgstr ""
 
-#: ../classes/class-shortcode.php:710
+#: ../classes/class-shortcode.php:699
 msgid "Column 5 / 12"
 msgstr ""
 
-#: ../classes/class-shortcode.php:715
+#: ../classes/class-shortcode.php:704
 msgid "Column 1 / 2"
 msgstr ""
 
-#: ../classes/class-shortcode.php:720
+#: ../classes/class-shortcode.php:709
 msgid "Column 7 / 12"
 msgstr ""
 
-#: ../classes/class-shortcode.php:725
+#: ../classes/class-shortcode.php:714
 msgid "Column 2 / 3"
 msgstr ""
 
-#: ../classes/class-shortcode.php:730
+#: ../classes/class-shortcode.php:719
 msgid "Column 3 / 4"
 msgstr ""
 
-#: ../classes/class-shortcode.php:735
+#: ../classes/class-shortcode.php:724
 msgid "Column 5 / 6"
 msgstr ""
 
-#: ../classes/class-shortcode.php:740
+#: ../classes/class-shortcode.php:729
 msgid "Column 11 / 12"
 msgstr ""
 
-#: ../classes/class-shortcode.php:745
+#: ../classes/class-shortcode.php:734
 msgid "Column 1 / 1"
 msgstr ""
 
@@ -134,324 +131,324 @@ msgstr ""
 msgid "Content Shortcodes"
 msgstr ""
 
-#: ../definitions/content.php:623 ../definitions/content.php:633
+#: ../definitions/content.php:623 ../definitions/content.php:632
 msgid "Accordion"
 msgstr ""
 
-#: ../definitions/content.php:630
+#: ../definitions/content.php:629
 msgid "Mode"
 msgstr ""
 
-#: ../definitions/content.php:631
+#: ../definitions/content.php:630
 msgid "Choose the behavior of the accordion."
 msgstr ""
 
-#: ../definitions/content.php:634
+#: ../definitions/content.php:633
 msgid "Toggle"
 msgstr ""
 
-#: ../definitions/content.php:641
+#: ../definitions/content.php:640
 msgid "Groups"
 msgstr ""
 
-#: ../definitions/content.php:642
+#: ../definitions/content.php:641
 msgid "Enter here the title and content of each accordion."
 msgstr ""
 
-#: ../definitions/content.php:655
+#: ../definitions/content.php:654
 msgid "Accordion Group"
 msgstr ""
 
-#: ../definitions/content.php:662 ../definitions/content.php:686
-#: ../definitions/content.php:726 ../definitions/content.php:866
-#: ../definitions/content.php:924 ../definitions/content.php:1253
-#: ../definitions/content.php:1390 ../definitions/content.php:1655
-#: ../definitions/media.php:484 ../definitions/uncategorized.php:214
+#: ../definitions/content.php:661 ../definitions/content.php:684
+#: ../definitions/content.php:723 ../definitions/content.php:860
+#: ../definitions/content.php:916 ../definitions/content.php:1258
+#: ../definitions/content.php:1400 ../definitions/content.php:1673
+#: ../definitions/media.php:519 ../definitions/uncategorized.php:214
 msgid "Title"
 msgstr ""
 
-#: ../definitions/content.php:663
+#: ../definitions/content.php:662
 msgid "Enter here the accordion title."
 msgstr ""
 
-#: ../definitions/content.php:668 ../definitions/content.php:704
-#: ../definitions/content.php:1138 ../definitions/content.php:1502
-#: ../definitions/content.php:1661 ../definitions/content.php:1758
-#: ../definitions/content.php:1774 ../definitions/media.php:463
+#: ../definitions/content.php:667 ../definitions/content.php:702
+#: ../definitions/content.php:1130 ../definitions/content.php:1521
+#: ../definitions/content.php:1679 ../definitions/content.php:1773
+#: ../definitions/content.php:1788 ../definitions/media.php:498
 #: ../definitions/uncategorized.php:261
 msgid "Content"
 msgstr ""
 
-#: ../definitions/content.php:669
+#: ../definitions/content.php:668
 msgid "Enter here the accordion content."
 msgstr ""
 
-#: ../definitions/content.php:678
+#: ../definitions/content.php:677
 msgid "Alert"
 msgstr ""
 
-#: ../definitions/content.php:687
+#: ../definitions/content.php:685
 msgid "Enter here the alert's title."
 msgstr ""
 
-#: ../definitions/content.php:691
+#: ../definitions/content.php:689
 msgid "Alert Type"
 msgstr ""
 
-#: ../definitions/content.php:692
+#: ../definitions/content.php:690
 msgid "Choose the alert type."
 msgstr ""
 
-#: ../definitions/content.php:694 ../definitions/content.php:755
-#: ../definitions/content.php:1334 ../definitions/content.php:1424
-#: ../definitions/statistic.php:96 ../definitions/uncategorized.php:111
+#: ../definitions/content.php:692 ../definitions/content.php:752
+#: ../definitions/content.php:1339 ../definitions/content.php:1434
+#: ../definitions/statistic.php:94 ../definitions/uncategorized.php:111
 #: ../definitions/uncategorized.php:178
 msgid "Success"
 msgstr ""
 
-#: ../definitions/content.php:695 ../definitions/content.php:756
-#: ../definitions/content.php:1335 ../definitions/content.php:1425
-#: ../definitions/statistic.php:98 ../definitions/uncategorized.php:112
+#: ../definitions/content.php:693 ../definitions/content.php:753
+#: ../definitions/content.php:1340 ../definitions/content.php:1435
+#: ../definitions/statistic.php:96 ../definitions/uncategorized.php:112
 #: ../definitions/uncategorized.php:180
 msgid "Warning"
 msgstr ""
 
-#: ../definitions/content.php:696 ../definitions/content.php:757
-#: ../definitions/content.php:1336 ../definitions/content.php:1426
-#: ../definitions/statistic.php:99 ../definitions/uncategorized.php:113
+#: ../definitions/content.php:694 ../definitions/content.php:754
+#: ../definitions/content.php:1341 ../definitions/content.php:1436
+#: ../definitions/statistic.php:97 ../definitions/uncategorized.php:113
 #: ../definitions/uncategorized.php:181
 msgid "Danger"
 msgstr ""
 
-#: ../definitions/content.php:697 ../definitions/content.php:758
-#: ../definitions/content.php:1337 ../definitions/content.php:1427
-#: ../definitions/statistic.php:97 ../definitions/uncategorized.php:114
+#: ../definitions/content.php:695 ../definitions/content.php:755
+#: ../definitions/content.php:1342 ../definitions/content.php:1437
+#: ../definitions/statistic.php:95 ../definitions/uncategorized.php:114
 #: ../definitions/uncategorized.php:179
 msgid "Info"
 msgstr ""
 
-#: ../definitions/content.php:705
+#: ../definitions/content.php:703
 msgid "Enter here the alert's content."
 msgstr ""
 
-#: ../definitions/content.php:718
+#: ../definitions/content.php:716
 msgid "Call to Action"
 msgstr ""
 
-#: ../definitions/content.php:727
+#: ../definitions/content.php:724
 msgid "Enter the title for this call to action box."
 msgstr ""
 
-#: ../definitions/content.php:732 ../definitions/content.php:1322
-#: ../definitions/content.php:1401
+#: ../definitions/content.php:729 ../definitions/content.php:1327
+#: ../definitions/content.php:1411
 msgid "Button Text"
 msgstr ""
 
-#: ../definitions/content.php:733 ../definitions/content.php:1402
+#: ../definitions/content.php:730 ../definitions/content.php:1412
 msgid "Enter the text to display on the button."
 msgstr ""
 
-#: ../definitions/content.php:738 ../definitions/content.php:1407
+#: ../definitions/content.php:735 ../definitions/content.php:1417
 msgid "Button Size"
 msgstr ""
 
-#: ../definitions/content.php:739 ../definitions/content.php:1408
+#: ../definitions/content.php:736 ../definitions/content.php:1418
 msgid "Choose the size of the button."
 msgstr ""
 
-#: ../definitions/content.php:741 ../definitions/content.php:753
-#: ../definitions/content.php:1332 ../definitions/content.php:1410
-#: ../definitions/content.php:1422 ../definitions/statistic.php:95
+#: ../definitions/content.php:738 ../definitions/content.php:750
+#: ../definitions/content.php:1337 ../definitions/content.php:1420
+#: ../definitions/content.php:1432 ../definitions/statistic.php:93
 #: ../definitions/uncategorized.php:109 ../definitions/uncategorized.php:123
 #: ../definitions/uncategorized.php:176
 msgid "Default"
 msgstr ""
 
-#: ../definitions/content.php:742 ../definitions/content.php:1411
+#: ../definitions/content.php:739 ../definitions/content.php:1421
 #: ../definitions/uncategorized.php:124
 msgid "Large"
 msgstr ""
 
-#: ../definitions/content.php:743 ../definitions/content.php:1412
+#: ../definitions/content.php:740 ../definitions/content.php:1422
 #: ../definitions/uncategorized.php:125
 msgid "Small"
 msgstr ""
 
-#: ../definitions/content.php:744 ../definitions/content.php:1413
+#: ../definitions/content.php:741 ../definitions/content.php:1423
 #: ../definitions/uncategorized.php:126
 msgid "Extra Small"
 msgstr ""
 
-#: ../definitions/content.php:750 ../definitions/content.php:1419
+#: ../definitions/content.php:747 ../definitions/content.php:1429
 msgid "Button Type"
 msgstr ""
 
-#: ../definitions/content.php:751 ../definitions/content.php:1420
+#: ../definitions/content.php:748 ../definitions/content.php:1430
 msgid "Choose the type of the button."
 msgstr ""
 
-#: ../definitions/content.php:754 ../definitions/content.php:1333
-#: ../definitions/content.php:1423 ../definitions/uncategorized.php:110
+#: ../definitions/content.php:751 ../definitions/content.php:1338
+#: ../definitions/content.php:1433 ../definitions/uncategorized.php:110
 #: ../definitions/uncategorized.php:177
 msgid "Primary"
 msgstr ""
 
-#: ../definitions/content.php:764 ../definitions/content.php:1291
-#: ../definitions/content.php:1434
+#: ../definitions/content.php:761 ../definitions/content.php:1296
+#: ../definitions/content.php:1444
 msgid "Button Action"
 msgstr ""
 
-#: ../definitions/content.php:765 ../definitions/content.php:1292
-#: ../definitions/content.php:1435
+#: ../definitions/content.php:762 ../definitions/content.php:1297
+#: ../definitions/content.php:1445
 msgid "Choose the action to execute after clicking the button."
 msgstr ""
 
-#: ../definitions/content.php:767 ../definitions/content.php:1294
+#: ../definitions/content.php:764 ../definitions/content.php:1299
 msgid "Go to URL"
 msgstr ""
 
-#: ../definitions/content.php:768 ../definitions/content.php:1295
+#: ../definitions/content.php:765 ../definitions/content.php:1300
 msgid "Go to Page"
 msgstr ""
 
-#: ../definitions/content.php:774 ../definitions/content.php:1302
-#: ../definitions/content.php:1445
+#: ../definitions/content.php:771 ../definitions/content.php:1307
+#: ../definitions/content.php:1455
 msgid "Page"
 msgstr ""
 
-#: ../definitions/content.php:775 ../definitions/content.php:1303
-#: ../definitions/content.php:1446
+#: ../definitions/content.php:772 ../definitions/content.php:1308
+#: ../definitions/content.php:1456
 msgid "Choose the page to view after clicking the button."
 msgstr ""
 
-#: ../definitions/content.php:781 ../definitions/content.php:837
-#: ../definitions/content.php:1312 ../definitions/content.php:1454
+#: ../definitions/content.php:778 ../definitions/content.php:832
+#: ../definitions/content.php:1317 ../definitions/content.php:1464
 #: ../definitions/uncategorized.php:132 ../definitions/uncategorized.php:252
 msgid "URL"
 msgstr ""
 
-#: ../definitions/content.php:782 ../definitions/content.php:1313
-#: ../definitions/content.php:1455
+#: ../definitions/content.php:779 ../definitions/content.php:1318
+#: ../definitions/content.php:1465
 msgid "Enter the URL to go to after clicking the button."
 msgstr ""
 
-#: ../definitions/content.php:789 ../definitions/content.php:1464
+#: ../definitions/content.php:786 ../definitions/content.php:1474
 msgid "Description"
 msgstr ""
 
-#: ../definitions/content.php:790
+#: ../definitions/content.php:787
 msgid "Enter the content of this call to action box."
 msgstr ""
 
-#: ../definitions/content.php:803 ../definitions/content.php:809
+#: ../definitions/content.php:800 ../definitions/content.php:805
 msgid "Clients"
 msgstr ""
 
-#: ../definitions/content.php:810
+#: ../definitions/content.php:806
 msgid "Enter here the client's data."
 msgstr ""
 
-#: ../definitions/content.php:824
+#: ../definitions/content.php:820
 msgid "Client"
 msgstr ""
 
-#: ../definitions/content.php:832 ../definitions/content.php:1357
-#: ../definitions/content.php:1679
+#: ../definitions/content.php:827 ../definitions/content.php:1362
+#: ../definitions/content.php:1696
 msgid "Name"
 msgstr ""
 
-#: ../definitions/content.php:833
+#: ../definitions/content.php:828
 msgid "Enter here the client's name."
 msgstr ""
 
-#: ../definitions/content.php:838
+#: ../definitions/content.php:833
 msgid "Enter here the client's URL."
 msgstr ""
 
-#: ../definitions/content.php:842
+#: ../definitions/content.php:837
 msgid "Logo"
 msgstr ""
 
-#: ../definitions/content.php:843
+#: ../definitions/content.php:838
 msgid "Choose here the client's logo image."
 msgstr ""
 
-#: ../definitions/content.php:845 ../definitions/content.php:847
-#: ../definitions/media.php:492 ../definitions/media.php:494
+#: ../definitions/content.php:840 ../definitions/content.php:842
+#: ../definitions/media.php:527 ../definitions/media.php:529
 msgid "Choose an Image"
 msgstr ""
 
-#: ../definitions/content.php:846
+#: ../definitions/content.php:841
 msgid "Insert Image"
 msgstr ""
 
-#: ../definitions/content.php:858 ../definitions/content.php:871
+#: ../definitions/content.php:853 ../definitions/content.php:865
 msgid "Contact Form 7"
 msgstr ""
 
-#: ../definitions/content.php:867
+#: ../definitions/content.php:861
 msgid "Enter here the title of the form."
 msgstr ""
 
-#: ../definitions/content.php:872
+#: ../definitions/content.php:866
 msgid "Choose a Contact Form 7 to display."
 msgstr ""
 
-#: ../definitions/content.php:883
+#: ../definitions/content.php:877
 msgid "Heading"
 msgstr ""
 
-#: ../definitions/content.php:891
+#: ../definitions/content.php:884
 msgid "Heading Element"
 msgstr ""
 
-#: ../definitions/content.php:892
+#: ../definitions/content.php:885
 msgid "Choose the HTML element to use for the heading."
 msgstr ""
 
-#: ../definitions/content.php:906 ../definitions/uncategorized.php:139
+#: ../definitions/content.php:899 ../definitions/uncategorized.php:139
 #: ../definitions/uncategorized.php:156 ../definitions/uncategorized.php:188
 #: ../definitions/uncategorized.php:246
 msgid "Text"
 msgstr ""
 
-#: ../definitions/content.php:907
+#: ../definitions/content.php:900
 msgid "Enter the heading text."
 msgstr ""
 
-#: ../definitions/content.php:916
+#: ../definitions/content.php:909
 msgid "Icon Box"
 msgstr ""
 
-#: ../definitions/content.php:925
+#: ../definitions/content.php:917
 msgid "Enter here the icon box's title."
 msgstr ""
 
-#: ../definitions/content.php:929
+#: ../definitions/content.php:921
 msgid "Icon"
 msgstr ""
 
-#: ../definitions/content.php:930
+#: ../definitions/content.php:922
 msgid "Choose here the icon to display on the icon box."
 msgstr ""
 
-#: ../definitions/content.php:1139
+#: ../definitions/content.php:1131
 msgid "Enter here the icon box's content."
 msgstr ""
 
-#: ../definitions/content.php:1152
+#: ../definitions/content.php:1144
 msgid "Posts"
 msgstr ""
 
-#: ../definitions/content.php:1159
+#: ../definitions/content.php:1150
 msgid "Excluded Categories"
 msgstr ""
 
-#: ../definitions/content.php:1160
+#: ../definitions/content.php:1152
 msgid "Choose here the post categories to exclude."
 msgstr ""
 
-#: ../definitions/content.php:1171
+#: ../definitions/content.php:1170
 msgid "Excluded Tags"
 msgstr ""
 
@@ -459,342 +456,342 @@ msgstr ""
 msgid "Choose here the post tags to exclude."
 msgstr ""
 
-#: ../definitions/content.php:1183
+#: ../definitions/content.php:1190
 msgid "Posts Per Page"
 msgstr ""
 
-#: ../definitions/content.php:1184
+#: ../definitions/content.php:1191
 msgid "Choose how many posts to retrieve."
 msgstr ""
 
-#: ../definitions/content.php:1193
+#: ../definitions/content.php:1200
 msgid "Order By"
 msgstr ""
 
-#: ../definitions/content.php:1194
+#: ../definitions/content.php:1201
 msgid "Choose which parameter to use for ordering the retrieved posts."
 msgstr ""
 
-#: ../definitions/content.php:1196 ../definitions/media.php:220
-#: ../definitions/media.php:574
+#: ../definitions/content.php:1203 ../definitions/media.php:219
+#: ../definitions/media.php:607
 msgid "None"
 msgstr ""
 
-#: ../definitions/content.php:1197
+#: ../definitions/content.php:1204
 msgid "Post ID"
 msgstr ""
 
-#: ../definitions/content.php:1198
+#: ../definitions/content.php:1205
 msgid "Post Title"
 msgstr ""
 
-#: ../definitions/content.php:1199
+#: ../definitions/content.php:1206
 msgid "Post Slug"
 msgstr ""
 
-#: ../definitions/content.php:1200
+#: ../definitions/content.php:1207
 msgid "Date"
 msgstr ""
 
-#: ../definitions/content.php:1201
+#: ../definitions/content.php:1208
 msgid "Random Order"
 msgstr ""
 
-#: ../definitions/content.php:1207
+#: ../definitions/content.php:1214
 msgid "Order"
 msgstr ""
 
-#: ../definitions/content.php:1208
+#: ../definitions/content.php:1215
 msgid "Choose the ascending/descending order of the orderby parameter."
 msgstr ""
 
-#: ../definitions/content.php:1210
+#: ../definitions/content.php:1217
 msgid "Ascending"
 msgstr ""
 
-#: ../definitions/content.php:1211
+#: ../definitions/content.php:1218
 msgid "Descending"
 msgstr ""
 
-#: ../definitions/content.php:1223
+#: ../definitions/content.php:1230
 msgid "Pricing Tables"
 msgstr ""
 
-#: ../definitions/content.php:1229
+#: ../definitions/content.php:1235
 msgid "Tables"
 msgstr ""
 
-#: ../definitions/content.php:1230
+#: ../definitions/content.php:1236
 msgid "Enter here the pricing tables."
 msgstr ""
 
-#: ../definitions/content.php:1232
+#: ../definitions/content.php:1238
 msgid "Add Pricing Table"
 msgstr ""
 
-#: ../definitions/content.php:1245
+#: ../definitions/content.php:1251
 msgid "Pricing Table"
 msgstr ""
 
-#: ../definitions/content.php:1254
+#: ../definitions/content.php:1259
 msgid "Enter here the table title."
 msgstr ""
 
-#: ../definitions/content.php:1258
+#: ../definitions/content.php:1263
 msgid "Show Price"
 msgstr ""
 
-#: ../definitions/content.php:1259
+#: ../definitions/content.php:1264
 msgid "Switch to hide/show the price."
 msgstr ""
 
-#: ../definitions/content.php:1264
+#: ../definitions/content.php:1269
 msgid "Currency Symbol"
 msgstr ""
 
-#: ../definitions/content.php:1265
+#: ../definitions/content.php:1270
 msgid "Enter here the currency symbol."
 msgstr ""
 
-#: ../definitions/content.php:1271
+#: ../definitions/content.php:1276
 msgid "Price"
 msgstr ""
 
-#: ../definitions/content.php:1272
+#: ../definitions/content.php:1277
 msgid "Enter here the price value."
 msgstr ""
 
-#: ../definitions/content.php:1278
+#: ../definitions/content.php:1283
 msgid "Price Description"
 msgstr ""
 
-#: ../definitions/content.php:1279
+#: ../definitions/content.php:1284
 msgid "Enter here a little note to display below the price."
 msgstr ""
 
-#: ../definitions/content.php:1285 ../definitions/content.php:1395
+#: ../definitions/content.php:1290 ../definitions/content.php:1405
 msgid "Show Button"
 msgstr ""
 
-#: ../definitions/content.php:1286 ../definitions/content.php:1396
+#: ../definitions/content.php:1291 ../definitions/content.php:1406
 msgid "Switch to hide/show the button."
 msgstr ""
 
-#: ../definitions/content.php:1323
+#: ../definitions/content.php:1328
 msgid "Enter here the text to display on the button."
 msgstr ""
 
-#: ../definitions/content.php:1329
+#: ../definitions/content.php:1334
 msgid "Color Scheme"
 msgstr ""
 
-#: ../definitions/content.php:1330
+#: ../definitions/content.php:1335
 msgid "Choose the base color of the pricing table."
 msgstr ""
 
-#: ../definitions/content.php:1343
+#: ../definitions/content.php:1348
 msgid "Featured"
 msgstr ""
 
-#: ../definitions/content.php:1344
+#: ../definitions/content.php:1349
 msgid "Switch to display the pricing table as featured."
 msgstr ""
 
-#: ../definitions/content.php:1350
+#: ../definitions/content.php:1355
 msgid "Features"
 msgstr ""
 
-#: ../definitions/content.php:1351
+#: ../definitions/content.php:1356
 msgid "Enter here the features to display on this pricing table."
 msgstr ""
 
-#: ../definitions/content.php:1353
+#: ../definitions/content.php:1358
 msgid "Add Feature"
 msgstr ""
 
-#: ../definitions/content.php:1382
+#: ../definitions/content.php:1393
 msgid "Service"
 msgstr ""
 
-#: ../definitions/content.php:1391
+#: ../definitions/content.php:1401
 msgid "Enter here the service name."
 msgstr ""
 
-#: ../definitions/content.php:1465
+#: ../definitions/content.php:1475
 msgid "Enter the description of this service."
 msgstr ""
 
-#: ../definitions/content.php:1478
+#: ../definitions/content.php:1488
 msgid "Table"
 msgstr ""
 
-#: ../definitions/content.php:1485
+#: ../definitions/content.php:1494
 msgid "Table Styles"
 msgstr ""
 
-#: ../definitions/content.php:1486
+#: ../definitions/content.php:1496
 msgid "Choose here the table styles to display."
 msgstr ""
 
-#: ../definitions/content.php:1488
+#: ../definitions/content.php:1498
 msgid "Striped"
 msgstr ""
 
-#: ../definitions/content.php:1489
+#: ../definitions/content.php:1499
 msgid "Bordered"
 msgstr ""
 
-#: ../definitions/content.php:1490
+#: ../definitions/content.php:1500
 msgid "Hoverable"
 msgstr ""
 
-#: ../definitions/content.php:1530
+#: ../definitions/content.php:1549
 msgid "Table Head"
 msgstr ""
 
-#: ../definitions/content.php:1555
+#: ../definitions/content.php:1574
 msgid "Table Body"
 msgstr ""
 
-#: ../definitions/content.php:1583
+#: ../definitions/content.php:1602
 msgid "Table Header"
 msgstr ""
 
-#: ../definitions/content.php:1589
+#: ../definitions/content.php:1608
 msgid "Table Cell"
 msgstr ""
 
-#: ../definitions/content.php:1595
+#: ../definitions/content.php:1614
 msgid "Table Row"
 msgstr ""
 
-#: ../definitions/content.php:1616 ../definitions/content.php:1626
-#: ../definitions/content.php:1634
+#: ../definitions/content.php:1635 ../definitions/content.php:1644
+#: ../definitions/content.php:1652
 msgid "Tabs"
 msgstr ""
 
-#: ../definitions/content.php:1623
+#: ../definitions/content.php:1641
 msgid "Tab Type"
 msgstr ""
 
-#: ../definitions/content.php:1624
+#: ../definitions/content.php:1642
 msgid "Choose here the tabs type."
 msgstr ""
 
-#: ../definitions/content.php:1627
+#: ../definitions/content.php:1645
 msgid "Pills"
 msgstr ""
 
-#: ../definitions/content.php:1635
+#: ../definitions/content.php:1653
 msgid "Enter here the title and content of each tab."
 msgstr ""
 
-#: ../definitions/content.php:1648
+#: ../definitions/content.php:1666
 msgid "Tab"
 msgstr ""
 
-#: ../definitions/content.php:1656
+#: ../definitions/content.php:1674
 msgid "Enter here the tab title."
 msgstr ""
 
-#: ../definitions/content.php:1662
+#: ../definitions/content.php:1680
 msgid "Enter here the tab content."
 msgstr ""
 
-#: ../definitions/content.php:1671
+#: ../definitions/content.php:1689
 msgid "Team"
 msgstr ""
 
-#: ../definitions/content.php:1680
+#: ../definitions/content.php:1697
 msgid "Enter here the team member's name."
 msgstr ""
 
-#: ../definitions/content.php:1684
+#: ../definitions/content.php:1701
 msgid "Role"
 msgstr ""
 
-#: ../definitions/content.php:1685
+#: ../definitions/content.php:1702
 msgid "Enter here the role of the team member."
 msgstr ""
 
-#: ../definitions/content.php:1689
+#: ../definitions/content.php:1706
 msgid "Photo"
 msgstr ""
 
-#: ../definitions/content.php:1690
+#: ../definitions/content.php:1707
 msgid "Choose a photo for the team member."
 msgstr ""
 
-#: ../definitions/content.php:1692 ../definitions/content.php:1694
+#: ../definitions/content.php:1709 ../definitions/content.php:1711
 msgid "Choose a Photo"
 msgstr ""
 
-#: ../definitions/content.php:1693 ../definitions/media.php:493
+#: ../definitions/content.php:1710 ../definitions/media.php:528
 msgid "Insert URL"
 msgstr ""
 
-#: ../definitions/content.php:1699
+#: ../definitions/content.php:1716
 msgid "About"
 msgstr ""
 
-#: ../definitions/content.php:1700
+#: ../definitions/content.php:1717
 msgid "Enter here a short description about the team member."
 msgstr ""
 
-#: ../definitions/content.php:1709 ../definitions/content.php:1715
+#: ../definitions/content.php:1726 ../definitions/content.php:1731
 msgid "Testimonials"
 msgstr ""
 
-#: ../definitions/content.php:1716
+#: ../definitions/content.php:1732
 msgid "Enter here the testimonials to display."
 msgstr ""
 
-#: ../definitions/content.php:1733
+#: ../definitions/content.php:1749
 msgid "Testimonial"
 msgstr ""
 
-#: ../definitions/content.php:1741
+#: ../definitions/content.php:1756
 msgid "Author"
 msgstr ""
 
-#: ../definitions/content.php:1742
+#: ../definitions/content.php:1757
 msgid "Enter here the testimonial author."
 msgstr ""
 
-#: ../definitions/content.php:1746 ../definitions/media.php:200
-#: ../definitions/media.php:548
+#: ../definitions/content.php:1761 ../definitions/media.php:199
+#: ../definitions/media.php:581
 msgid "Source"
 msgstr ""
 
-#: ../definitions/content.php:1747
+#: ../definitions/content.php:1762
 msgid "Enter here the testimonial source."
 msgstr ""
 
-#: ../definitions/content.php:1751
+#: ../definitions/content.php:1766
 msgid "Source URL"
 msgstr ""
 
-#: ../definitions/content.php:1752
+#: ../definitions/content.php:1767
 msgid "Enter here the testimonial source URL."
 msgstr ""
 
-#: ../definitions/content.php:1759
+#: ../definitions/content.php:1774
 msgid "Enter here the testimonial content."
 msgstr ""
 
-#: ../definitions/content.php:1768
+#: ../definitions/content.php:1783
 msgid "Text Widget"
 msgstr ""
 
-#: ../definitions/content.php:1775
+#: ../definitions/content.php:1789
 msgid "Enter here the text to display."
 msgstr ""
 
-#: ../definitions/content.php:1784 ../definitions/content.php:1791
+#: ../definitions/content.php:1798 ../definitions/content.php:1804
 msgid "Widget Area"
 msgstr ""
 
-#: ../definitions/content.php:1792
+#: ../definitions/content.php:1805
 msgid "Choose the widget area to display."
 msgstr ""
 
@@ -806,53 +803,53 @@ msgstr ""
 msgid "Container"
 msgstr ""
 
-#: ../definitions/layout.php:134
+#: ../definitions/layout.php:133
 msgid "Fullwidth"
 msgstr ""
 
-#: ../definitions/layout.php:147
+#: ../definitions/layout.php:145
 msgid "Column"
 msgstr ""
 
-#: ../definitions/layout.php:155 ../definitions/uncategorized.php:120
+#: ../definitions/layout.php:152 ../definitions/uncategorized.php:120
 msgid "Size"
 msgstr ""
 
-#: ../definitions/layout.php:156
+#: ../definitions/layout.php:153
 msgid "Enter the column size."
 msgstr ""
 
-#: ../definitions/layout.php:165 ../definitions/statistic.php:92
+#: ../definitions/layout.php:162 ../definitions/statistic.php:90
 #: ../definitions/uncategorized.php:106 ../definitions/uncategorized.php:173
 #: ../definitions/uncategorized.php:242
 msgid "Type"
 msgstr ""
 
-#: ../definitions/layout.php:166
+#: ../definitions/layout.php:163
 msgid "Choose the column type."
 msgstr ""
 
-#: ../definitions/layout.php:177
+#: ../definitions/layout.php:174
 msgid "Push"
 msgstr ""
 
-#: ../definitions/layout.php:178
+#: ../definitions/layout.php:175
 msgid "Enter the amount of push."
 msgstr ""
 
-#: ../definitions/layout.php:187
+#: ../definitions/layout.php:184
 msgid "Pull"
 msgstr ""
 
-#: ../definitions/layout.php:188
+#: ../definitions/layout.php:185
 msgid "Enter the amount of pulls."
 msgstr ""
 
-#: ../definitions/layout.php:226
+#: ../definitions/layout.php:222
 msgid "Row"
 msgstr ""
 
-#: ../definitions/layout.php:237
+#: ../definitions/layout.php:232
 msgid "Separator"
 msgstr ""
 
@@ -864,289 +861,289 @@ msgstr ""
 msgid "Audio"
 msgstr ""
 
-#: ../definitions/media.php:201
+#: ../definitions/media.php:200
 msgid "Choose here the audio source."
 msgstr ""
 
-#: ../definitions/media.php:207 ../definitions/media.php:561
+#: ../definitions/media.php:206 ../definitions/media.php:594
 msgid "Loop"
 msgstr ""
 
-#: ../definitions/media.php:208
+#: ../definitions/media.php:207
 msgid ""
 "Switch whether the audio will start over again, every time it is finished."
 msgstr ""
 
-#: ../definitions/media.php:212 ../definitions/media.php:566
+#: ../definitions/media.php:211 ../definitions/media.php:599
 msgid "Autoplay"
 msgstr ""
 
-#: ../definitions/media.php:213
+#: ../definitions/media.php:212
 msgid "Switch whether the audio will start playing as soon as it is ready."
 msgstr ""
 
-#: ../definitions/media.php:217 ../definitions/media.php:571
+#: ../definitions/media.php:216 ../definitions/media.php:604
 msgid "Preload"
 msgstr ""
 
-#: ../definitions/media.php:218
+#: ../definitions/media.php:217
 msgid "Choose part of the audio to preload when the page loads."
 msgstr ""
 
-#: ../definitions/media.php:221 ../definitions/media.php:575
+#: ../definitions/media.php:220 ../definitions/media.php:608
 msgid "Auto"
 msgstr ""
 
-#: ../definitions/media.php:222 ../definitions/media.php:576
+#: ../definitions/media.php:221 ../definitions/media.php:609
 msgid "Metadata"
 msgstr ""
 
-#: ../definitions/media.php:233
+#: ../definitions/media.php:232
 msgid "Embed"
 msgstr ""
 
-#: ../definitions/media.php:241
+#: ../definitions/media.php:239
 msgid "Embed URL"
 msgstr ""
 
-#: ../definitions/media.php:242
+#: ../definitions/media.php:240
 msgid ""
 "Enter here the embed URL. See <a href=\"http://codex.wordpress.org/Embeds\" "
 "target=\"_blank\">http://codex.wordpress.org/Embeds</a> for a list of "
 "supported providers."
 msgstr ""
 
-#: ../definitions/media.php:250
+#: ../definitions/media.php:248
 msgid "Google Map"
 msgstr ""
 
-#: ../definitions/media.php:271
+#: ../definitions/media.php:268
 msgid "Center Latitude"
 msgstr ""
 
-#: ../definitions/media.php:272
+#: ../definitions/media.php:269
 msgid "Enter here the map center latitude."
 msgstr ""
 
-#: ../definitions/media.php:277
+#: ../definitions/media.php:274
 msgid "Center Longitude"
 msgstr ""
 
-#: ../definitions/media.php:278
+#: ../definitions/media.php:275
 msgid "Enter here the map center longitude."
 msgstr ""
 
-#: ../definitions/media.php:283 ../definitions/media.php:350
+#: ../definitions/media.php:280 ../definitions/media.php:348
 msgid "Zoom"
 msgstr ""
 
-#: ../definitions/media.php:284
+#: ../definitions/media.php:281
 msgid "Enter here the map zoom level."
 msgstr ""
 
-#: ../definitions/media.php:294 ../definitions/media.php:351
+#: ../definitions/media.php:291 ../definitions/media.php:349
 msgid "Map Type"
 msgstr ""
 
-#: ../definitions/media.php:295
+#: ../definitions/media.php:292
 msgid "Choose here the map type."
 msgstr ""
 
-#: ../definitions/media.php:306
+#: ../definitions/media.php:303
 msgid "Aspect Ratio"
 msgstr ""
 
-#: ../definitions/media.php:307
+#: ../definitions/media.php:304
 msgid "Enter here the aspect ratio of the map."
 msgstr ""
 
-#: ../definitions/media.php:308
+#: ../definitions/media.php:305
 msgid "Width"
 msgstr ""
 
-#: ../definitions/media.php:308
+#: ../definitions/media.php:305
 msgid "Height"
 msgstr ""
 
-#: ../definitions/media.php:334
+#: ../definitions/media.php:331
 msgid "Monochrome"
 msgstr ""
 
-#: ../definitions/media.php:335
+#: ../definitions/media.php:332
 msgid "Switch to display the google map in black and white."
 msgstr ""
 
-#: ../definitions/media.php:340
+#: ../definitions/media.php:337
 msgid "Enable Scrollwheel"
 msgstr ""
 
-#: ../definitions/media.php:341
+#: ../definitions/media.php:338
 msgid "Switch whether the map should react to mouse scrolwheel events."
 msgstr ""
 
-#: ../definitions/media.php:346 ../definitions/media.php:419
+#: ../definitions/media.php:343 ../definitions/media.php:430
 msgid "Controls"
 msgstr ""
 
-#: ../definitions/media.php:347
+#: ../definitions/media.php:344
 msgid "Choose here the controls to display on the map."
 msgstr ""
 
-#: ../definitions/media.php:349
+#: ../definitions/media.php:347
 msgid "Pan"
 msgstr ""
 
-#: ../definitions/media.php:352
+#: ../definitions/media.php:350
 msgid "Scale"
 msgstr ""
 
-#: ../definitions/media.php:353
+#: ../definitions/media.php:351
 msgid "Street View"
 msgstr ""
 
-#: ../definitions/media.php:354
+#: ../definitions/media.php:352
 msgid "Overview Map"
 msgstr ""
 
-#: ../definitions/media.php:366
+#: ../definitions/media.php:378
 msgid "Markers"
 msgstr ""
 
-#: ../definitions/media.php:367
+#: ../definitions/media.php:379
 msgid "Enter here the markers to display on the map."
 msgstr ""
 
-#: ../definitions/media.php:372
+#: ../definitions/media.php:384
 msgid "Latitude"
 msgstr ""
 
-#: ../definitions/media.php:373
+#: ../definitions/media.php:385
 msgid "Enter here the marker's latitude."
 msgstr ""
 
-#: ../definitions/media.php:377
+#: ../definitions/media.php:389
 msgid "Longitude"
 msgstr ""
 
-#: ../definitions/media.php:378
+#: ../definitions/media.php:390
 msgid "Enter here the marker's longitude."
 msgstr ""
 
-#: ../definitions/media.php:412
+#: ../definitions/media.php:424
 msgid "Slider"
 msgstr ""
 
-#: ../definitions/media.php:420
+#: ../definitions/media.php:431
 msgid "Choose here the slider controls to display."
 msgstr ""
 
-#: ../definitions/media.php:422
+#: ../definitions/media.php:434
 msgid "Pagers"
 msgstr ""
 
-#: ../definitions/media.php:423
+#: ../definitions/media.php:435
 msgid "Arrows"
 msgstr ""
 
-#: ../definitions/media.php:435
+#: ../definitions/media.php:458
 msgid "Interval"
 msgstr ""
 
-#: ../definitions/media.php:436
+#: ../definitions/media.php:459
 msgid ""
 "Enter the amount of time to delay between automatically cycling an item."
 msgstr ""
 
-#: ../definitions/media.php:446
+#: ../definitions/media.php:469
 msgid "Behaviors"
 msgstr ""
 
-#: ../definitions/media.php:447
+#: ../definitions/media.php:470
 msgid "Choose here the behaviors of the slider."
 msgstr ""
 
-#: ../definitions/media.php:449
+#: ../definitions/media.php:473
 msgid "Pause on Hover"
 msgstr ""
 
-#: ../definitions/media.php:450
+#: ../definitions/media.php:474
 msgid "Allow Wrapping"
 msgstr ""
 
-#: ../definitions/media.php:464
+#: ../definitions/media.php:499
 msgid "Enter here the slider contents."
 msgstr ""
 
-#: ../definitions/media.php:478
+#: ../definitions/media.php:513
 msgid "Slide"
 msgstr ""
 
-#: ../definitions/media.php:485
+#: ../definitions/media.php:520
 msgid "Enter here the title of the slide."
 msgstr ""
 
-#: ../definitions/media.php:489
+#: ../definitions/media.php:524
 msgid "Image"
 msgstr ""
 
-#: ../definitions/media.php:490
+#: ../definitions/media.php:525
 msgid "Choose an image for the slide."
 msgstr ""
 
-#: ../definitions/media.php:498
+#: ../definitions/media.php:533
 msgid "Caption"
 msgstr ""
 
-#: ../definitions/media.php:499
+#: ../definitions/media.php:534
 msgid "Enter here the caption of the slide."
 msgstr ""
 
-#: ../definitions/media.php:509
+#: ../definitions/media.php:544
 msgid "Twitter"
 msgstr ""
 
-#: ../definitions/media.php:516
+#: ../definitions/media.php:550
 msgid "Username"
 msgstr ""
 
-#: ../definitions/media.php:517
+#: ../definitions/media.php:551
 msgid "Enter here the Twitter username."
 msgstr ""
 
-#: ../definitions/media.php:521
+#: ../definitions/media.php:555
 msgid "Tweets Count"
 msgstr ""
 
-#: ../definitions/media.php:522
+#: ../definitions/media.php:556
 msgid "Specify here the number of tweets to display."
 msgstr ""
 
-#: ../definitions/media.php:540
+#: ../definitions/media.php:574
 msgid "Video"
 msgstr ""
 
-#: ../definitions/media.php:549
+#: ../definitions/media.php:582
 msgid "Choose here the video source."
 msgstr ""
 
-#: ../definitions/media.php:555
+#: ../definitions/media.php:588
 msgid "Poster"
 msgstr ""
 
-#: ../definitions/media.php:556
+#: ../definitions/media.php:589
 msgid "Choose an image to be shown while the video is downloading."
 msgstr ""
 
-#: ../definitions/media.php:562
+#: ../definitions/media.php:595
 msgid ""
 "Switch whether the video will start over again, every time it is finished."
 msgstr ""
 
-#: ../definitions/media.php:567
+#: ../definitions/media.php:600
 msgid "Switch whether the video will start playing as soon as it is ready."
 msgstr ""
 
-#: ../definitions/media.php:572
+#: ../definitions/media.php:605
 msgid "Choose part of the video to preload when the page loads."
 msgstr ""
 
@@ -1158,47 +1155,47 @@ msgstr ""
 msgid "Counter"
 msgstr ""
 
-#: ../definitions/statistic.php:64 ../definitions/uncategorized.php:166
+#: ../definitions/statistic.php:63 ../definitions/uncategorized.php:166
 msgid "Label"
 msgstr ""
 
-#: ../definitions/statistic.php:65
+#: ../definitions/statistic.php:64
 msgid "Enter here the counter label."
 msgstr ""
 
-#: ../definitions/statistic.php:70 ../definitions/statistic.php:105
+#: ../definitions/statistic.php:69 ../definitions/statistic.php:103
 msgid "Value"
 msgstr ""
 
-#: ../definitions/statistic.php:71
+#: ../definitions/statistic.php:70
 msgid "Enter here the counter value."
 msgstr ""
 
-#: ../definitions/statistic.php:85
+#: ../definitions/statistic.php:84
 msgid "Progressbar"
 msgstr ""
 
-#: ../definitions/statistic.php:93
+#: ../definitions/statistic.php:91
 msgid "Choose the type of the progressbar."
 msgstr ""
 
-#: ../definitions/statistic.php:106
+#: ../definitions/statistic.php:104
 msgid "Enter the value of the progressbar."
 msgstr ""
 
-#: ../definitions/statistic.php:111
+#: ../definitions/statistic.php:109
 msgid "Show Stripes"
 msgstr ""
 
-#: ../definitions/statistic.php:112
+#: ../definitions/statistic.php:110
 msgid "Switch to show stripes on the progressbar."
 msgstr ""
 
-#: ../definitions/statistic.php:117
+#: ../definitions/statistic.php:115
 msgid "Animated"
 msgstr ""
 
-#: ../definitions/statistic.php:118
+#: ../definitions/statistic.php:116
 msgid "Switch to animate the progressbar."
 msgstr ""
 
@@ -1310,6 +1307,6 @@ msgstr ""
 msgid "Enter the content of the tooltip."
 msgstr ""
 
-#: ../youxi-shortcode.php:101
+#: ../youxi-shortcode.php:94
 msgid "This plugin requires you to install and activate the Youxi Core plugin."
 msgstr ""

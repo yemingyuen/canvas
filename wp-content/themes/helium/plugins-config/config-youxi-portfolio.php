@@ -19,6 +19,25 @@ function helium_modify_portfolio_tax( $taxonomies ) {
 add_filter( 'youxi_portfolio_cpt_taxonomies', 'helium_modify_portfolio_tax' );
 
 /**
+ * Add the tinymce and page builder to one page blocks
+ */
+if( ! function_exists( 'helium_portfolio_tinymce_post_types' ) ) {
+
+	function helium_portfolio_tinymce_post_types( $post_types ) {
+		
+		if( function_exists( 'youxi_portfolio_cpt_name' ) ) {
+			if( ! is_array( $post_types ) ) {
+				$post_types = array( $post_types );
+			}
+			$post_types[] = youxi_portfolio_cpt_name();
+		}
+		return $post_types;
+	}
+}
+// add_filter( 'youxi_builder_post_types', 'helium_portfolio_tinymce_post_types' );
+add_filter( 'youxi_shortcode_tinymce_post_types', 'helium_portfolio_tinymce_post_types' );
+
+/**
  * Portfolio Metaboxes
  */
 if( ! function_exists( 'helium_youxi_portfolio_cpt_metaboxes' ) ):
@@ -325,8 +344,6 @@ if( ! function_exists( 'helium_add_portfolio_metabox' ) ) {
 
 			'title' => __( 'Page Template: Portfolio', 'helium' ), 
 
-			'page_template' => 'archive-portfolio', 
-
 			'fields' => array(
 				'use_defaults' => array(
 					'type' => 'switch', 
@@ -407,7 +424,8 @@ if( ! function_exists( 'helium_add_portfolio_metabox' ) ) {
 						'date' => __( 'Date', 'helium' ), 
 						'menu_order' => __( 'Menu Order', 'helium' ), 
 						'title' => __( 'Title', 'helium' ), 
-						'ID' => __( 'ID', 'helium' )
+						'ID' => __( 'ID', 'helium' ), 
+						'rand' => __( 'Random', 'helium' )
 					), 
 					'criteria' => 'use_defaults:is(0)', 
 					'std' => 'date'
@@ -420,7 +438,7 @@ if( ! function_exists( 'helium_add_portfolio_metabox' ) ) {
 						'DESC' => __( 'Descending', 'helium' ), 
 						'ASC' => __( 'Ascending', 'helium' )
 					), 
-					'criteria' => 'use_defaults:is(0),orderby:not(menu_order)', 
+					'criteria' => 'use_defaults:is(0)', 
 					'std' => 'DESC'
 				), 
 				'layout' => array(
@@ -453,8 +471,6 @@ if( ! function_exists( 'helium_add_portfolio_metabox' ) ) {
 		$metaboxes['portfolio_slider_settings'] = array(
 
 			'title' => __( 'Page Template: Portfolio Slider', 'helium' ), 
-
-			'page_template' => 'page-templates/portfolio-slider', 
 
 			'fields' => array(
 				'posts_per_page' => array(
@@ -489,8 +505,7 @@ if( ! function_exists( 'helium_add_portfolio_metabox' ) ) {
 						'DESC' => __( 'Descending', 'helium' ), 
 						'ASC' => __( 'Ascending', 'helium' )
 					), 
-					'std' => 'DESC', 
-					'criteria' => 'orderby:not(menu_order)'
+					'std' => 'DESC'
 				)
 			)
 		);
@@ -511,6 +526,12 @@ add_action( 'init', 'helium_add_portfolio_metabox' );
 ============================================================================= */
 
 add_filter( 'youxi_portfolio_register_shortcode', '__return_false' );
+
+/* ==========================================================================
+	Disable Gallery (Youxi Portfolio 1.2+)
+============================================================================= */
+
+add_filter( 'youxi_portfolio_use_gallery', '__return_false' );
 
 /* ==========================================================================
 	Remove Portfolio Page Template

@@ -582,7 +582,7 @@ function youxi_shortcode_page_choices() {
 
 function youxi_shortcode_post_categories() {
 	$result = array();
-	foreach( get_categories( array( 'hide_empty' => false ) ) as $category ) {
+	foreach( get_categories() as $category ) {
 		$result[ $category->term_id ] = $category->name;
 	}
 	return $result;
@@ -590,7 +590,7 @@ function youxi_shortcode_post_categories() {
 
 function youxi_shortcode_post_tags() {	
 	$result = array();
-	foreach( get_tags( array( 'hide_empty' => false ) ) as $tag ) {
+	foreach( get_tags() as $tag ) {
 		$result[ $tag->term_id ] = $tag->name;
 	}
 	return $result;
@@ -623,7 +623,6 @@ function define_content_shortcodes( $manager ) {
 		'label' => __( 'Accordion', 'youxi' ), 
 		'category' => 'content', 
 		'priority' => 10, 
-		'icon' => 'fa fa-stack-overflow', 
 		'atts' => array(
 			'behavior' => array(
 				'type' => 'radio', 
@@ -678,7 +677,6 @@ function define_content_shortcodes( $manager ) {
 		'label' => __( 'Alert', 'youxi' ), 
 		'category' => 'content', 
 		'priority' => 20, 
-		'icon' => 'fa fa-warning', 
 		'insert_nl' => false, 
 		'atts' => array(
 			'title' => array(
@@ -718,7 +716,6 @@ function define_content_shortcodes( $manager ) {
 		'label' => __( 'Call to Action', 'youxi' ), 
 		'category' => 'content', 
 		'priority' => 30, 
-		'icon' => 'fa fa-hand-o-right', 
 		'insert_nl' => false, 
 		'atts' => array(
 			'title' => array(
@@ -803,7 +800,6 @@ function define_content_shortcodes( $manager ) {
 		'label' => __( 'Clients', 'youxi' ), 
 		'category' => 'content', 
 		'priority' => 40, 
-		'icon' => 'fa fa-group', 
 		'content' => array(
 			'type' => 'repeater', 
 			'label' => __( 'Clients', 'youxi' ), 
@@ -824,7 +820,6 @@ function define_content_shortcodes( $manager ) {
 		'label' => __( 'Client', 'youxi' ), 
 		'category' => 'content', 
 		'priority' => 40, 
-		'icon' => 'fa fa-group', 
 		'internal' => true, 
 		'atts' => array(
 			'name' => array(
@@ -858,7 +853,6 @@ function define_content_shortcodes( $manager ) {
 			'label' => __( 'Contact Form 7', 'youxi' ), 
 			'category' => 'content', 
 			'priority' => 50, 
-			'icon' => 'fa fa-envelope-o', 
 			'third_party' => true, 
 			'atts' => array(
 				'title' => array(
@@ -883,7 +877,6 @@ function define_content_shortcodes( $manager ) {
 		'label' => __( 'Heading', 'youxi' ), 
 		'category' => 'content', 
 		'priority' => 60, 
-		'icon' => 'fa fa-font', 
 		'insert_nl' => false, 
 		'atts' => array(
 			'element' => array(
@@ -916,7 +909,6 @@ function define_content_shortcodes( $manager ) {
 		'label' => __( 'Icon Box', 'youxi' ), 
 		'category' => 'content', 
 		'priority' => 70, 
-		'icon' => 'fa fa-smile-o', 
 		'insert_nl' => false, 
 		'atts' => array(
 			'title' => array(
@@ -1152,30 +1144,45 @@ function define_content_shortcodes( $manager ) {
 		'label' => __( 'Posts', 'youxi' ), 
 		'category' => 'content', 
 		'priority' => 80, 
-		'icon' => 'fa fa-file-text-o', 
 		'atts' => array(
 			'category__not_in' => array(
 				'type' => 'checkboxlist', 
 				'label' => __( 'Excluded Categories', 'youxi' ), 
+				'uncheckable' => true, 
 				'description' => __( 'Choose here the post categories to exclude.', 'youxi' ), 
 				'choices' => 'youxi_shortcode_post_categories', 
 				'serialize' => 'js:function( data ) {
-					return ( data || [] ).join( "," );
+					return $.map( data, function( data, key ) {
+						if( !! parseInt( data ) )
+							return key;
+					});
 				}', 
 				'deserialize' => 'js:function( data ) {
-					return ( data + "" ).split( "," )
+					var temp = {};
+					_.each( ( data + "" ).split( "," ), function( c ) {
+						temp[ c ] = 1;
+					});
+					return temp;
 				}'
 			), 
 			'tag__not_in' => array(
 				'type' => 'checkboxlist', 
 				'label' => __( 'Excluded Tags', 'youxi' ), 
+				'uncheckable' => true, 
 				'description' => __( 'Choose here the post tags to exclude.', 'youxi' ), 
 				'choices' => 'youxi_shortcode_post_tags', 
 				'serialize' => 'js:function( data ) {
-					return ( data || [] ).join( "," );
+					return $.map( data, function( data, key ) {
+						if( !! parseInt( data ) )
+							return key;
+					});
 				}', 
 				'deserialize' => 'js:function( data ) {
-					return ( data + "" ).split( "," )
+					var temp = {};
+					_.each( ( data + "" ).split( "," ), function( c ) {
+						temp[ c ] = 1;
+					});
+					return temp;
 				}'
 			), 
 			'posts_per_page' => array(
@@ -1223,7 +1230,6 @@ function define_content_shortcodes( $manager ) {
 		'label' => __( 'Pricing Tables', 'youxi' ), 
 		'category' => 'content', 
 		'priority' => 90, 
-		'icon' => 'fa fa-usd', 
 		'content' => array(
 			'type' => 'repeater', 
 			'label' => __( 'Tables', 'youxi' ), 
@@ -1245,7 +1251,6 @@ function define_content_shortcodes( $manager ) {
 		'label' => __( 'Pricing Table', 'youxi' ), 
 		'category' => 'content', 
 		'priority' => 90, 
-		'icon' => 'fa fa-usd', 
 		'internal' => true, 
 		'atts' => array(
 			'title' => array(
@@ -1358,13 +1363,19 @@ function define_content_shortcodes( $manager ) {
 				)
 			), 
 			'serialize' => 'js:function( data ) {
-				var li = $("<li/>"), ul = $("<ul/>");
-				ul.append( $.map( data || [], function(v) {
-					if( v.hasOwnProperty("name") ) {
-						return li.clone().text( v.name );
-					}
-				}));
-				return ul[0].outerHTML;
+				if( _.isArray( data ) ) {
+					var name, list = $.map( data, function( val ) {
+						if( $.isPlainObject( val ) && _.has( val, "name" ) ) {
+							name = $.trim( val.name );
+							if( name ) {
+								return name;
+							}
+						}
+					}).join( "</li><li>" );
+
+					data = "<ul><li>" + list + "</li></ul>";
+				}
+				return data;
 			}', 
 			'deserialize' => 'js:function( data ) {
 				return $( data ).children("li").map(function() {
@@ -1382,7 +1393,6 @@ function define_content_shortcodes( $manager ) {
 		'label' => __( 'Service', 'youxi' ), 
 		'category' => 'content', 
 		'priority' => 100, 
-		'icon' => 'fa fa-magic', 
 		'insert_nl' => false, 
 		'atts' => array(
 			'title' => array(
@@ -1477,12 +1487,12 @@ function define_content_shortcodes( $manager ) {
 	$manager->add_shortcode( 'table', array(
 		'label' => __( 'Table', 'youxi' ), 
 		'priority' => 110, 
-		'icon' => 'fa fa-table', 
 		'category' => 'content', 
 		'atts' => array(
 			'styles' => array(
 				'type' => 'checkboxlist', 
 				'label' => __( 'Table Styles', 'youxi' ), 
+				'uncheckable' => true, 
 				'description' => __( 'Choose here the table styles to display.', 'youxi' ), 
 				'choices' => array(
 					'striped' => __( 'Striped', 'youxi' ), 
@@ -1490,10 +1500,19 @@ function define_content_shortcodes( $manager ) {
 					'hover' => __( 'Hoverable', 'youxi' )
 				), 
 				'serialize' => 'js:function( data ) {
-					return ( data || [] ).join(",");
+					return $.map( data, function( val, key ) {
+						if( !! parseInt( val ) )
+							return key;
+					});
 				}', 
 				'deserialize' => 'js:function( data ) {
-					return ( data + "" ).split(",");
+					var styles = {};
+					_.each( ( data + "" ).split( "," ), function( content ) {
+						if( $.inArray( content, ["striped", "bordered", "hover"] ) >= 0 ) {
+							styles[ content ] = 1;
+						}
+					});
+					return styles;
 				}'
 			)
 		), 
@@ -1616,7 +1635,6 @@ function define_content_shortcodes( $manager ) {
 		'label' => __( 'Tabs', 'youxi' ), 
 		'category' => 'content', 
 		'priority' => 120, 
-		'icon' => 'fa fa-folder-o', 
 		'atts' => array(
 			'type' => array(
 				'type' => 'select', 
@@ -1671,7 +1689,6 @@ function define_content_shortcodes( $manager ) {
 		'label' => __( 'Team', 'youxi' ), 
 		'category' => 'content', 
 		'priority' => 130, 
-		'icon' => 'fa fa-user', 
 		'insert_nl' => false, 
 		'atts' => array(
 			'name' => array(
@@ -1709,7 +1726,6 @@ function define_content_shortcodes( $manager ) {
 		'label' => __( 'Testimonials', 'youxi' ), 
 		'category' => 'content', 
 		'priority' => 140, 
-		'icon' => 'fa fa-comments', 
 		'content' => array(
 			'type' => 'repeater', 
 			'label' => __( 'Testimonials', 'youxi' ), 
@@ -1733,7 +1749,6 @@ function define_content_shortcodes( $manager ) {
 		'label' => __( 'Testimonial', 'youxi' ), 
 		'category' => 'content', 
 		'priority' => 150, 
-		'icon' => 'fa fa-comment', 
 		'insert_nl' => false, 
 		'atts' => array(
 			'author' => array(
@@ -1768,7 +1783,6 @@ function define_content_shortcodes( $manager ) {
 		'label' => __( 'Text Widget', 'youxi' ), 
 		'category' => 'content', 
 		'priority' => 160, 
-		'icon' => 'fa fa-paragraph', 
 		'content' => array(
 			'type' => 'richtext', 
 			'label' => __( 'Content', 'youxi' ), 
@@ -1784,7 +1798,6 @@ function define_content_shortcodes( $manager ) {
 		'label' => __( 'Widget Area', 'youxi' ), 
 		'category' => 'content', 
 		'priority' => 170, 
-		'icon' => 'fa fa-columns', 
 		'atts' => array(
 			'id' => array(
 				'type' => 'select', 

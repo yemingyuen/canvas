@@ -7,87 +7,62 @@
 		api.Youxi = api.Youxi || {};
 		api.Youxi.GoogleFontControl = api.Control.extend({
 
-			createOption: function( variant ) {
-				return $( document.createElement( 'option' ) )
-					.attr( 'value', variant ).text( variant );
-			}, 
-
-			createCheckbox: function( subset ) {
-				return $( document.createElement( 'label' ) )
-					.html( '<input type="checkbox" value="' + subset + '">' + subset + '<br>' );
-			}, 
-
 			getValue: function() {
 				var value = [], 
 					family = this.familyDropdown.val(), 
-					variant = this.variantDropdown.val(), 
-					subsets = this.subsetsContainer.find( ':checkbox:checked' ).map(function() {
-						return this.value;
-					}).get();
+					variant = this.variantDropdown.val();
 
 				if( family ) {
-
 					value.push( family );
 					if( variant ) {
 						value.push( variant );
 					}
-
-					return value.join( ':' ) + ( subsets.length ? ( '&subset=' + subsets.join( ',' ) ) : '' );
 				}
 
-				return '';
+				return value.join( ':' );
 			}, 
 
-			updateVariants: function( family ) {
+			updateVariants: function( family, value ) {
+				var font;
+				if( font = api.Youxi.GoogleFontControl.Fonts[ family ] ) {
 
-				var font, control = this;
-				this.variantDropdown.children().first().nextAll().remove();
+					this.variantDropdown.prop( 'disabled', false );
+					this.variantDropdown.children().first().nextAll().remove();
+					this.variantDropdown.append( $.map( font.variants || [], function( variant ) {
+						return $( '<option></option>' ).attr({
+							value: variant
+						}).text( variant );
+					})).val( value );
 
-				if( family && ( font = api.Youxi.GoogleFontControl.Fonts[ family ] ) ) {
-					this.variantDropdown.append( $.map( font.variants || [], control.createOption ) )
-						.prop( 'disabled', false ).show();
 				} else {
-					this.variantDropdown.prop( 'disabled', true ).hide();
+					this.variantDropdown.val( '' ).prop( 'disabled', true );
+					this.setting.set( '' );
 				}
 			}, 
 
-			updateSubsets: function( family ) {
-
-				var font, control = this;
-				this.subsetsContainer.empty();
-
-				if( family && ( font = api.Youxi.GoogleFontControl.Fonts[ family ] ) ) {
-					this.subsetsContainer.html( $.map( font.subsets || [], control.createCheckbox ) ).show();
-				} else {
-					this.subsetsContainer.hide();
-				}
+			updateValue: function() {
+				this.setting.set( this.getValue() );
 			}, 
 
 			ready: function() {
+				this.familyDropdown = this.container.find( '.youxi-google-font-family' ), 
+				this.variantDropdown = this.container.find( '.youxi-google-font-variant' );
 
-				var control = this;
+				var control = this, 
+					setting = this.setting().toString().split( ':' );
 
-				this.familyDropdown  = $( '.youxi-google-font-family', this.container );
-				this.variantDropdown = $( '.youxi-google-font-variant', this.container );
-				this.subsetsContainer = $( '.youxi-google-font-subsets', this.container );
-
-				this.dropdowns = this.familyDropdown
-					.add( this.variantDropdown );
+				if( setting.length > 0 ) {
+					this.familyDropdown.val( setting[0] );
+					this.updateVariants( setting[0], setting.length > 1 ? setting[1] : '' );
+					this.updateValue();
+				}
 
 				this.familyDropdown.on( 'change', function() {
-					if( control.currentFamily != this.value ) {
-						control.currentFamily = this.value;
-						control.updateVariants( this.value );
-						control.updateSubsets( this.value );
-					}
+					control.updateVariants( this.value );
+					control.updateValue();
 				});
-
-				this.dropdowns.on( 'change', function() {
-					control.setting.set( control.getValue() );
-				});
-
-				this.subsetsContainer.on( 'change', ':checkbox', function() {
-					control.setting.set( control.getValue() );
+				this.variantDropdown.on( 'change', function() {
+					control.updateValue();
 				});
 			}
 		}, {

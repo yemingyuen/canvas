@@ -1,16 +1,16 @@
 <?php
 if ( ! defined( 'ABSPATH' ) ) {
-	die();
+	die( 'Hi there!  I\'m just a plugin, not much I can do when called directly.' );
 }
 
 /**
  * Youxi LESS Compiler
  *
- * This class provides the necessary methods to compile LESS files
+ * This class caches and compiles LESS files
  *
- * @package   Youxi Themes Theme Utils
+ * @package   Youxi Themes
  * @author    Mairel Theafila <maimairel@yahoo.com>
- * @copyright Copyright (c) 2014-2015, Mairel Theafila
+ * @copyright Copyright (c) 2014, Mairel Theafila
  */
 
 final class Youxi_LESS_Compiler {
@@ -106,11 +106,7 @@ final class Youxi_LESS_Compiler {
 		$cache_hash = md5( implode( ',', (array) $less_files ) );
 
 		/* Store the updated cache */
-		if( ! empty( $updated ) ) {
-			$cache[ $cache_hash ] = $updated;
-		} else {
-			unset( $cache[ $cache_hash ] );
-		}
+		$cache[ $cache_hash ] = $updated;
 
 		if( ! add_option( $this->get_cache_key(), $cache, '', 'no' ) ) {
 			update_option( $this->get_cache_key(), $cache );
@@ -130,9 +126,9 @@ final class Youxi_LESS_Compiler {
 		return $hash == $cache[ $key ]['hash'] && is_string( $cache[ $key ]['css'] );
 	}
 
-	public function compile( $less_files, $var_sets, $invalidate = false ) {
+	public function compile( $less_files, $var_sets ) {
 
-		global $wp_version;
+		$output = '';
 
 		/* Get the cache entry for this less file */
 		$cache = $this->read_cache( $less_files );
@@ -143,39 +139,38 @@ final class Youxi_LESS_Compiler {
 			$cache = array();
 		}
 
-		/* Get files modification time */
-		$hash_suffix = array();
-		foreach( (array) $less_files as $file ) {
-			$filename = trailingslashit( get_template_directory() ) . trim( $file, '/\\' );
-			if( is_readable( $filename ) ) {
-				$hash_suffix[] = filemtime( $filename );
-			}
-		}
-
-		/* Get theme version */
-		$theme     = wp_get_theme();
-		$theme_ver = ( $theme->exists() ? $theme->get( 'Version' ) : 1 );
-
-		$hash_suffix[] = $theme_ver;
-		$hash_suffix[] = $wp_version;
-
-		/* Create hash postfix */
-		$hash_suffix = implode( '_', $hash_suffix );
-
-		/* Prepare output */
-		$output = '';
+		/* $var_sets should be an array of variables! */
 
 		/* Parse and generate the styles */
 		foreach( $var_sets as $vars_key => $vars ) {
 
 			/* Serialize final vars */
-			$serialized_vars = $this->serialize_vars( $vars );	
+			$serialized_vars = $this->serialize_vars( $vars );
+
+			/*
+				Calculate style hash.
+				Make sure to add WordPress and theme version to the variables hash, 
+				so the styles always get recompiled when updating theme/WordPress.
+			*/
+			$theme     = wp_get_theme();
+			$theme_ver = ( $theme->exists() ? $theme->get( 'Version' ) : 1 );
+			$wp_ver    = get_bloginfo( 'version' );
+
+			/* Get files modification time */
+			$filesmtime = '';
+			foreach( (array) $less_files as $file ) {
+				$filename = trailingslashit( get_template_directory() ) . trim( $file, '/\\' );
+				if( is_readable( $filename ) ) {
+					$filesmtime[] = filemtime( $filename );
+				}
+			}
+			$filesmtime = implode( '_', $filesmtime );
 
 			/* Calculate hash from serialized vars, files modification time, theme version and WP version */
-			$vars_hash = md5( $serialized_vars . '_' . $hash_suffix );
+			$vars_hash = md5( implode( '_', array( md5( $serialized_vars ), $filesmtime, $theme_ver, $wp_ver ) ) );
 
 			/* Validate the cache by checking for keys and comparing variable hash */
-			if( $invalidate || ! $this->is_valid_cache( $cache, $vars_key, $vars_hash ) ) {
+			if( ! $this->is_valid_cache( $cache, $vars_key, $vars_hash ) ) {
 
 				/* Get the parser again to also reset it */
 				$parser = $this->get_parser();
@@ -193,21 +188,12 @@ final class Youxi_LESS_Compiler {
 					/* Now parse the variables */
 					/* Remember! http://lesscss.org/features/#variables-feature-default-variables */
 					$parser->parse( $serialized_vars );
-					
-					$css_output = trim( $parser->getCss() );
 
-					if( ! empty( $css_output ) ) {
-
-						/* Store the result in the current cache */
-						$cache[ $vars_key ] = array(
-							'hash' => $vars_hash, 
-							'css'  => $css_output
-						);
-					} else {
-
-						/* Remove empty CSS from cache */
-						unset( $cache[ $vars_key ] );
-					}
+					/* Store the result in the current cache */
+					$cache[ $vars_key ] = array(
+						'hash' => $vars_hash, 
+						'css'  => $parser->getCss()
+					);
 
 					/* We've modified the cache */
 					$cache_modified = true;

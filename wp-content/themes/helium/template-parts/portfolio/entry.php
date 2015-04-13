@@ -53,7 +53,7 @@ if( ! preg_match( '/^(featur|stack|justifi)ed(-(image|grids))?|slider|(vide|audi
 
 	<header class="content-header">
 
-		<div class="content-header-affix clearfix"><?php
+		<div class="content-header-affix"><?php
 
 			the_title( '<h1 class="entry-title content-title" itemprop="name">', '</h1>' );
 
@@ -74,7 +74,7 @@ if( ! preg_match( '/^(featur|stack|justifi)ed(-(image|grids))?|slider|(vide|audi
 				);
 
 			?><nav class="content-nav" role="navigation" itemscope itemtype="http://schema.org/SiteNavigationElement">
-				<ul class="plain-list"><?php
+				<ul><?php
 					
 					if( $prev_post_link ):
 						echo $prev_post_link;
@@ -134,7 +134,7 @@ if( ! preg_match( '/^(featur|stack|justifi)ed(-(image|grids))?|slider|(vide|audi
 
 	<div class="content-wrap">
 
-		<div class="content-box clearfix">
+		<div class="content-box">
 
 			<?php if( has_post_thumbnail() ):
 
@@ -302,7 +302,7 @@ if( ! preg_match( '/^(featur|stack|justifi)ed(-(image|grids))?|slider|(vide|audi
 
 						?><div class="<?php echo esc_attr( $sidebar_class ); ?>">
 
-							<ul class="item-details plain-list">
+							<ul class="item-details">
 							<?php foreach( $layout['details'] as $detail ):
 
 								$value = '';

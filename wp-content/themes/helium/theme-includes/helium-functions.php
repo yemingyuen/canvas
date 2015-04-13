@@ -4,18 +4,7 @@
 	Get options from the customizer
 ============================================================================= */
 
-function helium_option_keys() {
-
-	static $option_keys = array();
-	
-	if( empty( $option_keys ) ) {
-		$option_keys = array_keys( helium_default_options() );
-	}
-
-	return $option_keys;
-}
-
-function helium_default_options() {
+function helium_initial_options() {
 	return array(
 		'logo_image' => '', 
 		'logo_height' => 25, 
@@ -82,37 +71,18 @@ function helium_default_options() {
 	);
 }
 
-function helium_get_all_options() {
-
-	static $theme_options_cache = null;
-
-	if( ! is_null( $theme_options_cache ) ) {
-		return $theme_options_cache;
-	}
-
-	$theme = wp_get_theme();
-	$theme_mod_key = preg_replace( '/\W/', '_', $theme->stylesheet ) . '_settings';
-
-	$options = get_theme_mod( $theme_mod_key, '__not_initialized' );
-
-	if( '__not_initialized' === $options ) {
-		$options = helium_default_options();
-		set_theme_mod( $theme_mod_key, $options );
-	}
-
-	return ( $theme_options_cache = $options );
-}
-
 function helium_get_option( $option_id, $default = '' ) {
 
 	static $cached_options = array();
-
-	if( in_array( $option_id, helium_option_keys() ) && isset( $_GET[ $option_id ] ) ) {
-		return $_GET[ $option_id ];
-	}
+	static $theme_mod_key = null;
 
 	if( isset( $cached_options[ $option_id ] ) ) {
 		return $cached_options[ $option_id ];
+	}
+
+	if( is_null( $theme_mod_key ) ) {
+		$theme = wp_get_theme();
+		$theme_mod_key = preg_replace( '/\W/', '_', $theme->stylesheet ) . '_settings';
 	}
 
 	$ot_option_keys = array(
@@ -145,9 +115,18 @@ function helium_get_option( $option_id, $default = '' ) {
 		return ( $cached_options[ $option_id ] = $return );
 	}
 
-	$options = helium_get_all_options();
+	$options = get_theme_mod( $theme_mod_key, '__not_initialized' );
 
-	return isset( $options[ $option_id ] ) ? ( $cached_options[ $option_id ] = $options[ $option_id ] ) : $default;
+	if( '__not_initialized' === $options ) {
+		$options = helium_initial_options();
+		set_theme_mod( $theme_mod_key, $options );
+	}
+
+	if( isset( $options[ $option_id ] ) && '' != $options[ $option_id ] ) {
+		return ( $cached_options[ $option_id ] = $options[ $option_id ] );
+	}
+	
+	return $default;
 }
 
 /* ==========================================================================

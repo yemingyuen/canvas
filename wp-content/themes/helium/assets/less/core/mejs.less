@@ -14,25 +14,12 @@
 	}
 }
 
-.mejs-offscreen{
-	/* Accessibility: hide screen reader texts (and prefer "top" for RTL languages). */
-	position: absolute !important;
-	top: -10000px;
-	left: -10000px;
-	overflow: hidden;
-	width: 1px;
-	height: 1px;
-}
-
 .mejs-container {
 	position: relative;
 	font-family: Arial, Helvetica, sans-serif;
 	text-align: left;
 	vertical-align: top;
 	text-indent: 0;
-	&:focus {
-		outline: none !important;
-	}
 }
 
 .me-plugin {
@@ -162,11 +149,10 @@
 	width: 100%;
 	height: 36px;
 	background: #333;
-	white-space: nowrap;
 
-	> div, > a {
-		display: inline-block;
-		vertical-align: top;
+	> div {
+		display: block;
+		float: left;
 		height: 100%;
 		position: relative;
 		border-right: 1px solid #404040;
@@ -216,6 +202,7 @@
 /* Start: Time (Current / Duration) */
 .mejs-controls .mejs-time {
 	color: #fff;
+	display: block;
 	overflow: hidden;
 	text-align: center;
 	font-size: 11px;
@@ -250,64 +237,82 @@
 	width: 200px;
 	padding: 13px 12px;
 
+	span {
+		display: block;
+		position: absolute;
+		width: 180px;
+		height: 10px;
+		cursor: pointer;
+	}
+
 	.mejs-time-total {
 		padding: 1px;
-		height: 10px;
-		display: block;
 		background-color: #262929;
 	}
 
-	.mejs-time-buffering, 
-	.mejs-time-loaded, 
-	.mejs-time-current {
-		display: block;
-		position: absolute;
-		cursor: pointer;
-		height: 8px;
-	}
-
 	.mejs-time-buffering {
+		width: 100%;
+		height: 8px;
 		background: #464849;
-		background-size: 14px 14px;
 		#gradient > .striped(rgba(0, 0, 0, 0.4), -45deg);
+		background-size: 14px 14px;
 		.animation(buffering-stripes 2s linear infinite);
 	}
 
 	.mejs-time-loaded {
 		background: #464849;
+		width: 0;
+		height: 8px;
 	}
 
 	.mejs-time-current {
+		width: 0;
+		height: 8px;
 		background: @brand-primary;
-		background-size: 10px 10px;
 		#gradient > .striped(rgba(0, 0, 0, 0.15), -45deg);
+		background-size: 10px 10px;
 	}
 
 	.mejs-time-handle {
 		display: none;
+		position: absolute;
+		width: 10px;
+		background-color: #fff;
+		border-radius: 5px;
+		cursor: pointer;
+		border: solid 2px #333;
+		top: -2px;
+		text-align: center;
 	}
 
 	.mejs-time-float {
 		position: absolute;
 		display: none;
 		background-color: #262626;
-		width: 42px;
-		height: auto !important;
+		width: 36px;
+		height: 24px;
 		border-radius: 4px;
-		top: -15px;
+		top: -36px;
+		margin-left: -18px;
 		text-align: center;
 		color: #fff;
 	}
 
 	.mejs-time-float-current {
-		line-height: 24px;
-		display: block;
+		line-height: 1.5;
+		margin: 3px;
 		font-size: 11px;
+		width: 30px;
+		height: auto;
+		display: block;
+		text-align: center;
 	}
 
 	.mejs-time-float-corner {
 		position: absolute;
 		display: block;
+		width: 0;
+		height: 0;
 		border: solid 4px transparent;
 		border-top-color: #262626;
 		top: 100%;

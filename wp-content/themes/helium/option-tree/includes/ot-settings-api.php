@@ -49,18 +49,9 @@ if ( ! class_exists( 'OT_Settings' ) ) {
      * @since     2.0
      */
     public function hooks() {
-
-      /**
-       * Filter the `admin_menu` action hook priority.
-       *
-       * @since 2.5.0
-       *
-       * @param int $priority The priority. Default '10'.
-       */
-      $priority = apply_filters( 'ot_admin_menu_priority', 10 );
-
+      
       /* add pages & menu items */
-      add_action( 'admin_menu', array( $this, 'add_page' ), $priority );
+      add_action( 'admin_menu', array( $this, 'add_page' ) );
       
       /* register sections */
       add_action( 'admin_init', array( $this, 'add_sections' ) );
@@ -483,7 +474,6 @@ if ( ! class_exists( 'OT_Settings' ) ) {
      * @since     2.0
      */
     public function display_setting( $args = array() ) {
-
       extract( $args );
       
       /* get current saved data */
@@ -520,12 +510,6 @@ if ( ! class_exists( 'OT_Settings' ) ) {
         'post_id'           => ot_get_media_post_ID(),
         'get_option'        => $get_option,
       );
-      
-      // Limit DB queries for Google Fonts.
-      if ( $type == 'google-fonts' ) {
-        ot_fetch_google_fonts();
-        ot_set_google_fonts( $id, $field_value );
-      }
       
       /* get the option HTML */
       echo ot_display_by_type( $_args );

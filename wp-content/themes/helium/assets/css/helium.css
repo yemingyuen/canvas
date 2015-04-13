@@ -1,87 +1,80 @@
-/* 
-______  __    __________                              __________ __
-___  / / /_______  /__(_)___  ________ ___     ___   ___<  /_  // /
-__  /_/ /_  _ \_  /__  /_  / / /_  __ `__ \    __ | / /_  /_  // /_
-_  __  / /  __/  / _  / / /_/ /_  / / / / /    __ |/ /_  /_/__  __/
-/_/ /_/  \___//_/  /_/  \__,_/ /_/ /_/ /_/     _____/ /_/_(_)/_/   
-
-=----------------------=
-   Table of Contents
-=----------------------=
+/* ==========================================================================
+Table of Contents
 
  1. Scaffolding
-    1.1  Typography
-    1.2  Heading Styles
-    1.3  Code Styles
-    1.4  Responsive Image
-    1.5  Loader Styles
-    1.6  List Styles
-    1.7  Form Styles
-    1.8  Spacers
-    1.9  Contact Form 7
-    1.10 Miscs
+	1.1 Typography
+	1.2 Heading Styles
+	1.3 Code Styles
+	1.4 Responsive Image
+	1.5 Loader Styles
+	1.6 List Styles
+	1.7 Form Styles
+	1.8 Spacers
+	1.9 Contact Form 7
+	1.10 Miscs
  2. Icons
  3. WordPress
-    3.1 WordPress Alignments
-    3.2 WordPress Gallery
+	3.1 WordPress Alignments
+	3.2 WordPress Gallery
  4. Bootstrap
-    4.1 Buttons
-    4.2 Alert
-    4.3 Progressbar
-    4.4 Accordion + Toggles
-    4.5 Tabs + Pills
+	4.1 Buttons
+	4.2 Alert
+	4.3 Progressbar
+	4.4 Accordion + Toggles
+	4.5 Tabs + Pills
  5. Layout
-    5.1  Site Wrap
-    5.2  Search
-    5.3  Header
-    5.4  Header Toggle
-    5.5  Brand
-    5.6  Navigation
-    5.7  Content Area
-    5.8  Content Header
-    5.9  Content Title
-    5.10 Content Box
-    5.11 Content Navigation
-    5.12 Post Page Navigation
-    5.13 Footer
-    5.14 Featured Content
-    5.15 Item Details
-    5.16 Related Items
+	5.1 Site Wrap
+	5.2 Search
+	5.3 Header
+	5.4 Header Toggle
+	5.5 Brand
+	5.6 Navigation
+	5.7 Content Area
+	5.8 Content Header
+	5.9 Content Title
+	5.10 Content Area AJAX Animation
+	5.11 Content Box
+	5.12 Content Navigation
+	5.13 Post Page Navigation
+	5.14 Footer
+	5.15 Featured Content
+	5.16 Item Details
+	5.17 Related Items
  6. Grid List
-    6.1 Grid List Filter
-    6.2 Grid List Item
-    6.3 Grid List Classic
-    6.4 Grid List Justified
-    6.5 Grid List Masonry
-    6.6 Grid List Image
-    6.7 Grid List Nav
+	6.1 Grid List Filter
+	6.2 Grid List Item
+	6.3 Grid List Classic
+	6.4 Grid List Justified
+	6.5 Grid List Masonry
+	6.6 Grid List Image
+	6.7 Grid List Nav
  7. Easy Digital Downloads Grid
  8. Portfolio Grid
  9. Easy Digital Downloads
 10. Blog
-    10.1 Post Header
-    10.2 Post Media
-    10.3 Post Section
-    10.4 Post Body
-    10.5 Post Tags
-    10.6 Post Author
-    10.7 Post Comments
-    10.8 Post Comments Nav
-    10.9 Post Comments Form
+	10.1 Post Header
+	10.2 Post Media
+	10.3 Post Section
+	10.4 Post Body
+	10.5 Post Tags
+	10.6 Post Author
+	10.7 Post Comments
+	10.8 Post Comments Nav
+	10.9 Post Comments Form
 11. Modules/Shortcodes
-    11.1 Justified Grids
-    11.2 Google Maps
-    11.3 Team
-    11.4 Team Popup
-    11.5 Client List
-    11.6 Pricing Tables
-    11.7 Portfolio Featured Slider
+	11.1 Justified Grids
+	11.2 Google Maps
+	11.3 Team
+	11.4 Team Popup
+	11.5 Client List
+	11.6 Pricing Tables
+	11.7 Portfolio Featured Slider
 12. Widgets
-    12.1 Base Widget Styling
-    12.2 WordPress Widgets
-    12.3 Post List Widget
-    12.4 Social List Widget
-    12.5 Twitter Widget
+	12.1 Base Widget Styling
+	12.2 WordPress Widgets
+	12.3 Post List Widget
+	12.4 Social List Widget
+	12.5 Twitter Widget
 13. Media Element Player
 14. RoyalSlider
 15. Media Queries
@@ -340,19 +333,33 @@ ul.check-list,
 ul.arrow-list ul,
 ul.check-list ul,
 .main-nav ul,
+.content-nav ul,
+.single .item-sidebar .item-details,
+.grid-list-filter .filter-items,
 .post-comments .comment-list,
 .post-comments .comment-list ul,
+.client-list ul,
 .pricing-table .table-features ul,
+.widget .post-list ul,
+.social-list ul,
 .flickr-feed ul,
 .instagram-feed ul,
 .twitter-feed ul,
+.header-links ul,
+.pages-nav ul,
+.post-header .post-meta .post-meta-list,
+.team-popup .team-info .team-social ul,
 .widget > ul,
 .widget > ul ul {
   margin: 0;
   padding: 0;
   list-style: none;
 }
-ul.inline-list li {
+ul.inline-list li,
+.header-links ul li,
+.pages-nav ul li,
+.post-header .post-meta .post-meta-list li,
+.team-popup .team-info .team-social ul li {
   display: inline-block;
 }
 ul.arrow-list li,
@@ -1288,28 +1295,28 @@ img.alignnone {
   width: 100%;
 }
 .gallery.gallery-columns-1 .gallery-item {
-  width: 11.11111111%;
+  width: 11.11111111111111%;
 }
 .gallery.gallery-columns-2 .gallery-item {
-  width: 22.22222222%;
+  width: 22.22222222222222%;
 }
 .gallery.gallery-columns-3 .gallery-item {
-  width: 33.33333333%;
+  width: 33.333333333333336%;
 }
 .gallery.gallery-columns-4 .gallery-item {
-  width: 44.44444444%;
+  width: 44.44444444444444%;
 }
 .gallery.gallery-columns-5 .gallery-item {
-  width: 55.55555556%;
+  width: 55.55555555555556%;
 }
 .gallery.gallery-columns-6 .gallery-item {
-  width: 66.66666667%;
+  width: 66.66666666666667%;
 }
 .gallery.gallery-columns-7 .gallery-item {
-  width: 77.77777778%;
+  width: 77.77777777777777%;
 }
 .gallery.gallery-columns-8 .gallery-item {
-  width: 88.88888889%;
+  width: 88.88888888888889%;
 }
 .gallery.gallery-columns-9 .gallery-item {
   width: 100%;
@@ -1320,20 +1327,6 @@ img.alignnone {
 .btn {
   border: none !important;
   outline: none !important;
-}
-.btn-ui {
-  padding: 0;
-  border: none;
-  border-radius: 0;
-  background-color: transparent;
-}
-.btn-ui,
-.btn-ui:focus,
-.btn-ui:active,
-.btn-ui:focus:active {
-  outline: none;
-  -webkit-box-shadow: none;
-  box-shadow: none;
 }
 /* ==========================================================================
 	4.2 Alert
@@ -1392,29 +1385,27 @@ img.alignnone {
 	5.1 Site Wrap
 ============================================================================= */
 .site-wrap {
-  min-height: 100vh;
-  -webkit-transition: -webkit-transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
-  -moz-transition: -moz-transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
-  -o-transition: -o-transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
-  transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+  position: relative;
+  left: 0;
+  -webkit-transition: left 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+  -o-transition: left 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+  transition: left 0.6s cubic-bezier(0.19, 1, 0.22, 1);
 }
-.header-open .site-wrap {
-  -webkit-transform: translate(290px, 0);
-  -ms-transform: translate(290px, 0);
-  -o-transform: translate(290px, 0);
-  transform: translate(290px, 0);
+.site-wrap.header-open {
+  left: 290px;
 }
 .site-outer-wrap {
   overflow: hidden;
 }
 .back-to-top {
   position: fixed;
-  z-index: 410;
+  z-index: 999999;
   right: 0;
   bottom: 0;
 }
-.back-to-top .btn {
+.back-to-top a {
   font-size: 18px;
+  display: block;
   background-color: #fff;
   width: 44px;
   height: 44px;
@@ -1424,7 +1415,7 @@ img.alignnone {
   -webkit-box-shadow: 0 0 16px rgba(0, 0, 0, 0.15);
   box-shadow: 0 0 16px rgba(0, 0, 0, 0.15);
 }
-.back-to-top .btn:hover {
+.back-to-top a:hover {
   color: #222222;
 }
 .page-template-portfolio-slider .back-to-top {
@@ -1439,7 +1430,7 @@ img.alignnone {
   height: 100%;
   top: 0;
   left: 0;
-  z-index: 402;
+  z-index: 9999;
   background-color: rgba(255, 255, 255, 0.95);
   text-align: center;
   visibility: hidden;
@@ -1483,6 +1474,14 @@ img.alignnone {
 .search-entry + .search-entry {
   border-top: 1px solid #f0f0f0;
 }
+.search-entry .search-entry-wrap:before,
+.search-entry .search-entry-wrap:after {
+  content: " ";
+  display: table;
+}
+.search-entry .search-entry-wrap:after {
+  clear: both;
+}
 .search-entry .search-entry-thumbnail {
   float: left;
   width: 150px;
@@ -1511,6 +1510,7 @@ img.alignnone {
   border: solid #f0f0f0;
   border-width: 0 0 1px 0;
   font-size: 13px;
+  min-height: 100%;
 }
 .header-content-top {
   height: 80px;
@@ -1550,30 +1550,14 @@ img.alignnone {
   font-size: 10px;
 }
 .header-content-bottom {
-  padding: 80px 35px 40px;
   background-color: #ffffff;
   border-right: 1px solid #f0f0f0;
   position: absolute;
-  width: 290px;
   top: 0;
   right: 100%;
-}
-.header-open .header-content-bottom {
-  position: static;
-  float: left;
-  margin-top: -80px;
-  margin-left: -290px;
-}
-.header-content-bottom:before {
-  content: '';
-  position: absolute;
-  z-index: -1;
-  top: 0;
-  bottom: 0;
-  left: -290px;
+  padding: 80px 35px 40px;
   width: 290px;
-  background-color: inherit;
-  border-right: inherit;
+  min-height: 100%;
 }
 .header-copyright {
   margin-top: 40px;
@@ -1587,77 +1571,71 @@ img.alignnone {
 	5.4 Header Toggle
 ============================================================================= */
 .header-toggle {
-  width: 44px;
-  height: 44px;
+  width: 80px;
+  height: 100%;
   text-align: center;
   display: block;
   position: absolute;
-  left: 18px;
-  top: 18px;
+  left: 0;
+  top: 0;
   z-index: 1;
-  padding: 0 12px;
-  -webkit-transition: -webkit-transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
-  -moz-transition: -moz-transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
-  -o-transition: -o-transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
-  transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+  -webkit-transition: left 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+  -o-transition: left 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+  transition: left 0.6s cubic-bezier(0.19, 1, 0.22, 1);
 }
-.header-open .header-toggle {
-  -webkit-transform: translate(-80px, 0);
-  -ms-transform: translate(-80px, 0);
-  -o-transform: translate(-80px, 0);
-  transform: translate(-80px, 0);
+.site-wrap.header-open .header-toggle {
+  left: -80px;
 }
-.header-toggle span {
-  display: block;
-  position: relative;
-  height: 4px;
+.header-toggle .hamburger {
+  display: inline-block;
+  vertical-align: top;
+  padding: 38px 0;
   -webkit-transition: 0.3s;
   -o-transition: 0.3s;
   transition: 0.3s;
 }
-.header-toggle > span > span,
-.header-toggle > span > span:before,
-.header-toggle > span > span:after {
+.header-toggle .hamburger > span {
+  position: relative;
+}
+.header-toggle .hamburger > span,
+.header-toggle .hamburger > span > span {
+  display: block;
+  width: 20px;
+  height: 4px;
   background: #333;
   border-radius: 3px;
+  -webkit-transition: 0.3s;
+  -o-transition: 0.3s;
+  transition: 0.3s;
 }
-.header-toggle > span > span:before,
-.header-toggle > span > span:after {
-  content: '';
+.header-toggle .hamburger > span > span {
   position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
 }
-.header-toggle > span > span:before {
-  -webkit-transform: translate(0, -6px);
-  -ms-transform: translate(0, -6px);
-  -o-transform: translate(0, -6px);
-  transform: translate(0, -6px);
+.header-toggle .hamburger > span > span:first-child {
+  top: -6px;
 }
-.header-toggle > span > span:after {
-  -webkit-transform: translate(0, 6px);
-  -ms-transform: translate(0, 6px);
-  -o-transform: translate(0, 6px);
-  transform: translate(0, 6px);
+.header-toggle .hamburger > span > span:last-child {
+  top: 6px;
 }
-.header-open .header-toggle > span {
+.header-open .header-toggle .hamburger {
   -webkit-transform: scale(0.8);
   -ms-transform: scale(0.8);
   -o-transform: scale(0.8);
   transform: scale(0.8);
 }
-.header-open .header-toggle > span > span {
+.header-open .header-toggle .hamburger > span {
   background: transparent;
 }
-.header-open .header-toggle > span > span:before {
+.header-open .header-toggle .hamburger > span > span {
+  top: 0;
+}
+.header-open .header-toggle .hamburger > span > span:first-child {
   -webkit-transform: rotate(45deg);
   -ms-transform: rotate(45deg);
   -o-transform: rotate(45deg);
   transform: rotate(45deg);
 }
-.header-open .header-toggle > span > span:after {
+.header-open .header-toggle .hamburger > span > span:last-child {
   -webkit-transform: rotate(-45deg);
   -ms-transform: rotate(-45deg);
   -o-transform: rotate(-45deg);
@@ -1765,9 +1743,6 @@ img.alignnone {
 /* ==========================================================================
 	5.7 Content Area
 ============================================================================= */
-.content-area-wrap .content-area {
-  overflow: hidden;
-}
 .content-area-wrap .content-area.fullwidth,
 .content-area-wrap .content-area.fullwidth .content-header-affix {
   max-width: none;
@@ -1791,6 +1766,14 @@ img.alignnone {
   background-color: #ffffff;
   border-bottom: 1px solid #f0f0f0;
 }
+.content-header-affix:before,
+.content-header-affix:after {
+  content: " ";
+  display: table;
+}
+.content-header-affix:after {
+  clear: both;
+}
 /* ==========================================================================
 	5.9 Content Title
 ============================================================================= */
@@ -1800,16 +1783,23 @@ img.alignnone {
   padding: 17px 20px;
   color: #222222;
   font-size: 17px;
-  line-height: 1.52941176;
+  line-height: 1.5294117647058822;
 }
 /* ==========================================================================
 	5.10 Content Area AJAX Animation
 ============================================================================= */
-.content-area .content-wrap,
-.content-area .content-header-affix > * {
+.desktop .content-area .content-wrap,
+.desktop .content-area .content-header-affix > * {
   -webkit-transition: opacity 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   -o-transition: opacity 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   transition: opacity 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.content-area.unloading .content-wrap,
+.content-area.unloading .content-header-affix > * {
+  opacity: 0;
+}
+.content-area.unloading .content-title.preloading {
+  opacity: 1;
 }
 .content-area.beforeload .content-wrap,
 .content-area.beforeload .content-header-affix > * {
@@ -1823,6 +1813,14 @@ img.alignnone {
   z-index: 1;
   background-color: #ffffff;
   border-bottom: 1px solid #f0f0f0;
+}
+.content-box:before,
+.content-box:after {
+  content: " ";
+  display: table;
+}
+.content-box:after {
+  clear: both;
 }
 .content-box.no-margin {
   margin: 0;
@@ -2000,14 +1998,9 @@ img.alignnone {
   margin-left: 6px;
   margin-right: 0;
 }
-.content-nav-link > a.gridlist-infinite-link,
-.content-nav-link > span.gridlist-infinite-link {
-  pointer-events: none;
-}
 .content-nav-link.disabled > a,
 .content-nav-link.disabled > span {
-  color: #d5d5d5;
-  pointer-events: none;
+  opacity: 0.2;
 }
 .content-nav-link.active > a:not(.dots),
 .content-nav-link:not(.disabled):hover > a:not(.dots),
@@ -2709,7 +2702,7 @@ img.alignnone {
   position: absolute;
   margin-right: 1.5px;
   top: 0.29289321881345247559915563789515em;
-  right: -0.70710678em;
+  right: -0.7071067811865476em;
 }
 .post-tags a:before {
   content: '';
@@ -2719,8 +2712,8 @@ img.alignnone {
   border-radius: 50%;
   position: absolute;
   top: 50%;
-  margin-top: -0.14285714em;
-  margin-left: -0.14285714em;
+  margin-top: -0.14285714285714285em;
+  margin-left: -0.14285714285714285em;
   left: 100%;
 }
 /* ==========================================================================
@@ -2763,6 +2756,14 @@ img.alignnone {
 .post-comments .comment-list .comment-head {
   line-height: 1;
 }
+.post-comments .comment-list .comment-head:before,
+.post-comments .comment-list .comment-head:after {
+  content: " ";
+  display: table;
+}
+.post-comments .comment-list .comment-head:after {
+  clear: both;
+}
 .post-comments .comment-list .comment-head .comment-author-name {
   margin: 0 0 5px;
   color: #222222;
@@ -2802,6 +2803,14 @@ img.alignnone {
   margin-top: 18px;
   padding-top: 18px;
   border-top: 1px dotted #e0e0e0;
+}
+.post-comments-nav:before,
+.post-comments-nav:after {
+  content: " ";
+  display: table;
+}
+.post-comments-nav:after {
+  clear: both;
 }
 .post-comments-nav .nav-previous {
   float: left;
@@ -2870,13 +2879,11 @@ img.alignnone {
 ============================================================================= */
 .justified-grids {
   white-space: nowrap;
-  overflow: hidden;
 }
-.justified-grids .justified-grids-item {
+.justified-grids > figure {
   display: inline-block;
-  vertical-align: top;
 }
-.justified-grids .justified-grids-item img {
+.justified-grids > figure img {
   width: auto;
 }
 .justified-grids .justified-grids-break {
@@ -2977,6 +2984,14 @@ img.alignnone {
 }
 .client-list ul {
   margin-bottom: -11px;
+}
+.client-list ul:before,
+.client-list ul:after {
+  content: " ";
+  display: table;
+}
+.client-list ul:after {
+  clear: both;
 }
 .client-list .client {
   width: 100%;
@@ -3203,30 +3218,38 @@ table#wp-calendar thead th {
 /* ==========================================================================
 	12.3 Post List Widget
 ============================================================================= */
-.post-list .post-list-entry + .post-list-entry {
+.widget .post-list ul li + li {
   margin-top: 20px;
 }
-.post-list .post-list-media {
+.post-list-widget:before,
+.post-list-widget:after {
+  content: " ";
+  display: table;
+}
+.post-list-widget:after {
+  clear: both;
+}
+.post-list-widget .post-list-widget-media {
   width: 56px;
   height: 56px;
   float: left;
   margin-right: 15px;
 }
-.post-list .post-list-featured-image a {
+.post-list-widget .post-list-widget-featured-image a {
   position: relative;
   display: block;
   padding-top: 100%;
   background-color: #fff;
 }
-.post-list .post-list-featured-image a > img {
+.post-list-widget .post-list-widget-featured-image a > img {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
 }
-.post-list .post-list-featured-image a:before,
-.post-list .post-list-featured-image a:after {
+.post-list-widget .post-list-widget-featured-image a:before,
+.post-list-widget .post-list-widget-featured-image a:after {
   content: '';
   background-color: #000;
   position: absolute;
@@ -3235,44 +3258,44 @@ table#wp-calendar thead th {
   top: 50%;
   opacity: 0;
 }
-.post-list .post-list-featured-image a:before,
-.post-list .post-list-featured-image a:after,
-.post-list .post-list-featured-image a > img {
+.post-list-widget .post-list-widget-featured-image a:before,
+.post-list-widget .post-list-widget-featured-image a:after,
+.post-list-widget .post-list-widget-featured-image a > img {
   -webkit-transition: opacity 0.6s cubic-bezier(0.19, 1, 0.22, 1);
   -o-transition: opacity 0.6s cubic-bezier(0.19, 1, 0.22, 1);
   transition: opacity 0.6s cubic-bezier(0.19, 1, 0.22, 1);
 }
-.post-list .post-list-featured-image a:before {
+.post-list-widget .post-list-widget-featured-image a:before {
   width: 1px;
   height: 16px;
   margin-top: -8px;
 }
-.post-list .post-list-featured-image a:after {
+.post-list-widget .post-list-widget-featured-image a:after {
   width: 16px;
   height: 1px;
   margin-left: -8px;
 }
-.post-list .post-list-featured-image a:hover:before,
-.post-list .post-list-featured-image a:hover:after {
+.post-list-widget .post-list-widget-featured-image a:hover:before,
+.post-list-widget .post-list-widget-featured-image a:hover:after {
   opacity: 1;
 }
-.post-list .post-list-featured-image a:hover > img {
+.post-list-widget .post-list-widget-featured-image a:hover > img {
   opacity: 0.6;
 }
-.post-list .post-list-info {
+.post-list-widget .post-list-widget-info {
   overflow: hidden;
 }
-.post-list .post-list-title {
+.post-list-widget .post-list-widget-title {
   margin: 0;
   font-size: 14px;
 }
-.post-list .post-list-title a {
+.post-list-widget .post-list-widget-title a {
   color: #222222;
 }
-.post-list .post-list-title a:hover {
+.post-list-widget .post-list-widget-title a:hover {
   color: #3dc9b3;
 }
-.post-list .post-list-time {
+.post-list-widget .post-list-widget-time {
   font-size: 13px;
   color: #888888;
   font-style: italic;
@@ -3546,24 +3569,12 @@ table#wp-calendar thead th {
   width: 100% !important;
   height: 100% !important;
 }
-.mejs-offscreen {
-  /* Accessibility: hide screen reader texts (and prefer "top" for RTL languages). */
-  position: absolute !important;
-  top: -10000px;
-  left: -10000px;
-  overflow: hidden;
-  width: 1px;
-  height: 1px;
-}
 .mejs-container {
   position: relative;
   font-family: Arial, Helvetica, sans-serif;
   text-align: left;
   vertical-align: top;
   text-indent: 0;
-}
-.mejs-container:focus {
-  outline: none !important;
 }
 .me-plugin {
   position: absolute;
@@ -3682,18 +3693,15 @@ table#wp-calendar thead th {
   width: 100%;
   height: 36px;
   background: #333;
-  white-space: nowrap;
 }
-.mejs-controls > div,
-.mejs-controls > a {
-  display: inline-block;
-  vertical-align: top;
+.mejs-controls > div {
+  display: block;
+  float: left;
   height: 100%;
   position: relative;
   border-right: 1px solid #404040;
 }
-.mejs-controls > div:last-child,
-.mejs-controls > a:last-child {
+.mejs-controls > div:last-child {
   border-right: none;
 }
 .mejs-controls .mejs-button {
@@ -3732,6 +3740,7 @@ table#wp-calendar thead th {
 /* Start: Time (Current / Duration) */
 .mejs-controls .mejs-time {
   color: #fff;
+  display: block;
   overflow: hidden;
   text-align: center;
   font-size: 11px;
@@ -3759,62 +3768,80 @@ table#wp-calendar thead th {
   width: 200px;
   padding: 13px 12px;
 }
-.mejs-controls .mejs-time-rail .mejs-time-total {
-  padding: 1px;
-  height: 10px;
-  display: block;
-  background-color: #262929;
-}
-.mejs-controls .mejs-time-rail .mejs-time-buffering,
-.mejs-controls .mejs-time-rail .mejs-time-loaded,
-.mejs-controls .mejs-time-rail .mejs-time-current {
+.mejs-controls .mejs-time-rail span {
   display: block;
   position: absolute;
+  width: 180px;
+  height: 10px;
   cursor: pointer;
-  height: 8px;
+}
+.mejs-controls .mejs-time-rail .mejs-time-total {
+  padding: 1px;
+  background-color: #262929;
 }
 .mejs-controls .mejs-time-rail .mejs-time-buffering {
+  width: 100%;
+  height: 8px;
   background: #464849;
-  background-size: 14px 14px;
   background-image: -webkit-linear-gradient(-45deg, rgba(0, 0, 0, 0.4) 25%, transparent 25%, transparent 50%, rgba(0, 0, 0, 0.4) 50%, rgba(0, 0, 0, 0.4) 75%, transparent 75%, transparent);
   background-image: -o-linear-gradient(-45deg, rgba(0, 0, 0, 0.4) 25%, transparent 25%, transparent 50%, rgba(0, 0, 0, 0.4) 50%, rgba(0, 0, 0, 0.4) 75%, transparent 75%, transparent);
   background-image: linear-gradient(-45deg, rgba(0, 0, 0, 0.4) 25%, transparent 25%, transparent 50%, rgba(0, 0, 0, 0.4) 50%, rgba(0, 0, 0, 0.4) 75%, transparent 75%, transparent);
+  background-size: 14px 14px;
   -webkit-animation: buffering-stripes 2s linear infinite;
   -o-animation: buffering-stripes 2s linear infinite;
   animation: buffering-stripes 2s linear infinite;
 }
 .mejs-controls .mejs-time-rail .mejs-time-loaded {
   background: #464849;
+  width: 0;
+  height: 8px;
 }
 .mejs-controls .mejs-time-rail .mejs-time-current {
+  width: 0;
+  height: 8px;
   background: #3dc9b3;
-  background-size: 10px 10px;
   background-image: -webkit-linear-gradient(-45deg, rgba(0, 0, 0, 0.15) 25%, transparent 25%, transparent 50%, rgba(0, 0, 0, 0.15) 50%, rgba(0, 0, 0, 0.15) 75%, transparent 75%, transparent);
   background-image: -o-linear-gradient(-45deg, rgba(0, 0, 0, 0.15) 25%, transparent 25%, transparent 50%, rgba(0, 0, 0, 0.15) 50%, rgba(0, 0, 0, 0.15) 75%, transparent 75%, transparent);
   background-image: linear-gradient(-45deg, rgba(0, 0, 0, 0.15) 25%, transparent 25%, transparent 50%, rgba(0, 0, 0, 0.15) 50%, rgba(0, 0, 0, 0.15) 75%, transparent 75%, transparent);
+  background-size: 10px 10px;
 }
 .mejs-controls .mejs-time-rail .mejs-time-handle {
   display: none;
+  position: absolute;
+  width: 10px;
+  background-color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  border: solid 2px #333;
+  top: -2px;
+  text-align: center;
 }
 .mejs-controls .mejs-time-rail .mejs-time-float {
   position: absolute;
   display: none;
   background-color: #262626;
-  width: 42px;
-  height: auto !important;
+  width: 36px;
+  height: 24px;
   border-radius: 4px;
-  top: -15px;
+  top: -36px;
+  margin-left: -18px;
   text-align: center;
   color: #fff;
 }
 .mejs-controls .mejs-time-rail .mejs-time-float-current {
-  line-height: 24px;
-  display: block;
+  line-height: 1.5;
+  margin: 3px;
   font-size: 11px;
+  width: 30px;
+  height: auto;
+  display: block;
+  text-align: center;
 }
 .mejs-controls .mejs-time-rail .mejs-time-float-corner {
   position: absolute;
   display: block;
+  width: 0;
+  height: 0;
   border: solid 4px transparent;
   border-top-color: #262626;
   top: 100%;
@@ -4146,6 +4173,7 @@ table#wp-calendar thead th {
   z-index: 100;
   cursor: pointer;
 }
+/* End: Postroll */
 /* ==========================================================================
 	14. RoyalSlider
 ============================================================================= */
@@ -4393,7 +4421,7 @@ table#wp-calendar thead th {
     width: 50%;
   }
   .client-list .client {
-    width: 33.33333333%;
+    width: 33.333333333333336%;
   }
   .client-list .client:nth-child(2n+1):after,
   .client-list .client:nth-child(2n+1):before {
@@ -4405,16 +4433,13 @@ table#wp-calendar thead th {
   }
 }
 @media (min-width: 992px) {
-  .site-wrap {
-    -webkit-transition: none;
-    -o-transition: none;
-    transition: none;
-  }
-  .header-open .site-wrap {
+  .site-wrap.header-open {
     -webkit-transform: none;
     -ms-transform: none;
     -o-transform: none;
     transform: none;
+    -webkit-transition-duration: 0s;
+    transition-duration: 0s;
   }
   .back-to-top a {
     width: 60px;
@@ -4431,9 +4456,7 @@ table#wp-calendar thead th {
     top: 0;
     bottom: 0;
     border-width: 0 1px 0 0;
-    z-index: 401;
-    -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
+    z-index: 999;
   }
   .header:hover .header-content-wrap {
     overflow-y: auto;
@@ -4448,10 +4471,10 @@ table#wp-calendar thead th {
     height: 100%;
     overflow: hidden;
   }
-  .header-content-wrap::-webkit-scrollbar {
+  .desktop .header-content-wrap::-webkit-scrollbar {
     width: 6px;
   }
-  .header-content-wrap::-webkit-scrollbar-thumb {
+  .desktop .header-content-wrap::-webkit-scrollbar-thumb {
     border-radius: 6px;
     background-color: #f0f0f0;
     border: 1px solid #eaeaea;
@@ -4470,21 +4493,14 @@ table#wp-calendar thead th {
     text-align: left;
   }
   .header-content-bottom {
-    padding: 0 35px 40px;
     background: transparent;
     border-right: none;
-    position: static;
+    position: relative;
     width: auto;
     top: auto;
     right: auto;
-  }
-  .header-open .header-content-bottom {
-    float: none;
-    margin-top: auto;
-    margin-left: auto;
-  }
-  .header-content-bottom:before {
-    content: none;
+    min-height: 0;
+    padding: 0 35px 40px;
   }
   .header-toggle {
     display: none;
@@ -4648,7 +4664,7 @@ table#wp-calendar thead th {
   }
   .grid-list-filter .filter-items li:hover > a,
   .grid-list-filter .filter-items li > a.active {
-    background: transparent !important;
+    background-color: transparent;
   }
   .grid-list-filter .filter-items li:hover > a:after,
   .grid-list-filter .filter-items li > a.active:after {

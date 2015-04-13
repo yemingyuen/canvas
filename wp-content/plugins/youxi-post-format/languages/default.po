@@ -1,22 +1,19 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Youxi Post Format\n"
-"POT-Creation-Date: 2015-03-18 19:18+0700\n"
-"PO-Revision-Date: 2015-03-18 19:18+0700\n"
+"POT-Creation-Date: 2014-11-07 13:38+0700\n"
+"PO-Revision-Date: 2014-11-07 13:38+0700\n"
 "Last-Translator: \n"
 "Language-Team: YouxiThemes\n"
 "Language: en_US\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.7.1\n"
-"X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;"
-"_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;_ex:1,2c;"
-"esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c\n"
+"X-Generator: Poedit 1.6.10\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c\n"
 "X-Poedit-Basepath: .\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Poedit-SearchPath-0: .\n"
-"X-Poedit-SearchPath-1: ..\n"
+"X-Poedit-SearchPath-0: ..\n"
 
 #: ../class-admin-notice.php:84
 #, php-format
@@ -25,125 +22,125 @@ msgid ""
 "\">support forum</a>."
 msgstr ""
 
-#: ../youxi-post-format.php:35
+#: ../youxi-post-format.php:29
 msgid "This plugin requires you to install and activate the Youxi Core plugin."
 msgstr ""
 
-#: ../youxi-post-format.php:96
+#: ../youxi-post-format.php:90
 msgid "Post Format: Link"
 msgstr ""
 
-#: ../youxi-post-format.php:100
+#: ../youxi-post-format.php:94
 msgid "Link URL"
 msgstr ""
 
-#: ../youxi-post-format.php:101
+#: ../youxi-post-format.php:95
 msgid "Enter here the link URL for this post."
 msgstr ""
 
-#: ../youxi-post-format.php:113
+#: ../youxi-post-format.php:107
 msgid "Post Format: Video"
 msgstr ""
 
-#: ../youxi-post-format.php:117 ../youxi-post-format.php:160
+#: ../youxi-post-format.php:111 ../youxi-post-format.php:154
 msgid "Type"
 msgstr ""
 
-#: ../youxi-post-format.php:118
+#: ../youxi-post-format.php:112
 msgid "Choose here the video type for this post."
 msgstr ""
 
-#: ../youxi-post-format.php:120 ../youxi-post-format.php:163
+#: ../youxi-post-format.php:114 ../youxi-post-format.php:157
 msgid "Embedded"
 msgstr ""
 
-#: ../youxi-post-format.php:121 ../youxi-post-format.php:164
+#: ../youxi-post-format.php:115 ../youxi-post-format.php:158
 msgid "Hosted"
 msgstr ""
 
-#: ../youxi-post-format.php:127 ../youxi-post-format.php:170
+#: ../youxi-post-format.php:121 ../youxi-post-format.php:164
 msgid "Embed Code"
 msgstr ""
 
-#: ../youxi-post-format.php:128
+#: ../youxi-post-format.php:122
 msgid "Enter here the video embed code for this post."
 msgstr ""
 
-#: ../youxi-post-format.php:134 ../youxi-post-format.php:177
-#: ../youxi-post-format.php:206
+#: ../youxi-post-format.php:128 ../youxi-post-format.php:171
+#: ../youxi-post-format.php:200
 msgid "Source"
 msgstr ""
 
-#: ../youxi-post-format.php:136
+#: ../youxi-post-format.php:130
 msgid "Choose here the hosted video source for this post."
 msgstr ""
 
-#: ../youxi-post-format.php:142
+#: ../youxi-post-format.php:136
 msgid "Poster"
 msgstr ""
 
-#: ../youxi-post-format.php:143
+#: ../youxi-post-format.php:137
 msgid ""
 "Upload here an image that will be used either as the poster or fallback for "
 "unsupported devices."
 msgstr ""
 
-#: ../youxi-post-format.php:156
+#: ../youxi-post-format.php:150
 msgid "Post Format: Audio"
 msgstr ""
 
-#: ../youxi-post-format.php:161
+#: ../youxi-post-format.php:155
 msgid "Choose here the audio type for this post."
 msgstr ""
 
-#: ../youxi-post-format.php:171
+#: ../youxi-post-format.php:165
 msgid "Enter here the audio embed code for this post."
 msgstr ""
 
-#: ../youxi-post-format.php:179
+#: ../youxi-post-format.php:173
 msgid "Choose here the hosted audio source for this post."
 msgstr ""
 
-#: ../youxi-post-format.php:192
+#: ../youxi-post-format.php:186
 msgid "Post Format: Quote"
 msgstr ""
 
-#: ../youxi-post-format.php:196
+#: ../youxi-post-format.php:190
 msgid "Text"
 msgstr ""
 
-#: ../youxi-post-format.php:197
+#: ../youxi-post-format.php:191
 msgid "Enter here the quote text."
 msgstr ""
 
-#: ../youxi-post-format.php:201
+#: ../youxi-post-format.php:195
 msgid "Author"
 msgstr ""
 
-#: ../youxi-post-format.php:202
+#: ../youxi-post-format.php:196
 msgid "Enter here the quote author for this post."
 msgstr ""
 
-#: ../youxi-post-format.php:207
+#: ../youxi-post-format.php:201
 msgid "Enter here the quote source for this post."
 msgstr ""
 
-#: ../youxi-post-format.php:211
+#: ../youxi-post-format.php:205
 msgid "Source URL"
 msgstr ""
 
-#: ../youxi-post-format.php:212
+#: ../youxi-post-format.php:206
 msgid "Enter here the quote source URL for this post."
 msgstr ""
 
-#: ../youxi-post-format.php:225
+#: ../youxi-post-format.php:219
 msgid "Post Format: Gallery"
 msgstr ""
 
-#: ../youxi-post-format.php:230
+#: ../youxi-post-format.php:224
 msgid "Images"
 msgstr ""
 
-#: ../youxi-post-format.php:231
+#: ../youxi-post-format.php:225
 msgid "Upload here the gallery images to use for this post."
 msgstr ""

@@ -1,9 +1,9 @@
-/*!
- * jQuery Mousewheel 3.1.12
+/*! Copyright (c) 2013 Brandon Aaron (http://brandon.aaron.sh)
+ * Licensed under the MIT License (LICENSE.txt).
  *
- * Copyright 2014 jQuery Foundation and other contributors
- * Released under the MIT license.
- * http://jquery.org/license
+ * Version: 3.1.11
+ *
+ * Requires: jQuery 1.2.2+
  */
 
 (function (factory) {
@@ -32,7 +32,7 @@
     }
 
     var special = $.event.special.mousewheel = {
-        version: '3.1.12',
+        version: '3.1.11',
 
         setup: function() {
             if ( this.addEventListener ) {
@@ -61,12 +61,11 @@
         },
 
         getLineHeight: function(elem) {
-            var $elem = $(elem),
-                $parent = $elem['offsetParent' in $.fn ? 'offsetParent' : 'parent']();
+            var $parent = $(elem)['offsetParent' in $.fn ? 'offsetParent' : 'parent']();
             if (!$parent.length) {
                 $parent = $('body');
             }
-            return parseInt($parent.css('fontSize'), 10) || parseInt($elem.css('fontSize'), 10) || 16;
+            return parseInt($parent.css('fontSize'), 10);
         },
 
         getPageHeight: function(elem) {

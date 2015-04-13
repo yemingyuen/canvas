@@ -76,14 +76,7 @@ class Youxi_Builder_Manager {
 		if( ! in_array( $editor_id, apply_filters( 'youxi_builder_allowed_editors', array( 'content' ) ) ) )
 			return;
 
-		global $wp_version;
-
-		/* On WordPress 4.1+, the media button uses the <button> tag */
-		if( version_compare( $wp_version, '4.1', '>=' ) ) {
-			echo '<button type="button" id="' . $editor_id . '-ypbl" class="wp-switch-editor switch-youxi-builder" onclick="switchEditors.switchto(this);" style="display: none;">' . __( 'Page Builder', 'youxi' ) . "</button>\n";
-		} else {
-			echo '<a id="' . $editor_id . '-ypbl" class="wp-switch-editor switch-youxi-builder" onclick="switchEditors.switchto(this);" style="display: none;">' . __( 'Page Builder', 'youxi' ) . '</a>';
-		}
+		echo '<a id="' . $editor_id . '-ypbl" class="wp-switch-editor switch-youxi-builder" onclick="switchEditors.switchto(this);" style="display: none;">' . __( 'Page Builder', 'youxi' ) . '</a>';
 	}
 
 	/**
@@ -212,6 +205,53 @@ class Youxi_Builder_Manager {
 					'icon' => 'dashicons dashicons-admin-page', 
 					'title' => __( 'Copy', 'youxi' )
 				)
+			)), 
+			'icons' => apply_filters( 'youxi_builder_icons', array(
+				$prefix . 'col' => 'fa fa-th', 
+				$prefix . 'container' => 'fa fa-align-justify', 
+				$prefix . 'fullwidth' => 'fa fa-arrows-h', 
+				$prefix . 'grid_one_twelfth' => 'fa fa-th', 
+				$prefix . 'grid_one_sixth' => 'fa fa-th', 
+				$prefix . 'grid_one_fourth' => 'fa fa-th', 
+				$prefix . 'grid_one_third' => 'fa fa-th', 
+				$prefix . 'grid_five_twelfth' => 'fa fa-th', 
+				$prefix . 'grid_half' => 'fa fa-th', 
+				$prefix . 'grid_seven_twelfth' => 'fa fa-th', 
+				$prefix . 'grid_two_thirds' => 'fa fa-th', 
+				$prefix . 'grid_three_fourth' => 'fa fa-th', 
+				$prefix . 'grid_five_sixth' => 'fa fa-th', 
+				$prefix . 'grid_eleven_twelfth' => 'fa fa-th', 
+				$prefix . 'grid_full' => 'fa fa-th', 
+				$prefix . 'row' => 'fa fa-align-justify', 
+				$prefix . 'separator' => 'fa fa-arrows-v', 
+				$prefix . 'accordion' => 'fa fa-stack-overflow', 
+				$prefix . 'alert' => 'fa fa-warning', 
+				$prefix . 'call_to_action' => 'fa fa-hand-o-right', 
+				$prefix . 'clients' => 'fa fa-group', 
+				$prefix . 'client' => 'fa fa-group', 
+				          'contact-form-7' => 'fa fa-envelope-o', 
+				$prefix . 'heading' => 'fa fa-font', 
+				$prefix . 'icon_box' => 'fa fa-smile-o', 
+				$prefix . 'posts' => 'fa fa-file-text-o', 
+				$prefix . 'portfolio' => 'fa fa-suitcase', 
+				$prefix . 'pricing_tables' => 'fa fa-usd', 
+				$prefix . 'pricing_table' => 'fa fa-usd', 
+				$prefix . 'service' => 'fa fa-magic', 
+				$prefix . 'table' => 'fa fa-table', 
+				$prefix . 'tabs' => 'fa fa-folder-o', 
+				$prefix . 'team' => 'fa fa-user', 
+				$prefix . 'testimonials' => 'fa fa-comments', 
+				$prefix . 'testimonial' => 'fa fa-comment', 
+				$prefix . 'text_widget' => 'fa fa-paragraph', 
+				$prefix . 'twitter' => 'fa fa-twitter', 
+				$prefix . 'widget_area' => 'fa fa-columns', 
+				$prefix . 'counter' => 'fa fa-clock-o', 
+				$prefix . 'progressbar' => 'fa fa-tasks', 
+				          'audio' => 'fa fa-music', 
+				          'embed' => 'fa fa-code', 
+				$prefix . 'google_map' => 'fa fa-map-marker', 
+				          'video' => 'fa fa-video-camera', 
+				$prefix . 'slider' => 'fa fa-photo'
 			))
 		);
 
@@ -308,7 +348,7 @@ class Youxi_Builder_Manager {
 		$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
 
 		if( ! wp_style_is( 'font-awesome', 'registered' ) ) {
-			wp_register_style( 'font-awesome', '//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css', array(), '4.3', 'screen' );
+			wp_register_style( 'font-awesome', '//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css', array(), '4.2', 'screen' );
 		}
 
 		wp_register_script( 'backbone-courier', YOUXI_BUILDER_URL . "admin/assets/plugins/backbone-courier/backbone.courier{$suffix}.js", array( 'jquery', 'backbone' ), '0.6.1', true );

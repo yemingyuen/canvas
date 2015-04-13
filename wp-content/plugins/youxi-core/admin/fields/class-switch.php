@@ -8,8 +8,8 @@ if ( ! defined( 'ABSPATH' ) ) {
  * This class renders an ios7 switch.
  *
  * @package   Youxi Core
- * @author    Mairel Theafila <maimairel@gmail.com>
- * @copyright Copyright (c) 2013-2015, Mairel Theafila
+ * @author    Mairel Theafila <maimairel@yahoo.com>
+ * @copyright Copyright (c) 2013, Mairel Theafila
  */
 if( ! class_exists( 'Youxi_Switch_Form_Field' ) ) {
 
@@ -28,14 +28,14 @@ if( ! class_exists( 'Youxi_Switch_Form_Field' ) ) {
 					'switchery', 
 					self::field_assets_url( "plugins/switchery/switchery{$suffix}.js" ), 
 					array( 'jquery' ), 
-					'0.7.0', 
+					'0.6.3', 
 					true
 				);
 				wp_enqueue_style(
 					'switchery', 
 					self::field_assets_url( "plugins/switchery/switchery{$suffix}.css" ), 
 					array(), 
-					'0.7.0'
+					'0.6.3'
 				);
 
 				wp_enqueue_script(

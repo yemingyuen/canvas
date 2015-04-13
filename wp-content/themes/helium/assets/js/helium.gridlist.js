@@ -50,16 +50,16 @@
 		return promise;
 	}
 
-	window.Helium = window.Helium || {};
+	var Helium = window.Helium = window.Helium || {};
 
-	var GridList = Helium.GridList = function( element, options ) {
+	Helium.GridList = function( element, options ) {
 		this.element = $( element );
 		return this._init( options );
 	}
 
-	GridList.instances = 0;
+	Helium.GridList.instances = 0;
 
-	GridList.prototype = {
+	Helium.GridList.prototype = {
 
 		_mql: window.matchMedia && window.matchMedia( '(min-width: 992px)' ), 
 
@@ -76,8 +76,6 @@
 			ajaxButtonText: 'Load More', 
 			ajaxButtonCompleteText: 'No More Items', 
 
-			imageLoadedClass: 'loaded', 
-
 			beforeAppend: $.noop, 
 			afterAppend: $.noop
 		}, 
@@ -86,65 +84,43 @@
 
 			this.options = $.extend( true, {}, this._defaults, options, this._extractOptions( this.element.data() ) );
 
-			this.instanceId = this.element[0].id;
-
-			this.eventNamespace = '.helium.gridlist._inst' + ( ++GridList.instances );
+			this.eventNamespace = '.helium.gridlist._inst' + ( ++Helium.GridList.instances );
 
 			this.itemsFilter  = this.element.find( this.options.itemsFilterSelector );
 			this.itemsWrapper = this.element.find( this.options.itemsWrapperSelector );
+			this.items        = this.itemsWrapper.find( this.options.itemSelector );
 			this.pagination   = this.element.find( this.options.paginationSelector );
 
-			this._createLayoutEngine();
+			this._createAdapter();
 			this._createAjaxNav();
-			this._toggleFilters();
 			this._bindHandlers();
 		}, 
 
 		_afterFilter: function() {
-			if( 'infinite' == this.options.pagination ) {
-				Waypoint && Waypoint.refreshAll();
-			}
-		}, 
-
-		_afterAppend: function( items ) {
-
-			this._updateAjaxPager();
-			this._bindImageLoad( items );
-			this._toggleFilters();
-
-			if( $.isFunction( this.options.afterAppend ) ) {
-				this.options.afterAppend.apply( this.element, [ this, items ] );
-			}
-		}, 
-
-		_beforeAppend: function( items ) {
-
-			if( $.isFunction( this.options.beforeAppend ) ) {
-				this.options.beforeAppend.apply( this.element, [ this, items ] );
+			if( 'infinite' === this.options.pagination && $.waypoints ) {
+				$.waypoints( 'refresh' );
 			}
 		}, 
 
 		_bindHandlers: function() {
 
-			var _this = this;
+			var self = this, 
+				infiniteCallback;
 
 			this._bindImageLoad();
 
 			this.itemsFilter.on( 'click' + this.eventNamespace, '.filter[data-filter]', function( e ) {
 
-				if( ! $( this ).is( '.disabled' ) ) {
+				self.itemsFilter.find( '.filter.active' )
+					.removeClass( 'active' );
+				$( this ).addClass( 'active' );
 
-					_this.itemsFilter.find( '.filter.active' )
-						.removeClass( 'active' );
-					$( this ).addClass( 'active' );
+				self.filter( $( this ).data( 'filter' ) );
 
-					_this.filter( $( this ).data( 'filter' ) );
-
-					if( _this._mql && ! _this._mql.matches ) {
-						_this.itemsFilter.find( '.filter-items' ).slideUp();
-					}
+				if( ( self._mql && ! self._mql.matches ) || ( ! self._mql && _win.width() < 992 ) ) {
+					self.itemsFilter.find( '.filter-items' ).slideUp();
 				}
-
+					
 				e.preventDefault();
 			});
 
@@ -152,18 +128,20 @@
 				this._mqlListenerProxy = $.proxy( this._mqlListener, this );
 				this._mql.addListener( this._mqlListenerProxy );
 				this._mqlListener( this._mql );
+			} else {
+				this._mqlListener({ matches: _win.width() >= 992 });
 			}
 
 			if( this.ajaxPagerLink && this.ajaxPagerLink.length ) {
 
-				if( 'infinite' == this.options.pagination ) {
-					this._initializeInfinite();
+				if( 'infinite' === this.options.pagination ) {
+					this._initializeInfinite( infiniteCallback );
 					this.ajaxPagerLink.on( 'click' + this.eventNamespace, function(e) {
 						e.preventDefault();
 					});
 				} else {
 					this.ajaxPagerLink.on( 'click' + this.eventNamespace, function(e) {
-						_this._query( this.href, 'ajax' );
+						self._query( this.href, 'ajax' );
 						e.preventDefault();
 					});
 				}
@@ -172,45 +150,48 @@
 
 		_bindImageLoad: function( items ) {
 
-			var _this = this, 
-				_opts = this.options;
+			var t = this;
 
-			if( ! items || ! items.length ) {
-				items = this.itemsWrapper.find( this.options.itemSelector );
+			if( items ) {
+				items = $( items ).filter( this.options.itemSelector );
+			} else {
+				items = this.items;
 			}
-			items.find( 'img' ).each(function() {
-				if( this.complete ) {
-					$( this ).closest( _opts.itemSelector ).addClass( _opts.imageLoadedClass );
+
+			items.each(function() {
+				var img = $( this ).find( 'img' );
+				if( img.length ) {
+					if( img[0].complete ) {
+						img.closest( t.options.itemSelector ).addClass( 'loaded' );
+					} else {
+						img.one( 'load' + t.eventNamespace, function() {
+							img.closest( t.options.itemSelector ).addClass( 'loaded' );
+						});
+					}
 				} else {
-					$( this ).one( 'load' + _this.eventNamespace, function() {
-						$( this ).closest( _opts.itemSelector ).addClass( _opts.imageLoadedClass );
-					});
+					$( this ).addClass( 'loaded' );
 				}
 			});
 		}, 
 
-		_createLayoutEngine: function() {
-
-			var _opts = this.options, 
-				layoutEngine = _opts.layout.charAt(0).toUpperCase() + _opts.layout.slice(1), 
-				layoutEngineOpts = {};
-
-			if( LayoutEngine.hasOwnProperty( layoutEngine ) ) {
-
-				layoutEngineOpts = $.extend( layoutEngineOpts, {
-					selector: _opts.itemSelector, 
+		_createAdapter: function() {
+			var adapter = this.options.layout, adapterOpts = {};
+			adapter = adapter.charAt( 0 ).toUpperCase() + adapter.substr( 1 );
+			if( Helium.GridList.Adapter.hasOwnProperty( adapter ) ) {
+				adapterOpts = $.extend( adapterOpts, {
+					selector: this.options.itemSelector, 
+					afterAppend: this._updateAjaxPager, 
+					afterAppendScope: this, 
 					afterFilter: this._afterFilter, 
 					afterFilterScope: this
 				});
-
-				this.layoutEngine = new LayoutEngine[ layoutEngine ]( this, layoutEngineOpts );
+				this.adapter = new Helium.GridList.Adapter[ adapter ]( this, adapterOpts );
 			}
-
 		}, 
 
 		_createAjaxNav: function() {
 
-			if( ! this.options.pagination || ! this.options.pagination.match( /^(ajax|infinite)$/ ) ) {
+			if( ! this.options.pagination.match( /^(ajax|infinite)$/ ) ) {
 				return;
 			}
 
@@ -221,13 +202,13 @@
 
 			if( this.ajaxLinks.length ) {
 
-				this.ajaxPagerLink = $( '<a/>' )
-					.addClass( 'gridlist-' + this.options.pagination + '-link' )
+				this.ajaxPagerLink = $( document.createElement( 'a' ) )
+					.addClass( 'gridlist-ajax-link' )
 					.text( this.options.ajaxButtonText )
 					.attr( 'href', this.ajaxLinks.shift() );
 
 				this.pagination.find( '.content-nav > ul' ).empty()
-					.append( $( '<li class="content-nav-link"/>' ).append( this.ajaxPagerLink ) );
+					.append( $( '<li class="content-nav-link"></li>' ).append( this.ajaxPagerLink ) );
 			}
 		}, 
 
@@ -246,20 +227,16 @@
 
 		_initializeInfinite: function() {
 
-			var _this = this;
+			if( $.fn.waypoint && this.ajaxPagerLink.length ) {
 
-			if( Waypoint && this.ajaxPagerLink.length ) {
-
-				this.activeWaypoint = new Waypoint({
-					element: this.itemsWrapper[0], 
+				this.itemsWrapper.waypoint({
 					offset: 'bottom-in-view', 
-					handler: function( direction ) {
+					triggerOnce: true, 
+					handler: $.proxy( function( direction ) {
 						if( 'down' === direction ) {
-							_this._query( _this.ajaxPagerLink[0].href, 'infinite' );
+							this._query( this.ajaxPagerLink[0].href, 'infinite' );
 						}
-						this.destroy();
-						_this.activeWaypoint = null;
-					}
+					}, this )
 				});
 			}
 		}, 
@@ -267,6 +244,7 @@
 		_mqlListener: function( mql ) {
 			if( ! mql.matches ) {
 				this.itemsFilter.on( 'click' + this.eventNamespace, '.filter-label', function( e ) {
+
 					$( this ).next( '.filter-items' ).slideToggle();
 					e.preventDefault();
 				});
@@ -274,15 +252,6 @@
 				this.itemsFilter.off( 'click' + this.eventNamespace, '.filter-label' )
 					.find( '.filter-items' ).css( 'display', '' );
 			}
-		}, 
-
-		_toggleFilters: function() {
-			var _this = this, items, filter;
-			this.itemsFilter.find( '.filter[data-filter]' ).each(function() {
-				filter = $( this ).data( 'filter' );
-				items = _this.itemsWrapper.find( _this.options.itemSelector );
-				$( this ).toggleClass( 'disabled', ! items.filter( filter ).length );
-			});
 		}, 
 
 		_updateAjaxPager: function() {
@@ -294,7 +263,8 @@
 					this.ajaxPagerLink
 						.attr( 'href', next )
 						.text( this.options.ajaxButtonText )
-						.closest( '.content-nav-link' ).removeClass( 'disabled' );
+						.closest( '.content-nav-link' )
+							.removeClass( 'disabled' );
 
 					if( 'infinite' === this.options.pagination ) {
 						this._initializeInfinite();
@@ -303,7 +273,8 @@
 					this.ajaxPagerLink.off( this.eventNamespace )
 						.text( this.options.ajaxButtonCompleteText )
 						.removeAttr( 'href' )
-						.closest( '.content-nav-link' ).addClass( 'disabled' );
+						.closest( '.content-nav-link' )
+							.addClass( 'disabled' );
 				}
 			}
 		}, 
@@ -322,55 +293,48 @@
 				beforeSend: function() {
 					$( this.ajaxPagerLink )
 						.text( this.options.ajaxLoadingText )
-						.closest( '.content-nav-link' ).addClass( 'disabled' );
+						.closest( '.content-nav-link' )
+							.addClass( 'disabled' );
 				}
 			}).done(function( response ) {
-				var selector = [ this.options.itemsWrapperSelector, this.options.itemSelector ], items;
-				if( this.instanceId ) {
-					selector.unshift( '#' + this.instanceId );
-				}
-				items = $( response ).find( selector.join( ' ' ) );
-
-				if( items.length ) {
-					this.append( items );
-				} else {
-					$( this.ajaxPagerLink )
-						.text( this.options.ajaxButtonText )
-						.closest( '.content-nav-link' ).removeClass( 'disabled' );
-				}
+				var items = $( response )
+					.find( this.options.itemsWrapperSelector + ' ' + this.options.itemSelector );
+				this.append( items );
 			});
 		}, 
 
 		append: function( items ) {
 
-			if( this.layoutEngine ) {
+			if( this.adapter ) {
 
 				items = $( items ).filter( this.options.itemSelector );
 
-				this._beforeAppend( items );
+				if( $.isFunction( this.options.beforeAppend ) ) {
+					this.options.beforeAppend.apply( this.element, [ this, items ] );
+				}
 
+				this.items = this.items.add( items );
 				this.itemsWrapper.append( items );
-				this.layoutEngine.append( items );
+				this._bindImageLoad( items );
+				this.adapter._append( items );
 
-				this._afterAppend( items );
+				if( $.isFunction( this.options.afterAppend ) ) {
+					this.options.afterAppend.apply( this.element, [ this, items ] );
+				}
 			}
 		}, 
 
 		filter: function( filter ) {
-			if( this.layoutEngine ) {
-				this.layoutEngine.filter( filter );
+			if( this.adapter ) {
+				this.adapter._filter( filter );
 			}
-		}, 
-
-		getItems: function() {
-			return this.itemsWrapper.find( this.options.itemSelector );
 		}, 
 
 		destroy: function() {
 
-			if( this.layoutEngine ) {
-				this.layoutEngine.destroy();
-				this.layoutEngine = null;
+			if( this.adapter ) {
+				this.adapter._destroy();
+				this.adapter = null;
 			}
 
 			if( this.itemsFilter ) {
@@ -383,13 +347,13 @@
 				this.ajaxLinks = null;
 			}
 
-			if( this.activeWaypoint ) {
-				this.activeWaypoint.destroy();
-				this.activeWaypoint = null;
+			if( $.fn.waypoint ) {
+				this.itemsWrapper.waypoint( 'destroy' );
 			}
 
 			this.itemsFilter = null;
 			this.itemsWrapper = null;
+			this.items = null;
 			this.pagination = null;
 
 			if( this._mql ) {
@@ -409,20 +373,20 @@
 	$.fn.heliumGridList = function( options ) {
 		return this.each(function() {
 			if( ! $.data( this, 'helium.gridlist._inst' ) ) {
-				$.data( this, 'helium.gridlist._inst', new GridList( this, options ) );
+				$.data( this, 'helium.gridlist._inst', new Helium.GridList( this, options ) );
 			}
 		});
 	}
 
-	/* GridList LayoutEngines */
+	/* GridList Adapters */
 
-	var LayoutEngine = GridList.LayoutEngine = function( manager, options ) {
+	var Adapter = Helium.GridList.Adapter = function( manager, options ) {
 		this.manager = manager;
 		return this._init( options );
 	};
 
 	// Inheritance method from Backbone.js
-	LayoutEngine.extend = function( protoProps, staticProps ) {
+	Adapter.extend = function( protoProps, staticProps ) {
 		var parent = this;
 		var child;
 
@@ -455,7 +419,7 @@
 		return child;
 	};
 
-	LayoutEngine.prototype = {
+	Adapter.prototype = {
 
 		_defaults: {
 			afterAppend: $.noop, 
@@ -468,121 +432,116 @@
 			this.options = $.extend( this._defaults, options );
 		}, 
 
-		_afterFilter: function() {
-			if( $.isFunction( this.options.afterFilter ) ) {
-				this.options.afterFilter.apply( this.options.afterFilterScope, arguments );
-			}
-		}, 
+		_append: function( items ) {}, 
 
-		_afterAppend: function() {
-			if( $.isFunction( this.options.afterAppend ) ) {
-				this.options.afterAppend.apply( this.options.afterAppendScope, arguments );
-			}
-		}, 
+		_filter: function( filter ) {}, 
 
-		append: function( items ) {}, 
-
-		filter: function( filter ) {}, 
-
-		destroy: function() {
+		_destroy: function() {
 			this.manager = null;
 		}
 	};
 
-	LayoutEngine.Classic = LayoutEngine.extend({
+	Helium.GridList.Adapter.Classic = Adapter.extend({
 
-		append: function( items ) {
+		_append: function( items ) {
 
 			if( items && items.length ) {
 
-				var _this = this;
+				items = this._currentFilter ? 
+					items.hide().filter( this._currentFilter ).show() : items;
 
-				items = _this._currentFilter ? 
-					items.hide().filter( _this._currentFilter ).show() : items;
-
-				if( _this._visibleItems ) {
-					_this._visibleItems = _this._visibleItems.add( items );
+				if( this._visibleItems ) {
+					this._visibleItems = this._visibleItems.add( items );
 				}
 
-				if( GridList.useAnimation ) {
+				if( Helium.GridList.animationEnabled ) {
 
-					items.css({ opacity: 0, y: -30 }).each(function( i ) {
-						$( this ).transit({ opacity: 1, y: 0, delay: ( i * 100 ), queue: false }, 200, function() {
-							if( items.last().is( this ) ) {
-								_this._afterAppend();
-							}
-						});
-					});
-
-				} else {
-					_this._afterAppend();
-				}
-			}
-		}, 
-
-		filter: function( filter ) {
-
-			var _this = this
-				, itemsWrapper = _this.manager.itemsWrapper
-				, items = _this.manager.getItems()
-				, hide = _this._visibleItems || items
-				, show = items
-				, i, len;
-			
-			if( 'string' == typeof filter && '*' != filter ) {
-				_this._currentFilter = filter;
-				_this._visibleItems = show = items.filter( filter );
-			} else {
-				_this._currentFilter = null;
-				_this._visibleItems = null;
-			}
-
-			if( GridList.useAnimation ) {
-
-				i = 0;
-				len = hide.length;
-
-				hide.transit({ y: -30, opacity: 0, queue: false }, 200, function() {
-
-					if( ++i == len ) {
-
-						hide.css( 'display', 'none' );
-						show.css({ opacity: 0, y: -30, display: '' })
-
-						show.each(function( j ) {
-
-							$( this ).transit({ y: 0, opacity: 1, queue: false, delay: ( j * 100 ) }, 200, function() {
-								if( show.last().is( this ) ) {
-									_this._afterFilter();
-								}
-							});
-
-						});
+					if( ! this._timeline ) {
+						this._timeline = new TimelineLite({ paused: true });
 					}
 
-				});
-
-			} else {
-
-				hide.css( 'display', 'none' );
-				show.css( 'display', '' );
-
-				_this._afterFilter();
-
+					this._timeline
+						.progress( 1 ).kill().clear( true )
+						.staggerFromTo(
+							items, 0.2, 
+							{ autoAlpha: 0, y: -30 }, 
+							{ autoAlpha: 1, y: 0, clearProps: 'visibility,opacity,y' }, 
+							0.1, '+=0', 
+							this.options.afterAppend, null, 
+							this.options.afterAppendScope ).play();
+				} else {
+					if( $.isFunction( this.options.afterAppend ) ) {
+						this.options.afterAppend.apply( this.options.afterAppendScope );
+					}
+				}
 			}
 		}, 
 
-		destroy: function() {
+		_filter: function( filter ) {
+
+			var itemsWrapper = this.manager.itemsWrapper
+				, items = this.manager.items
+				, hide, show;
+
+			hide = this._visibleItems || items;
+			show = items;
+			
+			if( 'string' == typeof filter && '*' != filter ) {
+				this._currentFilter = filter;
+				this._visibleItems = show = items.filter( filter );
+			} else {
+				this._currentFilter = null;
+				this._visibleItems = null;
+			}
+
+			if( ! Helium.GridList.animationEnabled ) {
+				hide.css( 'display', 'none' );
+				show.css( 'display', '' );
+				if( $.isFunction( this.options.afterFilter ) ) {
+					this.options.afterFilter.apply( this.options.afterFilterScope );
+				}
+			} else {
+				if( ! this._timeline ) {
+					this._timeline = new TimelineLite({ paused: true });
+				}
+
+				this._timeline
+					.progress( 1 ).kill().clear( true )
+					.to( hide, 0.2, {
+						autoAlpha: 0, 
+						y: -30, 
+						onComplete: function() {
+							hide.css( 'display', 'none' );
+							show.css( 'display', '' );
+						}
+					})
+					.staggerFromTo( 
+						show, 0.2, 
+						{ opacity: 0, y: -30 }, 
+						{ autoAlpha: 1, y: 0, clearProps: 'visibility,opacity,y' }, 
+						0.1, '+=0', 
+						this.options.afterFilter, null, 
+						this.options.afterFilterScope ).play();
+			}
+		}, 
+
+		_destroy: function() {
 			this._currentFilter = null;
 			this._visibleItems = null;
-			LayoutEngine.prototype.destroy.apply( this, arguments );
+
+			if( Helium.GridList.animationEnabled && this._timeline instanceof TimelineLite ) {
+				this._timeline.kill().clear( true );
+				this._timeline = null;
+			}
+
+			Adapter.prototype._destroy.apply( this, arguments );
 		}
 	});
 
-	LayoutEngine.Masonry = LayoutEngine.extend({
+	Helium.GridList.Adapter.Masonry = Adapter.extend({
 
 		_init: function( options ) {
-			LayoutEngine.prototype._init.apply( this, arguments );
+			Adapter.prototype._init.apply( this, arguments );
 
 			var itemsWrapper = this.manager.itemsWrapper, 
 				beforeArrangeWidth;
@@ -603,30 +562,32 @@
 			}
 		}, 
 
-		append: function( items ) {
+		_append: function( items ) {
 			if( items && items.length ) {
-				this.manager.itemsWrapper.isotope( 'once', 'layoutComplete', $.proxy( this._afterAppend, this ) );
+				this.manager.itemsWrapper.isotope( 'once', 'layoutComplete', 
+					$.proxy( this.options.afterAppend, this.options.afterAppendScope ) );
 				this.manager.itemsWrapper.isotope( 'appended', items );
 			}
 		}, 
 
-		filter: function( filter ) {
-			this.manager.itemsWrapper.isotope( 'once', 'layoutComplete', $.proxy( this._afterFilter, this ) );
+		_filter: function( filter ) {
+			this.manager.itemsWrapper.isotope( 'once', 'layoutComplete', 
+				$.proxy( this.options.afterFilter, this.options.afterFilterScope ) );
 			this.manager.itemsWrapper.isotope({ filter: filter });
 		}, 
 
-		destroy: function() {
+		_destroy: function() {
 			this.manager.itemsWrapper.isotope( 'destroy' );
-			LayoutEngine.prototype.destroy.apply( this, arguments );
+			Adapter.prototype._destroy.apply( this, arguments );
 		}
 	});
 
-	LayoutEngine.Justified = LayoutEngine.extend({
+	Helium.GridList.Adapter.Justified = Adapter.extend({
 
 		_currentFilter: null, 
 
 		_init: function( options ) {
-			LayoutEngine.prototype._init.apply( this, arguments );
+			Adapter.prototype._init.apply( this, arguments );
 
 			this.manager.itemsWrapper.justifiedGrids( $.extend( true, {
 				selector: this.manager.options.itemSelector, 
@@ -636,99 +597,110 @@
 			}, this.options ) );
 		}, 
 
-		append: function( items ) {
+		_append: function( items ) {
 
 			if( items && items.length ) {
 
-				var _this = this
-					, itemsWrapper = _this.manager.itemsWrapper, itemsNeedLayout
-					, lastRowItems = itemsWrapper.justifiedGrids( 'getLastRow' )
-					, visibleItems = _this._currentFilter ? items.filter( _this._currentFilter ) : items
-					, i, len;
+				var lastRowItems = this.manager.itemsWrapper.justifiedGrids( 'getLastRow' ), 
+					visibleItems = this._currentFilter ? items.filter( this._currentFilter ) : items;
 
 				// Hide all items first
 				items.hide();
 
-				if( GridList.useAnimation && visibleItems.length && ( len = lastRowItems.length ) ) {
+				if( Helium.GridList.animationEnabled && visibleItems.length && lastRowItems.length ) {
 
-					i = 0;
+					TweenLite.to( lastRowItems, 0.2, {
+						autoAlpha: 0, y: -30, 
+						onCompleteParams: [ items ], 
+						onCompleteScope: this, 
+						onComplete: function( items ) {
 
-					lastRowItems.transit({ opacity: 0, y: -30, queue: false }, 200, function() {
+							var itemsNeedLayout = this.manager.itemsWrapper.justifiedGrids( 'append', items, true );
+								
+							if( itemsNeedLayout.length ) {
+								if( ! this._timeline ) {
+									this._timeline = new TimelineLite({ paused: true });
+								}
 
-						if( ++i == len ) {
-
-							itemsNeedLayout = itemsWrapper.justifiedGrids( 'append', items, true );
-							itemsNeedLayout.css({ opacity: 0, y: -30 }).each(function( j ) {
-								$( this ).transit({ opacity: 1, y: 0, delay: ( j * 100 ), queue: false }, 200, function() {
-									if( itemsNeedLayout.last().is( this ) ) {
-										_this._afterAppend();
-									}
-								});
-							});
+								this._timeline
+									.progress( 1 ).kill().clear( true )
+									.staggerFromTo( 
+										itemsNeedLayout, 0.2, 
+										{ autoAlpha: 0, y: -30 }, 
+										{ autoAlpha: 1, y: 0, clearProps: 'visibility,opacity,y' }, 
+										0.1, '+=0', 
+										this.options.afterAppend, null, 
+										this.options.afterAppendScope ).play();
+							}
 						}
 					});
-
 				} else {
-					itemsWrapper.justifiedGrids( 'append', items, true );
-					_this._afterAppend();
+					this.manager.itemsWrapper.justifiedGrids( 'append', items, true );
+					if( $.isFunction( this.options.afterAppend ) ) {
+						this.options.afterAppend.apply( this.options.afterAppendScope );
+					}
 				}
 			}
 		}, 
 
-		filter: function( filter ) {
+		_filter: function( filter ) {
 
-			var _this = this
-				, itemsWrapper = this.manager.itemsWrapper
-				, hide, show
-				, i, len;
+			if( ! this._currentFilter || this._currentFilter != filter ) {
 
-			if( ! _this._currentFilter || _this._currentFilter != filter ) {
+				var itemsWrapper = this.manager.itemsWrapper, 
+					hide, show;
 
-				_this._currentFilter = filter;				
+				this._currentFilter = filter;
 
-				if( GridList.useAnimation ) {
+				if( ! Helium.GridList.animationEnabled ) {
+					this.manager.itemsWrapper.justifiedGrids( 'filter', filter );
+					if( $.isFunction( this.options.afterFilter ) ) {
+						this.options.afterFilter.apply( this.options.afterFilterScope );
+					}
+				} else {
 
 					hide = itemsWrapper.justifiedGrids( 'getItems', true );
 					show = itemsWrapper.justifiedGrids( 'getItems' ).filter( filter );
 
-					i = 0;
-					len = hide.length;
+					if( ! this._timeline ) {
+						this._timeline = new TimelineLite({ paused: true });
+					}
 
-					hide.transit({ y: -30, opacity: 0, queue: false }, 200, function() {
-
-						if( ++i == len ) {
-
-							itemsWrapper.justifiedGrids( 'filter', filter );
-
-							show.css({ opacity: 0, y: -30 }).each(function( j ) {
-
-								$( this ).transit({ y: 0, opacity: 1, queue: false, delay: ( j * 100 ) }, 200, function() {
-									if( show.last().is( this ) ) {
-										_this._afterFilter();
-									}
-								});
-
-							});
-
-						}
-
-					});
-				} else {
-					itemsWrapper.justifiedGrids( 'filter', filter );
-					_this._afterFilter();
+					this._timeline
+						.progress( 1 ).kill().clear( true )
+						.to( hide, 0.2, {
+							autoAlpha: 0, 
+							y: -30, 
+							onComplete: function() {
+								itemsWrapper.justifiedGrids( 'filter', filter );
+							}
+						})
+						.staggerFromTo( 
+							show, 0.2, 
+							{ opacity: 0, y: -30 }, 
+							{ autoAlpha: 1, y: 0, clearProps: 'visibility,opacity,y' }, 
+							0.1, '+=0', 
+							this.options.afterFilter, null, 
+							this.options.afterFilterScope ).play();
 				}
 			}
 		}, 
 
-		destroy: function() {
+		_destroy: function() {
 			this._currentFilter = null;
 			this.manager.itemsWrapper.justifiedGrids( 'destroy' );
-			LayoutEngine.prototype.destroy.apply( this, arguments );
+
+			if( Helium.GridList.animationEnabled && this._timeline instanceof TimelineLite ) {
+				this._timeline.kill().clear( true );
+				this._timeline = null;
+			}
+
+			Adapter.prototype._destroy.apply( this, arguments );
 		}
 	});
 
 	$(function() {
-		GridList.useAnimation = !! ( $.fn.transit && $.support.transition );
+		Helium.GridList.animationEnabled = ( 'undefined' !== typeof TimelineLite ) && ! Helium.isMobile;
 	});
 
 	/* EOF */

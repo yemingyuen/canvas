@@ -4,8 +4,8 @@
  * This script contains the initialization code for the image uploader form field.
  *
  * @package   Youxi Core
- * @author    Mairel Theafila <maimairel@gmail.com>
- * @copyright Copyright (c) 2013-2015, Mairel Theafila
+ * @author    Mairel Theafila <maimairel@yahoo.com>
+ * @copyright Copyright (c) 2013, Mairel Theafila
  */
 ;(function( $, window, document, undefined ) {
 
@@ -19,10 +19,7 @@
 
 			createStates: function() {
 				media.view.MediaFrame.Select.prototype.createStates.apply( this, arguments );
-
-				if( this.options.embed ) {
-					this.states.add( new media.controller.Embed({ metadata: {} }) );
-				}
+				this.states.add( new media.controller.Embed({ metadata: {} }) );
 			}, 
 
 			bindHandlers: function() {
@@ -141,14 +138,14 @@
 			
 			selection.map( function( attachment ) {
 				var data = {
-					id: attachment.id, 
-					url: this._getAttachmentSize( attachment, 'thumbnail' ).url, 
+					imageID: attachment.id, 
+					imageURL: this._getAttachmentSize( attachment, 'thumbnail' ).url, 
 					fieldName: this.options.fieldName, 
 					fieldNamePostfix: this.options.multiple ? '[]' : ''
 				};
 
 				if( 'url' == this.options.returnType ) {
-					data.id = this._getAttachmentSize( attachment, this.options.returnUrlSize ).url;
+					data.imageID = this._getAttachmentSize( attachment, this.options.returnUrlSize, data.imageURL ).url;
 				}
 
 				$( '.youxi-media-previews', this.element )
@@ -161,8 +158,8 @@
 		_handleEmbed: function() {
 			var embed = this._mediaFrame.state().props.toJSON(), 
 				data = {
-					id: embed.url || '', 
-					url: embed.url || '', 
+					imageID: embed.url || '', 
+					imageURL: embed.url || '', 
 					fieldName: this.options.fieldName, 
 					fieldNamePostfix: this.options.multiple ? '[]' : ''
 				};
@@ -173,13 +170,13 @@
 			this._refreshButton();
 		}, 
 
-		_getAttachmentSize: function( attachment, size ) {
-			var sizes = attachment.attributes.sizes || {};
-
-			if( _.has( sizes, size ) ) {
-				return _.pick( sizes[ size ], 'url' );
+		_getAttachmentSize: function( attachment, size, fallback ) {
+			var sizes = attachment.attributes.sizes;
+			if( sizes.hasOwnProperty( size ) ) {
+				return sizes[ size ];
 			}
-			return { url: attachment.url };
+
+			return sizes['full'] || { url: ( fallback ? fallback : '' ) };
 		}, 
 
 		_destroy: function() {
@@ -188,11 +185,9 @@
 		}, 
 
 		_refreshButton: function() {
-			var hasItems = $( '.youxi-media-preview-item', this.element ).length >= 1;
 			if( ! this.options.multiple ) {
-				$( '.youxi-media-button', this.element ).toggle( ! hasItems );
+				$( '.youxi-media-button', this.element ).toggle( $( '.youxi-media-preview-item', this.element ).length < 1 );
 			}
-			$( '.youxi-media-no-item', this.element ).prop( 'disabled', hasItems );
 		}, 
 
 		removeItem: function( target ) {
@@ -215,7 +210,6 @@
 			title: '', 
 			buttonText: '', 
 			alwaysReturnUrl: false, 
-			enableEmbed: true, 
 			libraryType: ''
 		}, 
 
@@ -236,7 +230,6 @@
 					button: {
 						text: this.options.buttonText
 					}, 
-					embed: this.options.enableEmbed, 
 					multiple: false
 				}, this.options.libraryType ? {
 					library: {

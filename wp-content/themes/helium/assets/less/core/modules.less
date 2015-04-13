@@ -5,10 +5,8 @@
 
 .justified-grids {
 	white-space: nowrap;
-	overflow: hidden;
-	.justified-grids-item {
+	> figure {
 		display: inline-block;
-		vertical-align: top;
 		img {
 			width: auto;
 		}
@@ -111,6 +109,7 @@
 			padding: 20px 35px;
 			border-top: 1px solid @base-border-color;
 			ul {
+				&:extend(ul.inline-list all);
 				li {
 					+ li {
 						margin-left: 1.5em;
@@ -136,6 +135,8 @@
 	overflow: hidden;
 
 	ul {
+		.clearfix();
+		&:extend(ul.plain-list);
 		margin-bottom: -(@client-border-size + @client-border-thickness);
 	}
 

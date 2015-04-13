@@ -15,7 +15,7 @@ $layout = wp_parse_args( $post->layout, array(
 
 		<header class="content-header">
 
-			<div class="content-header-affix clearfix"><?php
+			<div class="content-header-affix"><?php
 
 				the_title( '<h1 class="entry-title content-title">', '</h1>' );
 				?>
@@ -26,7 +26,7 @@ $layout = wp_parse_args( $post->layout, array(
 
 		<div class="content-wrap">
 
-			<div class="content-box clearfix">
+			<div class="content-box">
 
 				<?php if( has_post_thumbnail() ):
 
@@ -53,7 +53,7 @@ $layout = wp_parse_args( $post->layout, array(
 								</div>
 
 								<?php wp_link_pages(array(
-									'before' => '<nav class="pages-nav"><ul class="inline-list">', 
+									'before' => '<nav class="pages-nav"><ul>', 
 									'after' => '</ul></nav>', 
 									'separator' => '', 
 									'pagelink' => '<span class="pages-nav-item">%</span>'

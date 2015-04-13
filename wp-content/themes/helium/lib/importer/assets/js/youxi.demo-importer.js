@@ -14,14 +14,10 @@
 		demo_buttons.prop( 'disabled', toggle );
 	}
 
-	function showCompletionMessage( demo, feedback, failures ) {
+	function showCompletionMessage( demo, feedback, isFailure ) {
 
-		if( failures > 0 ) {
-			feedback.html( _demoImporterSettings.failureMessage.replace( '{count}', failures.toString() ) );
-		} else {
-			feedback.html( _demoImporterSettings.successMessage );
-		}
-		_demoImporterSettings.hasPreviousImport = ! failures;
+		feedback.html( _demoImporterSettings[ ( isFailure ? 'fail' : 'done' ) + 'Message' ] );
+		_demoImporterSettings.hasPreviousImport = ! isFailure;
 
 		setTimeout(function() {
 			isImporting = false;
@@ -46,7 +42,6 @@
 		}
 
 		var tasksCompleted = 0, 
-			tasksFailed = 0, 
 			$this = $( this ), 
 			demo = $this.closest( '.demo-content' ), 
 			feedback = demo.find( '.more-details' ), 
@@ -81,12 +76,11 @@
 							console.log( response.data.result );
 						}
 					}
-				}).fail(function() {
-					++tasksFailed;
-				}).always(function() {
 					if( ( ++tasksCompleted ) == tasksCount ) {
-						showCompletionMessage( demo, feedback, tasksFailed );
+						showCompletionMessage( demo, feedback );
 					}
+				}).fail(function() {
+					showCompletionMessage( demo, feedback, true );
 				});
 
 			});

@@ -45,20 +45,16 @@
 
 			this.initialized = true;
 
-			this.backupEditorExpand();
-
 			/* Bail if tinymce or switcheditors is not present */
 			if( ! window.switchEditors || typeof tinymce == 'undefined' )
 				return;
 
-			/* Determine whether the switch editor buttons floats to the left/right */
-			var isFloatRight = ( 'right' == $( '.wp-switch-editor' ).css( 'float' ) );
-
 			/* Move the builder toggle button */
-			$( '.wp-switch-editor.switch-youxi-builder' ).each(function() {
-				var wpEditorTabs = $( this ).closest( '.wp-editor-tools' ).find( '.wp-editor-tabs' );
-				$( this ).removeAttr( 'style' )
-					[ isFloatRight ? 'prependTo' : 'appendTo' ]( wpEditorTabs );
+			$( 'a.switch-youxi-builder' ).each(function() {
+				$( this )
+					.closest( '.wp-media-buttons' )
+					.siblings( '.wp-editor-tabs' )
+					.prepend( $( this ).removeAttr( 'style' ) );
 			});
 
 			/* Backup switchEditors.go function */
@@ -135,23 +131,11 @@
 
 				return false;
 			}
-		}, 
-
-		backupEditorExpand: function() {
-			/* Get the editor expand handler */
-			if( ! $.Youxi.Builder.editorExpandChange ) {
-				$.each( $( '#editor-expand-toggle' ).data( 'events' ).change || {}, function() {
-					if( this.namespace == 'editor-expand' ) {
-						$.Youxi.Builder.editorExpandChange = this.handler;
-						return false;
-					}
-				});
-			}
 		}
 	};
 
 	/* Init builder on document ready */
-	$(function() {
+	$( document ).ready(function() {
 		$.Youxi.Builder.editor.init();
 	});
 

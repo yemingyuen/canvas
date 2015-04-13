@@ -4,8 +4,8 @@
  * This script contains the togglable fieldsets form field widget.
  *
  * @package   Youxi Core
- * @author    Mairel Theafila <maimairel@gmail.com>
- * @copyright Copyright (c) 2013-2015, Mairel Theafila
+ * @author    Mairel Theafila <maimairel@yahoo.com>
+ * @copyright Copyright (c) 2013, Mairel Theafila
  */
 ;(function( $, window, document, undefined ) {
 

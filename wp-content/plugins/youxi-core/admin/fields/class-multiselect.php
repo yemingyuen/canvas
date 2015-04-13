@@ -8,8 +8,8 @@ if ( ! defined( 'ABSPATH' ) ) {
  * This class renders a drag and drop dropdown list.
  *
  * @package   Youxi Core
- * @author    Mairel Theafila <maimairel@gmail.com>
- * @copyright Copyright (c) 2013-2015, Mairel Theafila
+ * @author    Mairel Theafila <maimairel@yahoo.com>
+ * @copyright Copyright (c) 2013, Mairel Theafila
  */
 if( ! class_exists( 'Youxi_Multiselect_Form_Field' ) ) {
 

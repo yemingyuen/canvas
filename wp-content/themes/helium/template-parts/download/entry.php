@@ -2,7 +2,7 @@
 
 	<header class="content-header">
 
-		<div class="content-header-affix clearfix"><?php
+		<div class="content-header-affix"><?php
 
 			the_title( '<h1 class="entry-title content-title" itemprop="name">', '</h1>' );
 
@@ -23,7 +23,7 @@
 				);
 
 			?><nav class="content-nav" role="navigation" itemscope itemtype="http://schema.org/SiteNavigationElement">
-				<ul class="plain-list"><?php
+				<ul><?php
 					
 					if( $prev_post_link ):
 						echo $prev_post_link;
@@ -83,7 +83,7 @@
 
 	<div class="content-wrap">
 
-		<div class="content-box clearfix">
+		<div class="content-box">
 
 			<?php if( has_post_thumbnail() ):
 
@@ -109,7 +109,7 @@
 
 						<div class="col-lg-3 item-sidebar">
 
-							<ul class="item-details plain-list">
+							<ul class="item-details">
 								<li>
 									<span class="item-detail-value edd-download-link-box">
 										<?php if( ! edd_has_variable_prices( get_the_ID() ) ):

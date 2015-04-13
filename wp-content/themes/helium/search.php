@@ -6,7 +6,7 @@
 
 		<div class="content-header">
 
-			<div class="content-header-affix clearfix"><?php
+			<div class="content-header-affix"><?php
 
 				?><h1 class="content-title">
 					<?php printf( __( 'Search Results for &ldquo;%s&rdquo;', 'helium' ), get_search_query() ) ?>
@@ -18,7 +18,7 @@
 
 		<div class="content-wrap">
 
-			<div class="content-box clearfix">
+			<div class="content-box">
 
 				<div class="content-wrap-inner">
 

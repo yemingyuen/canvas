@@ -3,18 +3,12 @@
 Plugin Name: Youxi Post Format
 Plugin URI: http://www.themeforest.net/user/nagaemas
 Description: This plugin extends WordPress blog posts with very customizable post format related content.
-Version: 1.1.2
+Version: 1.1
 Author: YouxiThemes
 Author URI: http://www.themeforest.net/user/nagaemas
 License: Envato Marketplace Licence
 
 Changelog:
-1.1.2 - 12/03/2015
-- Updated translation files
-
-1.1.1 - 09/03/2015
-- Use the gallery form field for gallery post type
-
 1.1 - 07/11/2014
 - Rename post format meta keys
 - Added wpml-config.xml
@@ -37,7 +31,7 @@ function youxi_post_format_plugins_loaded() {
 		return;
 	}
 
-	define( 'YOUXI_POST_FORMAT_VERSION', '1.1.2' );
+	define( 'YOUXI_POST_FORMAT_VERSION', '1.1' );
 
 	define( 'YOUXI_POST_FORMAT_DIR', plugin_dir_path( __FILE__ ) );
 
@@ -225,7 +219,7 @@ function youxi_post_format_gallery_metabox() {
 		'title' => __( 'Post Format: Gallery', 'youxi' ), 
 		'fields' => array(
 			'images' => array(
-				'type' => version_compare( YOUXI_CORE_VERSION, '1.4', '<' ) ? 'image' : 'gallery', 
+				'type' => 'image', 
 				'multiple' => true, 
 				'label' => __( 'Images', 'youxi' ), 
 				'description' => __( 'Upload here the gallery images to use for this post.', 'youxi' )

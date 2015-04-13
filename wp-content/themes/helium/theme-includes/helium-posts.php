@@ -59,13 +59,13 @@ function helium_posts_pagination( $pagination_type = 'numbered', $query = null )
 		));
 
 		if( $links ):
-			echo '<div class="content-box clearfix">';
+			echo '<div class="content-box">';
 				
 				echo '<div class="content-wrap-inner no-padding">';
 
 					echo '<nav class="content-nav" role="navigation" itemscope itemtype="http://schema.org/SiteNavigationElement">';
 
-						echo '<ul class="plain-list">';
+						echo '<ul>';
 
 						foreach( $links as $link ):
 
@@ -82,13 +82,13 @@ function helium_posts_pagination( $pagination_type = 'numbered', $query = null )
 			echo '</div>';
 		endif;
 	else:
-		echo '<div class="content-box clearfix">';
+		echo '<div class="content-box">';
 
 			echo '<div class="content-wrap-inner no-padding">';
 
 				echo '<nav class="content-nav" role="navigation" itemscope itemtype="http://schema.org/SiteNavigationElement">';
 
-					echo '<ul class="plain-list">';
+					echo '<ul>';
 
 						$next_posts_link = get_next_posts_link(
 							'<span class="content-nav-link-wrap">' . 

@@ -8,8 +8,8 @@ if ( ! defined( 'ABSPATH' ) ) {
  * This class renders a jQuery-UI Spinner control.
  *
  * @package   Youxi Core
- * @author    Mairel Theafila <maimairel@gmail.com>
- * @copyright Copyright (c) 2013-2015, Mairel Theafila
+ * @author    Mairel Theafila <maimairel@yahoo.com>
+ * @copyright Copyright (c) 2013, Mairel Theafila
  */
 if( ! class_exists( 'Youxi_JUISpinner_Form_Field' ) ) 
 {
@@ -46,7 +46,7 @@ if( ! class_exists( 'Youxi_JUISpinner_Form_Field' ) )
 					'jquery-mousewheel', 
 					self::field_assets_url( "plugins/mousewheel/jquery.mousewheel{$suffix}.js" ), 
 					array( 'jquery' ), 
-					'3.1.12', 
+					'3.1.11', 
 					true
 				);
 				wp_enqueue_script(

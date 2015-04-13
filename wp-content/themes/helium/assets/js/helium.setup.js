@@ -11,16 +11,18 @@
 
 	$.extend( Helium, {
 
-		isHandheld: !! ( bowser.mobile || bowser.tablet ), 
+		isMobile: _helium.isMobile, 
 
 		mql: window.matchMedia && window.matchMedia( '(min-width: 992px)' ), 
+
+		windowHeight: _win.height(), 
 
 		init: function() {
 			
 			/* ==========================================================================
 				Add Mobile Device class
 			============================================================================= */
-			if( ! Helium.isHandheld ) {
+			if( ! Helium.isMobile ) {
 				$( 'html' ).addClass( 'desktop' );
 			}
 
@@ -53,101 +55,105 @@
 					return;
 				}
 
-				var rootUrl = History.getRootUrl()
+				// TimelineLite Instances
+				var timelines = {
+					loadingIndicator: null
+				}
 
-				, isLoading = false
+				, rootUrl = History.getRootUrl()
 
-				, splitText = null
+				// Elements Cache
+				, elements = {
+					currentContentArea:  null, 
+					currentContentTitle: null
+				}
 
-				, ajaxPreloader = document.createElement( 'span' )
+				, ajaxPreloader = $( '<span></span>' ).text( _helium.ajaxNavigation.loadingText )
 
 				, contentAreaWrap = $( '.content-area-wrap' )
 
 				, appendLoadingIndicator = function() {
 
-					// Make sure the ajax
-					if( isLoading && ! ajaxPreloader.parentNode ) {
+					var isPreloading = $( this ).hasClass( 'preloading' );
 
-						// Replace content title with loading text
-						contentAreaWrap.find( '.content-header .content-title' )
-							.html( ajaxPreloader )
-							.transition({
-								opacity: 1, 
-								duration: 350, 
-								ease: 'easeOutQuad', 
-								complete: playLoadingIndicator
-							});
+					// Replace content title with loading text
+					$( this )
+						.html( ajaxPreloader )
+						.addClass( 'preloading' )
+
+					if( $.support.transition && ! Helium.isMobile && ! isPreloading ) {
+						$( this ).off( $.support.transition.end )
+							.one( $.support.transition.end, showLoadingIndicator );
+					} else {
+						showLoadingIndicator.apply( this );
 					}
 				}
 
-				, playLoadingIndicator = function( backwards ) {
+				, showLoadingIndicator = function() {
+					if( timelines.loadingIndicator instanceof TimelineLite ) {
+						timelines.loadingIndicator.restart();
+					} else {
+						var splitText = new SplitText( ajaxPreloader, { type: 'chars,words' });
 
-					if( isLoading ) {
-
-						if( ! splitText ) {
-							splitText = new SplitText( ajaxPreloader, { type: 'words,chars' } );
-						}
-
-						var chars = splitText.chars, 
-							lastIndex = chars.length - 1, 
-							target = ( backwards ? chars : Array.prototype.slice.call( chars ).reverse() );
-
-						$.each( target, function( index ) {
-							$( this ).transition({
-								opacity: backwards ? 1 : 0, 
-								x: backwards ? 0 : 10, 
-								delay: ( index * 100 ), 
-								duration: 400, 
-								complete: ( index == lastIndex ? function() {
-									playLoadingIndicator( ! backwards );
-								} : $.noop )
-							});
+						timelines.loadingIndicator = new TimelineLite({
+							onComplete: function() {
+								timelines.loadingIndicator.restart();
+							}
 						});
+						timelines.loadingIndicator
+							.staggerTo( splitText.chars.reverse(), 0.4, { x: 10, autoAlpha: 0, ease: Quint.easeOut }, 0.1 )
+							.staggerTo( splitText.chars.reverse(), 0.4, { x:  0, autoAlpha: 1, ease: Quint.easeOut }, 0.1 );
 					}
 				}
 
 				, hideOldContent = function() {
 
 					// Get current elements
-					contentAreaWrap.find( '.content-area .content-wrap' )
-						.add( contentAreaWrap.find( '.content-area .content-header-affix' ).children() )
-						.transition({
-							opacity: 0, 
-							duration: 350, 
-							ease: 'easeOutQuad', 
-							complete: appendLoadingIndicator
-						});
+					elements.currentContentArea  = $( '.content-area' );
+					elements.currentContentTitle = $( '.content-area .content-title' );
+
+					var isUnloading = elements.currentContentArea.hasClass( 'unloading' );
+
+					// Start content unload transition
+					elements.currentContentArea.addClass( 'unloading' );
+
+					// Listen for content title transition end event
+					if( $.support.transition && ! Helium.isMobile && ! isUnloading ) {
+						elements.currentContentTitle.off( $.support.transition.end )
+							.one( $.support.transition.end, appendLoadingIndicator );
+					} else {
+						appendLoadingIndicator.apply( elements.currentContentTitle.get( 0 ) );
+					}
 				}
 
 				, replaceOldContent = function( newContent ) {
 
-					// Remove preloader from the DOM
-					if( ajaxPreloader.parentNode ) {
-						ajaxPreloader.parentNode.removeChild( ajaxPreloader );
+					var _replace = function() {
+						// Cut all references to the old content
+						elements.currentContentArea  = null;
+						elements.currentContentTitle = null;
+						ajaxPreloader.remove();
+
+						// Setup new content
+						if( newContent.length ) {
+							Helium.teardown( this );
+							Helium.setup( this.html( newContent ) );
+
+							this.find( '.content-area' ).removeClass( 'beforeload' );
+						}
 					}
 
-					// Reset ajax preloader
-					if( splitText instanceof SplitText ) {
-						$( splitText.chars ).css({ opacity: '', transition: '', transform: '' });
+					if( elements.currentContentTitle ) {
+						elements.currentContentTitle.removeClass( 'preloading' );
 					}
 
-					// Setup new content
-					Helium.teardown( contentAreaWrap );
-					Helium.setup( contentAreaWrap.html( newContent ) );
-
-					// Force repaint
-					contentAreaWrap[0].offsetHeight;
-
-					// Animate
-					contentAreaWrap.find( '.content-area' )
-						.removeClass( 'beforeload' );
-
-					// Stop loading
-					isLoading = false;
+					if( $.support.transition && ! Helium.isMobile && elements.currentContentTitle ) {
+						elements.currentContentTitle.off( $.support.transition.end )
+							.one( $.support.transition.end, $.proxy( _replace, contentAreaWrap ) );
+					} else {
+						_replace.apply( contentAreaWrap );
+					}
 				};
-
-				// Assign ajax preloader text
-				ajaxPreloader.innerHTML = _helium.ajaxNavigation.loadingText;
 
 				// Initialize Ajax Navigator
 				Helium.AjaxNavigator.init({
@@ -188,27 +194,32 @@
 
 					stateChange: function( url, callback ) {
 
-						isLoading = true;
-
-						if( _win.scrollTop() == 0 || ! _helium.ajaxNavigation.scrollTop ) {
+						if( _win.scrollTop() == 0 || ! _helium.ajaxNavigation.scrollTop || Helium.isMobile ) {
+							if( Helium.isMobile ) {
+								_win.scrollTop(0);
+							}
 							hideOldContent();
 						} else {
-							$( 'html,body' ).finish().animate(
-								{ scrollTop: 0 }, 500, 
-								function() { hideOldContent(); callback(); }
-							);
+							TweenLite.to( window, 0.5, { scrollTo: 0, autoKill: false, onComplete: function() {
+								hideOldContent();
+								callback();
+							}});
 							return false;
 						}
 					}, 
 
 					done: function( dom, url ) {
 
-						var menu, 
+						var tween, menu, contentAreaHtml, 
 							responseObj = $( dom ), 
 							responseContentArea = responseObj.find( '.content-area' ), 
 							responseMenuItems   = responseObj.find( '.main-nav .menu .menu-item' )
 
 						// setTimeout(function() {
+
+							if( timelines.loadingIndicator instanceof TimelineLite ) {
+								timelines.loadingIndicator.kill();
+							}
 
 							// Match menu item classes with the response
 							responseMenuItems.each(function() {
@@ -220,18 +231,21 @@
 								}
 							});
 
-							// Hide the new content first
+							// Hide the new content
 							responseContentArea.addClass( 'beforeload' );
 
-							// Replace the old content with the new one
-							replaceOldContent( responseContentArea[0].outerHTML );
+							// Get the HTML from the response content area
+							contentAreaHtml = $( '<div></div>' ).append( responseContentArea ).html();
+
+							// Hide previous and show the new content
+							replaceOldContent( contentAreaHtml );
 
 							// Inform Google Analytics of the change
 							if ( typeof window._gaq !== 'undefined' ) {
 								window._gaq.push([ '_trackPageview', url.replace( rootUrl, '' ) ]);
 							}
 
-						// }, Math.random() * 2000 + 1200 );
+						// }, Math.random() * 2000 + 15000 );
 					}
 				});
 
@@ -251,6 +265,13 @@
 		}, 
 
 		onResize: function() {
+			
+			Helium.windowHeight = _win.height();
+
+			/* ==========================================================================
+				Close Sidebar
+			============================================================================= */
+			$( '.site-wrap' ).removeClass( 'header-open' );
 
 			/* ==========================================================================
 				Fullscreen Content Area
@@ -267,20 +288,29 @@
 
 		onMqlChange: function( mql ) {
 
-			// Unbind event handlers
-			_doc.off( '.hoverIntent .helium.nav' );
+			/* ==========================================================================
+				Restore Menu Content on Desktop
+			============================================================================= */
+			if( mql.matches ) {
+				$(function() {
+					$( '.header-content-bottom' ).css( 'display', '' );
+				});
+			}
+
+			/* ==========================================================================
+				Hover Intent
+			============================================================================= */
+
+			_doc.off( '.hoverIntent' )
+				.off( 'click.subnav-close' );
 
 			if( mql.matches ) {
-
-				/* ==========================================================================
-					Desktop Hover Intent
-				============================================================================= */
 
 				if( $.fn.hoverIntent ) {
 
 					_doc.hoverIntent({
 						over: function() {
-							$( this ).children( 'ul.sub-menu' ).finish().slideDown()
+							$( this ).children( 'ul.sub-menu' ).stop().slideDown()
 								.closest( '.menu-item' ).addClass( 'sub-menu-open' );
 						}, 
 						out: $.noop, 
@@ -288,33 +318,48 @@
 					});
 				}
 
-				/* ==========================================================================
-					Close Submenus
-				============================================================================= */
-
-				_doc.on( 'click.helium.nav', '.menu-item.sub-menu-open .subnav-close', function(e) {
+				_doc.on( 'click.subnav-close', '.menu-item.sub-menu-open .subnav-close', function(e) {
 					$( this ).closest( '.menu-item' ).removeClass( 'sub-menu-open' );
 					$( this ).siblings( 'ul.sub-menu' )
-						.finish().slideUp(function() {
+						.stop( true, true ).slideUp(function() {
 							$( this ).find( 'ul.sub-menu' ).hide();
 							$( this ).find( '.sub-menu-open' )
 								.addBack().removeClass( 'sub-menu-open' );
 						});
 				});
+			}
 
-			} else {
+			/* ==========================================================================
+				Mobile navigation toggle
+			============================================================================= */
 
-				/* ==========================================================================
-					Mobile Navigation Toggle
-				============================================================================= */
+			_doc.off( '.helium.nav' );
 
-				_doc.on( 'click.helium.nav', '.header-toggle', function(e) {
+			$(function() {
+				$( '.site-wrap' ).off( $.support.transition.end + '.helium.nav' );
+			});
 
-					_body.toggleClass( 'header-open' );
+			if( ! mql.matches ) {
+
+				$(function() {
+					$( '.header-content-bottom' ).hide();
+					$( '.site-wrap' ).on( $.support.transition.end + '.helium.nav', function(e) {
+						if( this == e.target && ! $( this ).hasClass( 'header-open' ) ) {
+							$( '.header-content-bottom' ).hide();
+						}
+					});
+				});
+
+				_doc.on( 'click.helium.nav.toggle', '.header-toggle', function(e) {
+					if( ! $( '.site-wrap' ).hasClass( 'header-open' ) ) {
+						$( '.header-content-bottom' ).show();
+					}
+					$( '.site-wrap' ).toggleClass( 'header-open' );
 					e.preventDefault();
+				});
 
-				}).on( 'click.helium.nav', '.main-nav .menu-item a', function() {
-					_body.removeClass( 'header-open' );
+				_doc.on( 'click.helium.nav', '.main-nav .menu-item a', function() {
+					$( '.site-wrap' ).removeClass( 'header-open' );
 				});
 			}
 		}, 
@@ -340,8 +385,12 @@
 				Back to Top
 			============================================================================= */
 
-			_doc.on( 'click.helium.btt', '.back-to-top > .btn', function( e ) {
-				$( 'html,body' ).finish().animate({ scrollTop: 0 }, 500 );
+			_doc.on( 'click.helium.btt', '.back-to-top > a', function( e ) {
+				if( Helium.isMobile ) {
+					_win.scrollTop(0);
+				} else {
+					TweenLite.to( window, 0.5, { scrollTo: 0, autoKill: false });
+				}
 				e.preventDefault();
 			});
 
@@ -389,6 +438,8 @@
 			if( Helium.mql ) {
 				Helium.mql.addListener( Helium.onMqlChange );
 				Helium.onMqlChange( Helium.mql );
+			} else {
+				Helium.onMqlChange({ matches: true });
 			}
 		}, 
 
@@ -522,7 +573,7 @@
 				// 		'{{/content}}', 
 				// 		'{{#has_social}}', 
 				// 		'<div class="team-social">', 
-				// 			'<ul class="inline-list">', 
+				// 			'<ul>', 
 				// 				'{{#social_profiles}}', 
 				// 				'<li><a href="{{url}}"><i class="{{icon}}"></i></a></li>', 
 				// 				'{{/social_profiles}}', 
@@ -534,7 +585,7 @@
 
 				// console.log( Hogan.compile(source, {asString: true } ) );
 
-				Helium.TeamTemplate = Helium.TeamTemplate || new Hogan.Template(function(c,p,i){var _=this;_.b(i=i||"");if(_.s(_.f("photo",c,p,1),c,p,0,10,82,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("<figure class=\"team-photo\"><img src=\"");_.b(_.v(_.f("photo",c,p,0)));_.b("\" alt=\"");_.b(_.v(_.f("name",c,p,0)));_.b("\"></figure>");});c.pop();}_.b("<div class=\"team-info\"><div class=\"team-header\"><h3 class=\"team-name\">");_.b(_.v(_.f("name",c,p,0)));_.b("</h3>");if(_.s(_.f("role",c,p,1),c,p,0,184,217,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("<p class=\"team-role\">");_.b(_.v(_.f("role",c,p,0)));_.b("</p>");});c.pop();}_.b("</div>");if(_.s(_.f("content",c,p,1),c,p,0,244,291,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("<div class=\"team-description\">");_.b(_.v(_.f("content",c,p,0)));_.b("</div>");});c.pop();}if(_.s(_.f("has_social",c,p,1),c,p,0,318,453,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("<div class=\"team-social\"><ul class=\"inline-list\">");if(_.s(_.f("social_profiles",c,p,1),c,p,0,367,422,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("<li><a href=\"");_.b(_.v(_.f("url",c,p,0)));_.b("\"><i class=\"");_.b(_.v(_.f("icon",c,p,0)));_.b("\"></i></a></li>");});c.pop();}_.b("</ul></div>");});c.pop();}_.b("</div>");return _.fl();;});
+				Helium.TeamTemplate = Helium.TeamTemplate || new Hogan.Template(function(c,p,i){var _=this;_.b(i=i||"");if(_.s(_.f("photo",c,p,1),c,p,0,10,82,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("<figure class=\"team-photo\"><img src=\"");_.b(_.v(_.f("photo",c,p,0)));_.b("\" alt=\"");_.b(_.v(_.f("name",c,p,0)));_.b("\"></figure>");});c.pop();}_.b("<div class=\"team-info\"><div class=\"team-header\"><h3 class=\"team-name\">");_.b(_.v(_.f("name",c,p,0)));_.b("</h3>");if(_.s(_.f("role",c,p,1),c,p,0,184,217,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("<p class=\"team-role\">");_.b(_.v(_.f("role",c,p,0)));_.b("</p>");});c.pop();}_.b("</div>");if(_.s(_.f("content",c,p,1),c,p,0,244,291,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("<div class=\"team-description\">");_.b(_.v(_.f("content",c,p,0)));_.b("</div>");});c.pop();}if(_.s(_.f("has_social",c,p,1),c,p,0,318,453,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("<div class=\"team-social\"><ul>");if(_.s(_.f("social_profiles",c,p,1),c,p,0,367,422,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("<li><a href=\"");_.b(_.v(_.f("url",c,p,0)));_.b("\"><i class=\"");_.b(_.v(_.f("icon",c,p,0)));_.b("\"></i></a></li>");});c.pop();}_.b("</ul></div>");});c.pop();}_.b("</div>");return _.fl();;});
 
 				$( '.team .team-photo a', context ).magnificPopup({
 					gallery: {

@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Helium\n"
-"POT-Creation-Date: 2015-03-28 07:40+0700\n"
-"PO-Revision-Date: 2015-03-28 07:40+0700\n"
+"POT-Creation-Date: 2014-12-24 16:16+0700\n"
+"PO-Revision-Date: 2014-12-24 16:16+0700\n"
 "Last-Translator: \n"
 "Language-Team: YouxiThemes\n"
 "Language: en_US\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.7.5\n"
+"X-Generator: Poedit 1.7.1\n"
 "X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;"
 "_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;_ex:1,2c;"
 "esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c\n"
@@ -18,19 +18,19 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPath-1: ..\n"
 
-#: ../archive-download.php:146 ../archive-portfolio.php:159
+#: ../archive-download.php:146 ../archive-portfolio.php:155
 msgid "Filter"
 msgstr ""
 
-#: ../archive-download.php:152 ../archive-portfolio.php:165
+#: ../archive-download.php:152 ../archive-portfolio.php:161
 msgid "All"
 msgstr ""
 
 #: ../archive-download.php:233 ../edd_templates/history-purchases.php:12
-#: ../plugins-config/config-youxi-portfolio.php:106
+#: ../plugins-config/config-youxi-portfolio.php:125
 #: ../taxonomy-download_category.php:104 ../taxonomy-download_tag.php:104
 msgid "Details"
-msgstr ""
+msgstr "Details"
 
 #: ../archive.php:23
 msgid "F d, Y"
@@ -46,7 +46,7 @@ msgstr ""
 
 #: ../archive.php:36 ../theme-includes/helium-customizer.php:431
 #: ../theme-includes/helium-customizer.php:604
-#: ../theme-includes/helium-customizer.php:927
+#: ../theme-includes/helium-customizer.php:928
 msgid "Archive"
 msgstr ""
 
@@ -127,16 +127,16 @@ msgid "You have not purchased any downloads"
 msgstr ""
 
 #: ../edd_templates/history-purchases.php:9
-#: ../plugins-config/config-youxi-portfolio.php:410
-#: ../plugins-config/config-youxi-portfolio.php:479
+#: ../plugins-config/config-youxi-portfolio.php:427
+#: ../plugins-config/config-youxi-portfolio.php:495
 #: ../theme-includes/helium-customizer.php:749
 msgid "ID"
 msgstr ""
 
 #: ../edd_templates/history-purchases.php:10
 #: ../edd_templates/shortcode-receipt.php:48
-#: ../plugins-config/config-youxi-portfolio.php:407
-#: ../plugins-config/config-youxi-portfolio.php:476
+#: ../plugins-config/config-youxi-portfolio.php:424
+#: ../plugins-config/config-youxi-portfolio.php:492
 #: ../theme-includes/helium-customizer.php:746
 msgid "Date"
 msgstr ""
@@ -347,11 +347,11 @@ msgstr ""
 msgid "remove"
 msgstr ""
 
-#: ../lib/framework/customizer/controls/class-google-font-control.php:76
+#: ../lib/framework/customizer/controls/class-google-font-control.php:40
 msgid "Inherit"
 msgstr ""
 
-#: ../lib/framework/customizer/controls/class-google-font-control.php:87
+#: ../lib/framework/customizer/controls/class-google-font-control.php:48
 msgid "Select a Font Variant"
 msgstr ""
 
@@ -399,97 +399,85 @@ msgstr ""
 msgid "Option Tree is not installed, theme options not imported."
 msgstr ""
 
-#: ../lib/importer/class-importer.php:263
-msgid "The supplied theme options data is not valid."
-msgstr ""
-
-#: ../lib/importer/class-importer.php:270
+#: ../lib/importer/class-importer.php:288
 msgid "Theme options successfully imported."
 msgstr ""
 
-#: ../lib/importer/class-importer.php:292
-msgid "The supplied customizer options data is not valid."
-msgstr ""
-
-#: ../lib/importer/class-importer.php:299
-msgid "Customizer options successfully imported."
-msgstr ""
-
-#: ../lib/importer/class-importer.php:320
-#: ../lib/importer/class-importer.php:472
+#: ../lib/importer/class-importer.php:309
+#: ../lib/importer/class-importer.php:461
 msgid "Youxi Demo Content Importer"
 msgstr ""
 
-#: ../lib/importer/class-importer.php:320
+#: ../lib/importer/class-importer.php:309
 msgid "Youxi Importer"
 msgstr ""
 
-#: ../lib/importer/class-importer.php:359
+#: ../lib/importer/class-importer.php:348
 msgid "Invalid request."
 msgstr ""
 
-#: ../lib/importer/class-importer.php:366
+#: ../lib/importer/class-importer.php:355
 msgid "Invalid demo content requested."
 msgstr ""
 
-#: ../lib/importer/class-importer.php:370
+#: ../lib/importer/class-importer.php:359
 msgid "Invalid import task."
 msgstr ""
 
-#: ../lib/importer/class-importer.php:407
+#: ../lib/importer/class-importer.php:380
+msgid "An unknown error has occured."
+msgstr ""
+
+#: ../lib/importer/class-importer.php:400
 #, php-format
 msgid "The handler for the task %s is invalid."
 msgstr ""
 
-#: ../lib/importer/class-importer.php:420
+#: ../lib/importer/class-importer.php:413
 msgid "Importing posts, pages, comments, custom fields, categories, and tags."
 msgstr ""
 
-#: ../lib/importer/class-importer.php:424
+#: ../lib/importer/class-importer.php:417
 msgid "Importing theme options"
 msgstr ""
 
-#: ../lib/importer/class-importer.php:428
-msgid "Importing customizer options"
-msgstr ""
-
-#: ../lib/importer/class-importer.php:432
+#: ../lib/importer/class-importer.php:421
 msgid "Importing widgets"
 msgstr ""
 
-#: ../lib/importer/class-importer.php:436
+#: ../lib/importer/class-importer.php:425
 msgid "Importing front page options"
 msgstr ""
 
-#: ../lib/importer/class-importer.php:440
+#: ../lib/importer/class-importer.php:429
 msgid "Importing nav menu locations"
 msgstr ""
 
-#: ../lib/importer/class-importer.php:458
-msgid "Import Completed Successfully"
+#: ../lib/importer/class-importer.php:447
+msgid "Import Completed"
 msgstr ""
 
-#: ../lib/importer/class-importer.php:459
-msgid "Import Completed with {count} Failure(s)"
+#: ../lib/importer/class-importer.php:448
+msgid "Import Failed"
 msgstr ""
 
-#: ../lib/importer/class-importer.php:460
+#: ../lib/importer/class-importer.php:449
 msgid ""
 "You have previously imported a demo content, are you sure you want to import "
 "again?"
 msgstr ""
 
-#: ../lib/importer/class-importer.php:461
+#: ../lib/importer/class-importer.php:450
 msgid ""
 "You haven't finishid importing the demo content. If you leave now, the demo "
 "content will not be imported."
 msgstr ""
 
-#: ../lib/importer/class-importer.php:498
+#: ../lib/importer/class-importer.php:487
 msgid "Import"
 msgstr ""
 
-#: ../lib/importer/class-importer.php:512
+#: ../lib/importer/class-importer.php:501
 msgid "There are no available demo content to import."
 msgstr ""
 
@@ -957,196 +945,196 @@ msgstr ""
 msgid "Remote file is too large, limit is %s"
 msgstr ""
 
-#: ../plugins-config/config-easy-digital-downloads.php:58
+#: ../plugins-config/config-easy-digital-downloads.php:76
 msgid "Page Template: EDD Store"
 msgstr ""
 
-#: ../plugins-config/config-easy-digital-downloads.php:65
-#: ../plugins-config/config-youxi-portfolio.php:333
+#: ../plugins-config/config-easy-digital-downloads.php:81
+#: ../plugins-config/config-youxi-portfolio.php:350
 msgid "Use Default Settings"
 msgstr ""
 
-#: ../plugins-config/config-easy-digital-downloads.php:66
+#: ../plugins-config/config-easy-digital-downloads.php:82
 msgid "Switch to use the default Easy Digital Downloads grid settings."
 msgstr ""
 
-#: ../plugins-config/config-easy-digital-downloads.php:71
-#: ../plugins-config/config-youxi-portfolio.php:339
+#: ../plugins-config/config-easy-digital-downloads.php:87
+#: ../plugins-config/config-youxi-portfolio.php:356
 #: ../theme-includes/helium-customizer.php:681
 msgid "Show Filter"
 msgstr ""
 
-#: ../plugins-config/config-easy-digital-downloads.php:72
+#: ../plugins-config/config-easy-digital-downloads.php:88
 msgid "Switch to display the downloads filter."
 msgstr ""
 
-#: ../plugins-config/config-easy-digital-downloads.php:78
-#: ../plugins-config/config-youxi-portfolio.php:346
+#: ../plugins-config/config-easy-digital-downloads.php:94
+#: ../plugins-config/config-youxi-portfolio.php:363
 msgid "Pagination Type"
 msgstr ""
 
-#: ../plugins-config/config-easy-digital-downloads.php:79
+#: ../plugins-config/config-easy-digital-downloads.php:95
 msgid "Specify the downloads pagination type."
 msgstr ""
 
-#: ../plugins-config/config-easy-digital-downloads.php:81
-#: ../plugins-config/config-youxi-portfolio.php:349
+#: ../plugins-config/config-easy-digital-downloads.php:97
+#: ../plugins-config/config-youxi-portfolio.php:366
 #: ../theme-includes/helium-customizer.php:691
-#: ../theme-includes/helium-customizer.php:991
+#: ../theme-includes/helium-customizer.php:992
 msgid "AJAX"
 msgstr ""
 
-#: ../plugins-config/config-easy-digital-downloads.php:82
-#: ../plugins-config/config-youxi-portfolio.php:350
+#: ../plugins-config/config-easy-digital-downloads.php:98
+#: ../plugins-config/config-youxi-portfolio.php:367
 #: ../theme-includes/helium-customizer.php:692
-#: ../theme-includes/helium-customizer.php:992
+#: ../theme-includes/helium-customizer.php:993
 msgid "Infinite"
 msgstr ""
 
-#: ../plugins-config/config-easy-digital-downloads.php:83
-#: ../plugins-config/config-youxi-portfolio.php:351
+#: ../plugins-config/config-easy-digital-downloads.php:99
+#: ../plugins-config/config-youxi-portfolio.php:368
 #: ../theme-includes/helium-customizer.php:693
-#: ../theme-includes/helium-customizer.php:993
+#: ../theme-includes/helium-customizer.php:994
 msgid "Numbered"
 msgstr ""
 
-#: ../plugins-config/config-easy-digital-downloads.php:84
-#: ../plugins-config/config-youxi-portfolio.php:352
+#: ../plugins-config/config-easy-digital-downloads.php:100
+#: ../plugins-config/config-youxi-portfolio.php:369
 #: ../theme-includes/helium-customizer.php:694
-#: ../theme-includes/helium-customizer.php:994
+#: ../theme-includes/helium-customizer.php:995
 msgid "Prev/Next"
 msgstr ""
 
-#: ../plugins-config/config-easy-digital-downloads.php:85
-#: ../plugins-config/config-youxi-portfolio.php:353
+#: ../plugins-config/config-easy-digital-downloads.php:101
+#: ../plugins-config/config-youxi-portfolio.php:370
 #: ../theme-includes/helium-customizer.php:695
-#: ../theme-includes/helium-customizer.php:995
+#: ../theme-includes/helium-customizer.php:996
 msgid "None (Show all)"
 msgstr ""
 
-#: ../plugins-config/config-easy-digital-downloads.php:92
-#: ../plugins-config/config-youxi-portfolio.php:360
+#: ../plugins-config/config-easy-digital-downloads.php:108
+#: ../plugins-config/config-youxi-portfolio.php:377
 #: ../theme-includes/helium-customizer.php:700
-#: ../theme-includes/helium-customizer.php:1000
+#: ../theme-includes/helium-customizer.php:1001
 msgid "AJAX Button Text"
 msgstr ""
 
-#: ../plugins-config/config-easy-digital-downloads.php:93
-#: ../plugins-config/config-youxi-portfolio.php:361
+#: ../plugins-config/config-easy-digital-downloads.php:109
+#: ../plugins-config/config-youxi-portfolio.php:378
 msgid "Specify the text to display on the AJAX load more button."
 msgstr ""
 
-#: ../plugins-config/config-easy-digital-downloads.php:99
-#: ../plugins-config/config-youxi-portfolio.php:367
+#: ../plugins-config/config-easy-digital-downloads.php:115
+#: ../plugins-config/config-youxi-portfolio.php:384
 #: ../theme-includes/helium-customizer.php:706
-#: ../theme-includes/helium-customizer.php:1006
+#: ../theme-includes/helium-customizer.php:1007
 msgid "AJAX Button Complete Text"
 msgstr ""
 
-#: ../plugins-config/config-easy-digital-downloads.php:100
-#: ../plugins-config/config-youxi-portfolio.php:368
+#: ../plugins-config/config-easy-digital-downloads.php:116
+#: ../plugins-config/config-youxi-portfolio.php:385
 msgid ""
 "Specify the text to display on the AJAX load more button when there are no "
 "more items to load."
 msgstr ""
 
-#: ../plugins-config/config-easy-digital-downloads.php:106
-#: ../plugins-config/config-youxi-portfolio.php:374
+#: ../plugins-config/config-easy-digital-downloads.php:122
+#: ../plugins-config/config-youxi-portfolio.php:391
 msgid "Posts Per Page"
 msgstr ""
 
-#: ../plugins-config/config-easy-digital-downloads.php:107
+#: ../plugins-config/config-easy-digital-downloads.php:123
 msgid "Specify how many download items to show per page."
 msgstr ""
 
-#: ../plugins-config/config-easy-digital-downloads.php:118
-#: ../plugins-config/config-youxi-portfolio.php:386
+#: ../plugins-config/config-easy-digital-downloads.php:134
+#: ../plugins-config/config-youxi-portfolio.php:403
 #: ../theme-includes/helium-customizer.php:723
-#: ../theme-includes/helium-customizer.php:1023
+#: ../theme-includes/helium-customizer.php:1024
 msgid "Included Categories"
 msgstr ""
 
-#: ../plugins-config/config-easy-digital-downloads.php:119
+#: ../plugins-config/config-easy-digital-downloads.php:135
 msgid ""
 "Specify the download categories to include (leave unchecked to include all)."
 msgstr ""
 
-#: ../plugins-config/config-easy-digital-downloads.php:125
-#: ../plugins-config/config-youxi-portfolio.php:393
+#: ../plugins-config/config-easy-digital-downloads.php:141
+#: ../plugins-config/config-youxi-portfolio.php:410
 #: ../theme-includes/helium-customizer.php:731
-#: ../theme-includes/helium-customizer.php:1031
+#: ../theme-includes/helium-customizer.php:1032
 msgid "Behavior"
 msgstr ""
 
-#: ../plugins-config/config-easy-digital-downloads.php:126
-#: ../plugins-config/config-youxi-portfolio.php:394
+#: ../plugins-config/config-easy-digital-downloads.php:142
+#: ../plugins-config/config-youxi-portfolio.php:411
 msgid "Specify the behavior when clicking the thumbnail image."
 msgstr ""
 
-#: ../plugins-config/config-easy-digital-downloads.php:128
-#: ../plugins-config/config-youxi-portfolio.php:396
-#: ../plugins-config/config-youxi-shortcodes.php:504
+#: ../plugins-config/config-easy-digital-downloads.php:144
+#: ../plugins-config/config-youxi-portfolio.php:413
+#: ../plugins-config/config-youxi-shortcodes.php:478
 #: ../theme-includes/helium-customizer.php:735
-#: ../theme-includes/helium-customizer.php:1035
+#: ../theme-includes/helium-customizer.php:1036
 msgid "None"
 msgstr ""
 
-#: ../plugins-config/config-easy-digital-downloads.php:129
-#: ../plugins-config/config-youxi-portfolio.php:397
+#: ../plugins-config/config-easy-digital-downloads.php:145
+#: ../plugins-config/config-youxi-portfolio.php:414
 #: ../theme-includes/helium-customizer.php:736
-#: ../theme-includes/helium-customizer.php:1036
+#: ../theme-includes/helium-customizer.php:1037
 msgid "Show Image in Lightbox"
 msgstr ""
 
-#: ../plugins-config/config-easy-digital-downloads.php:130
-#: ../plugins-config/config-youxi-portfolio.php:398
+#: ../plugins-config/config-easy-digital-downloads.php:146
+#: ../plugins-config/config-youxi-portfolio.php:415
 #: ../theme-includes/helium-customizer.php:737
-#: ../theme-includes/helium-customizer.php:1037
+#: ../theme-includes/helium-customizer.php:1038
 msgid "Go to Detail Page"
 msgstr ""
 
-#: ../plugins-config/config-easy-digital-downloads.php:136
-#: ../plugins-config/config-youxi-portfolio.php:440
+#: ../plugins-config/config-easy-digital-downloads.php:152
+#: ../plugins-config/config-youxi-portfolio.php:458
 msgid "Columns"
 msgstr ""
 
-#: ../plugins-config/config-easy-digital-downloads.php:137
+#: ../plugins-config/config-easy-digital-downloads.php:153
 msgid "Specify in how many columns the items should be displayed."
 msgstr ""
 
-#: ../plugins-config/config-easy-digital-downloads.php:182
+#: ../plugins-config/config-easy-digital-downloads.php:198
 msgid "Turquoise"
 msgstr ""
 
-#: ../plugins-config/config-easy-digital-downloads.php:186
+#: ../plugins-config/config-easy-digital-downloads.php:202
 msgid "White"
 msgstr ""
 
-#: ../plugins-config/config-easy-digital-downloads.php:190
+#: ../plugins-config/config-easy-digital-downloads.php:206
 msgid "Blue"
 msgstr ""
 
-#: ../plugins-config/config-easy-digital-downloads.php:194
+#: ../plugins-config/config-easy-digital-downloads.php:210
 msgid "Red"
 msgstr ""
 
-#: ../plugins-config/config-easy-digital-downloads.php:198
+#: ../plugins-config/config-easy-digital-downloads.php:214
 msgid "Green"
 msgstr ""
 
-#: ../plugins-config/config-easy-digital-downloads.php:202
+#: ../plugins-config/config-easy-digital-downloads.php:218
 msgid "Orange"
 msgstr ""
 
-#: ../plugins-config/config-easy-digital-downloads.php:206
+#: ../plugins-config/config-easy-digital-downloads.php:222
 msgid "Dark Gray"
 msgstr ""
 
 #: ../plugins-config/config-youxi-core.php:20
-#: ../plugins-config/config-youxi-portfolio.php:61
-#: ../plugins-config/config-youxi-portfolio.php:428
+#: ../plugins-config/config-youxi-portfolio.php:80
+#: ../plugins-config/config-youxi-portfolio.php:446
 #: ../theme-includes/helium-customizer.php:401
-#: ../theme-includes/helium-customizer.php:764
+#: ../theme-includes/helium-customizer.php:765
 msgid "Layout"
 msgstr ""
 
@@ -1161,8 +1149,8 @@ msgid ""
 msgstr ""
 
 #: ../plugins-config/config-youxi-core.php:27
-#: ../plugins-config/config-youxi-portfolio.php:69
-#: ../plugins-config/config-youxi-shortcodes.php:505
+#: ../plugins-config/config-youxi-portfolio.php:88
+#: ../plugins-config/config-youxi-shortcodes.php:479
 #: ../theme-includes/helium-customizer.php:426
 #: ../theme-includes/helium-customizer.php:436
 #: ../theme-includes/helium-customizer.php:446
@@ -1170,7 +1158,7 @@ msgid "Fullwidth"
 msgstr ""
 
 #: ../plugins-config/config-youxi-core.php:28
-#: ../plugins-config/config-youxi-portfolio.php:68
+#: ../plugins-config/config-youxi-portfolio.php:87
 #: ../theme-includes/helium-customizer.php:425
 #: ../theme-includes/helium-customizer.php:435
 #: ../theme-includes/helium-customizer.php:445
@@ -1187,490 +1175,492 @@ msgid ""
 "to use advanced row layouts."
 msgstr ""
 
-#: ../plugins-config/config-youxi-portfolio.php:29
-#: ../theme-includes/helium-customizer.php:816
+#: ../plugins-config/config-youxi-portfolio.php:48
+#: ../theme-includes/helium-customizer.php:817
 msgid "General"
 msgstr ""
 
-#: ../plugins-config/config-youxi-portfolio.php:33
-#: ../plugins-config/config-youxi-portfolio.php:115
-#: ../plugins-config/config-youxi-shortcodes.php:663
+#: ../plugins-config/config-youxi-portfolio.php:52
+#: ../plugins-config/config-youxi-portfolio.php:134
+#: ../plugins-config/config-youxi-shortcodes.php:637
 msgid "URL"
 msgstr ""
 
-#: ../plugins-config/config-youxi-portfolio.php:34
+#: ../plugins-config/config-youxi-portfolio.php:53
 msgid "Enter here the portfolio URL."
 msgstr ""
 
-#: ../plugins-config/config-youxi-portfolio.php:40
-#: ../plugins-config/config-youxi-portfolio.php:116
+#: ../plugins-config/config-youxi-portfolio.php:59
+#: ../plugins-config/config-youxi-portfolio.php:135
 msgid "Client"
 msgstr ""
 
-#: ../plugins-config/config-youxi-portfolio.php:41
+#: ../plugins-config/config-youxi-portfolio.php:60
 msgid "Enter here the portfolio client."
 msgstr ""
 
-#: ../plugins-config/config-youxi-portfolio.php:46
+#: ../plugins-config/config-youxi-portfolio.php:65
 msgid "Client URL"
 msgstr ""
 
-#: ../plugins-config/config-youxi-portfolio.php:47
+#: ../plugins-config/config-youxi-portfolio.php:66
 msgid "Enter here the portfolio client url."
 msgstr ""
 
-#: ../plugins-config/config-youxi-portfolio.php:52
+#: ../plugins-config/config-youxi-portfolio.php:71
 msgid "Featured"
 msgstr ""
 
-#: ../plugins-config/config-youxi-portfolio.php:53
+#: ../plugins-config/config-youxi-portfolio.php:72
 msgid ""
 "Switch to mark the portfolio as featured and show it on the portfolio slider."
 msgstr ""
 
-#: ../plugins-config/config-youxi-portfolio.php:65
+#: ../plugins-config/config-youxi-portfolio.php:84
 msgid "Portfolio Page Layout"
 msgstr ""
 
-#: ../plugins-config/config-youxi-portfolio.php:66
+#: ../plugins-config/config-youxi-portfolio.php:85
 msgid "Specify the layout of the portfolio page."
 msgstr ""
 
-#: ../plugins-config/config-youxi-portfolio.php:76
+#: ../plugins-config/config-youxi-portfolio.php:95
 msgid "Portfolio Archive Page"
 msgstr ""
 
-#: ../plugins-config/config-youxi-portfolio.php:77
+#: ../plugins-config/config-youxi-portfolio.php:96
 msgid "Choose the archive page of this portfolio item."
 msgstr ""
 
-#: ../plugins-config/config-youxi-portfolio.php:84
+#: ../plugins-config/config-youxi-portfolio.php:103
 msgid "Portfolio Media Layout"
 msgstr ""
 
-#: ../plugins-config/config-youxi-portfolio.php:85
+#: ../plugins-config/config-youxi-portfolio.php:104
 msgid "Specify how the portfolio media is displayed."
 msgstr ""
 
-#: ../plugins-config/config-youxi-portfolio.php:87
-#: ../plugins-config/config-youxi-shortcodes.php:231
+#: ../plugins-config/config-youxi-portfolio.php:106
+#: ../plugins-config/config-youxi-shortcodes.php:205
 msgid "Top"
 msgstr ""
 
-#: ../plugins-config/config-youxi-portfolio.php:88
-#: ../plugins-config/config-youxi-portfolio.php:99
-#: ../plugins-config/config-youxi-shortcodes.php:200
+#: ../plugins-config/config-youxi-portfolio.php:107
+#: ../plugins-config/config-youxi-portfolio.php:118
+#: ../plugins-config/config-youxi-shortcodes.php:174
 msgid "Left"
 msgstr ""
 
-#: ../plugins-config/config-youxi-portfolio.php:89
-#: ../plugins-config/config-youxi-portfolio.php:100
-#: ../plugins-config/config-youxi-shortcodes.php:202
+#: ../plugins-config/config-youxi-portfolio.php:108
+#: ../plugins-config/config-youxi-portfolio.php:119
+#: ../plugins-config/config-youxi-shortcodes.php:176
 msgid "Right"
 msgstr ""
 
-#: ../plugins-config/config-youxi-portfolio.php:95
+#: ../plugins-config/config-youxi-portfolio.php:114
 msgid "Portfolio Details Layout"
 msgstr ""
 
-#: ../plugins-config/config-youxi-portfolio.php:96
+#: ../plugins-config/config-youxi-portfolio.php:115
 msgid ""
 "Specify how the portfolio details is displayed. Choosing left or right for "
 "media position will move the details to the bottom."
 msgstr ""
 
-#: ../plugins-config/config-youxi-portfolio.php:98
+#: ../plugins-config/config-youxi-portfolio.php:117
 msgid "Hidden"
 msgstr ""
 
-#: ../plugins-config/config-youxi-portfolio.php:107
+#: ../plugins-config/config-youxi-portfolio.php:126
 msgid "Specify the portfolio details to show."
 msgstr ""
 
-#: ../plugins-config/config-youxi-portfolio.php:111
+#: ../plugins-config/config-youxi-portfolio.php:130
 msgid "Detail Type"
 msgstr ""
 
-#: ../plugins-config/config-youxi-portfolio.php:112
+#: ../plugins-config/config-youxi-portfolio.php:131
 msgid "Choose the portfolio detail type."
 msgstr ""
 
-#: ../plugins-config/config-youxi-portfolio.php:114
+#: ../plugins-config/config-youxi-portfolio.php:133
 #: ../template-parts/download/entry.php:126
 msgid "Categories"
 msgstr ""
 
-#: ../plugins-config/config-youxi-portfolio.php:117
+#: ../plugins-config/config-youxi-portfolio.php:136
 msgid "Share"
 msgstr ""
 
-#: ../plugins-config/config-youxi-portfolio.php:118
+#: ../plugins-config/config-youxi-portfolio.php:137
 msgid "Custom"
 msgstr ""
 
-#: ../plugins-config/config-youxi-portfolio.php:124
-#: ../plugins-config/config-youxi-shortcodes.php:390
+#: ../plugins-config/config-youxi-portfolio.php:143
+#: ../plugins-config/config-youxi-shortcodes.php:364
 msgid "Label"
 msgstr ""
 
-#: ../plugins-config/config-youxi-portfolio.php:125
+#: ../plugins-config/config-youxi-portfolio.php:144
 msgid "Enter the detail label."
 msgstr ""
 
-#: ../plugins-config/config-youxi-portfolio.php:130
+#: ../plugins-config/config-youxi-portfolio.php:149
 msgid "Custom Value"
 msgstr ""
 
-#: ../plugins-config/config-youxi-portfolio.php:131
+#: ../plugins-config/config-youxi-portfolio.php:150
 msgid "Enter the custom detail value."
 msgstr ""
 
-#: ../plugins-config/config-youxi-portfolio.php:145
+#: ../plugins-config/config-youxi-portfolio.php:164
 msgid "Media"
 msgstr ""
 
-#: ../plugins-config/config-youxi-portfolio.php:149
+#: ../plugins-config/config-youxi-portfolio.php:168
 msgid "Media Type"
 msgstr ""
 
-#: ../plugins-config/config-youxi-portfolio.php:150
+#: ../plugins-config/config-youxi-portfolio.php:169
 msgid "Choose the type of media to display."
 msgstr ""
 
-#: ../plugins-config/config-youxi-portfolio.php:152
+#: ../plugins-config/config-youxi-portfolio.php:171
 msgid "Featured Image"
 msgstr ""
 
-#: ../plugins-config/config-youxi-portfolio.php:153
+#: ../plugins-config/config-youxi-portfolio.php:172
 msgid "Stacked Images"
 msgstr ""
 
-#: ../plugins-config/config-youxi-portfolio.php:154
+#: ../plugins-config/config-youxi-portfolio.php:173
 #: ../plugins-config/config-youxi-post-format.php:19
 msgid "Slider"
 msgstr ""
 
-#: ../plugins-config/config-youxi-portfolio.php:155
+#: ../plugins-config/config-youxi-portfolio.php:174
 msgid "Justified Grids"
 msgstr ""
 
-#: ../plugins-config/config-youxi-portfolio.php:156
+#: ../plugins-config/config-youxi-portfolio.php:175
 msgid "Video"
 msgstr ""
 
-#: ../plugins-config/config-youxi-portfolio.php:157
+#: ../plugins-config/config-youxi-portfolio.php:176
 msgid "Audio"
 msgstr ""
 
-#: ../plugins-config/config-youxi-portfolio.php:163
+#: ../plugins-config/config-youxi-portfolio.php:182
 #: ../plugins-config/config-youxi-post-format.php:26
 msgid "Slider: Auto Height"
 msgstr ""
 
-#: ../plugins-config/config-youxi-portfolio.php:164
+#: ../plugins-config/config-youxi-portfolio.php:183
 #: ../plugins-config/config-youxi-post-format.php:27
 msgid "Switch to automatically update slider height based on each slide."
 msgstr ""
 
-#: ../plugins-config/config-youxi-portfolio.php:170
+#: ../plugins-config/config-youxi-portfolio.php:189
 #: ../plugins-config/config-youxi-post-format.php:33
 msgid "Slider: Aspect Ratio"
 msgstr ""
 
-#: ../plugins-config/config-youxi-portfolio.php:171
+#: ../plugins-config/config-youxi-portfolio.php:190
 #: ../plugins-config/config-youxi-post-format.php:34
 msgid "Specify the slider aspect ratio when auto height is disabled."
 msgstr ""
 
-#: ../plugins-config/config-youxi-portfolio.php:177
+#: ../plugins-config/config-youxi-portfolio.php:196
 #: ../plugins-config/config-youxi-post-format.php:40
 msgid "Slider: Image Scale Mode"
 msgstr ""
 
-#: ../plugins-config/config-youxi-portfolio.php:178
+#: ../plugins-config/config-youxi-portfolio.php:197
 #: ../plugins-config/config-youxi-post-format.php:41
 msgid "Specify the slider image scaling mode."
 msgstr ""
 
-#: ../plugins-config/config-youxi-portfolio.php:180
+#: ../plugins-config/config-youxi-portfolio.php:199
 #: ../plugins-config/config-youxi-post-format.php:43
 msgid "Fill"
 msgstr ""
 
-#: ../plugins-config/config-youxi-portfolio.php:181
+#: ../plugins-config/config-youxi-portfolio.php:200
 #: ../plugins-config/config-youxi-post-format.php:44
 msgid "Fit"
 msgstr ""
 
-#: ../plugins-config/config-youxi-portfolio.php:188
+#: ../plugins-config/config-youxi-portfolio.php:207
 #: ../plugins-config/config-youxi-post-format.php:51
 msgid "Slider: Navigation Bullets"
 msgstr ""
 
-#: ../plugins-config/config-youxi-portfolio.php:189
+#: ../plugins-config/config-youxi-portfolio.php:208
 #: ../plugins-config/config-youxi-post-format.php:52
 msgid "Switch to toggle the slider navigation bullets."
 msgstr ""
 
-#: ../plugins-config/config-youxi-portfolio.php:195
+#: ../plugins-config/config-youxi-portfolio.php:214
 #: ../plugins-config/config-youxi-post-format.php:58
 msgid "Slider: Navigation Arrows"
 msgstr ""
 
-#: ../plugins-config/config-youxi-portfolio.php:196
+#: ../plugins-config/config-youxi-portfolio.php:215
 #: ../plugins-config/config-youxi-post-format.php:59
 msgid "Switch to toggle the slider navigation arrows."
 msgstr ""
 
-#: ../plugins-config/config-youxi-portfolio.php:202
+#: ../plugins-config/config-youxi-portfolio.php:221
 #: ../plugins-config/config-youxi-post-format.php:65
 msgid "Slider: Loop"
 msgstr ""
 
-#: ../plugins-config/config-youxi-portfolio.php:203
+#: ../plugins-config/config-youxi-portfolio.php:222
 #: ../plugins-config/config-youxi-post-format.php:66
 msgid "Switch to allow the slider to go to the first from the last slide."
 msgstr ""
 
-#: ../plugins-config/config-youxi-portfolio.php:209
+#: ../plugins-config/config-youxi-portfolio.php:228
 #: ../plugins-config/config-youxi-post-format.php:72
 msgid "Slider: Orientation"
 msgstr ""
 
-#: ../plugins-config/config-youxi-portfolio.php:210
+#: ../plugins-config/config-youxi-portfolio.php:229
 #: ../plugins-config/config-youxi-post-format.php:73
 msgid "Specify the slider orientation."
 msgstr ""
 
-#: ../plugins-config/config-youxi-portfolio.php:212
+#: ../plugins-config/config-youxi-portfolio.php:231
 #: ../plugins-config/config-youxi-post-format.php:75
 msgid "Vertical"
 msgstr ""
 
-#: ../plugins-config/config-youxi-portfolio.php:213
+#: ../plugins-config/config-youxi-portfolio.php:232
 #: ../plugins-config/config-youxi-post-format.php:76
 msgid "Horizontal"
 msgstr ""
 
-#: ../plugins-config/config-youxi-portfolio.php:220
+#: ../plugins-config/config-youxi-portfolio.php:239
 #: ../plugins-config/config-youxi-post-format.php:83
 msgid "Slider: Transition Type"
 msgstr ""
 
-#: ../plugins-config/config-youxi-portfolio.php:221
+#: ../plugins-config/config-youxi-portfolio.php:240
 #: ../plugins-config/config-youxi-post-format.php:84
 msgid "Specify the slider transition type."
 msgstr ""
 
-#: ../plugins-config/config-youxi-portfolio.php:223
+#: ../plugins-config/config-youxi-portfolio.php:242
 #: ../plugins-config/config-youxi-post-format.php:86
 msgid "Move"
 msgstr ""
 
-#: ../plugins-config/config-youxi-portfolio.php:224
+#: ../plugins-config/config-youxi-portfolio.php:243
 #: ../plugins-config/config-youxi-post-format.php:87
 msgid "Fade"
 msgstr ""
 
-#: ../plugins-config/config-youxi-portfolio.php:231
+#: ../plugins-config/config-youxi-portfolio.php:250
 #: ../plugins-config/config-youxi-post-format.php:94
 msgid "Slider: Transition Speed"
 msgstr ""
 
-#: ../plugins-config/config-youxi-portfolio.php:232
+#: ../plugins-config/config-youxi-portfolio.php:251
 #: ../plugins-config/config-youxi-post-format.php:95
 msgid "Specify the slider transition speed."
 msgstr ""
 
-#: ../plugins-config/config-youxi-portfolio.php:243
+#: ../plugins-config/config-youxi-portfolio.php:262
 msgid "Images"
 msgstr ""
 
-#: ../plugins-config/config-youxi-portfolio.php:244
+#: ../plugins-config/config-youxi-portfolio.php:263
 msgid "Choose here the images to use."
 msgstr ""
 
-#: ../plugins-config/config-youxi-portfolio.php:250
+#: ../plugins-config/config-youxi-portfolio.php:269
 msgid "Video Type"
 msgstr ""
 
-#: ../plugins-config/config-youxi-portfolio.php:251
+#: ../plugins-config/config-youxi-portfolio.php:270
 msgid "Choose here the video type."
 msgstr ""
 
-#: ../plugins-config/config-youxi-portfolio.php:253
+#: ../plugins-config/config-youxi-portfolio.php:272
 msgid "Embedded (YouTube/Vimeo)"
 msgstr ""
 
-#: ../plugins-config/config-youxi-portfolio.php:254
-#: ../plugins-config/config-youxi-portfolio.php:286
+#: ../plugins-config/config-youxi-portfolio.php:273
+#: ../plugins-config/config-youxi-portfolio.php:305
 msgid "Hosted"
 msgstr ""
 
-#: ../plugins-config/config-youxi-portfolio.php:261
+#: ../plugins-config/config-youxi-portfolio.php:280
 msgid "Video Embed Code (YouTube/Vimeo)"
 msgstr ""
 
-#: ../plugins-config/config-youxi-portfolio.php:262
+#: ../plugins-config/config-youxi-portfolio.php:281
 msgid "Enter here the video embed code (YouTube/Vimeo)."
 msgstr ""
 
-#: ../plugins-config/config-youxi-portfolio.php:268
+#: ../plugins-config/config-youxi-portfolio.php:287
 msgid "Video Source"
 msgstr ""
 
-#: ../plugins-config/config-youxi-portfolio.php:270
+#: ../plugins-config/config-youxi-portfolio.php:289
 msgid "Choose here the hosted video source."
 msgstr ""
 
-#: ../plugins-config/config-youxi-portfolio.php:276
+#: ../plugins-config/config-youxi-portfolio.php:295
 msgid "Video Poster"
 msgstr ""
 
-#: ../plugins-config/config-youxi-portfolio.php:277
+#: ../plugins-config/config-youxi-portfolio.php:296
 msgid ""
 "Upload here an image that will be used either as the poster or fallback for "
 "unsupported devices."
 msgstr ""
 
-#: ../plugins-config/config-youxi-portfolio.php:282
+#: ../plugins-config/config-youxi-portfolio.php:301
 msgid "Audio Type"
 msgstr ""
 
-#: ../plugins-config/config-youxi-portfolio.php:283
+#: ../plugins-config/config-youxi-portfolio.php:302
 msgid "Choose here the audio type."
 msgstr ""
 
-#: ../plugins-config/config-youxi-portfolio.php:285
+#: ../plugins-config/config-youxi-portfolio.php:304
 msgid "Embedded (SoundCloud)"
 msgstr ""
 
-#: ../plugins-config/config-youxi-portfolio.php:293
+#: ../plugins-config/config-youxi-portfolio.php:312
 msgid "Embed Code (SoundCloud)"
 msgstr ""
 
-#: ../plugins-config/config-youxi-portfolio.php:294
+#: ../plugins-config/config-youxi-portfolio.php:313
 msgid "Enter here the audio embed code (SoundCloud)."
 msgstr ""
 
-#: ../plugins-config/config-youxi-portfolio.php:300
+#: ../plugins-config/config-youxi-portfolio.php:319
 msgid "Audio Source"
 msgstr ""
 
-#: ../plugins-config/config-youxi-portfolio.php:302
+#: ../plugins-config/config-youxi-portfolio.php:321
 msgid "Choose here the hosted audio source."
 msgstr ""
 
-#: ../plugins-config/config-youxi-portfolio.php:326
+#: ../plugins-config/config-youxi-portfolio.php:345
 msgid "Page Template: Portfolio"
 msgstr ""
 
-#: ../plugins-config/config-youxi-portfolio.php:334
+#: ../plugins-config/config-youxi-portfolio.php:351
 msgid "Switch to use the default portfolio grid settings."
 msgstr ""
 
-#: ../plugins-config/config-youxi-portfolio.php:340
+#: ../plugins-config/config-youxi-portfolio.php:357
 msgid "Switch to display the portfolio filter."
 msgstr ""
 
-#: ../plugins-config/config-youxi-portfolio.php:347
+#: ../plugins-config/config-youxi-portfolio.php:364
 msgid "Specify the portfolio pagination type."
 msgstr ""
 
-#: ../plugins-config/config-youxi-portfolio.php:375
+#: ../plugins-config/config-youxi-portfolio.php:392
 msgid "Specify how many portfolio items to show per page."
 msgstr ""
 
-#: ../plugins-config/config-youxi-portfolio.php:387
+#: ../plugins-config/config-youxi-portfolio.php:404
 msgid ""
 "Specify the portfolio categories to include (leave unchecked to include all)."
 msgstr ""
 
-#: ../plugins-config/config-youxi-portfolio.php:404
-#: ../plugins-config/config-youxi-portfolio.php:473
+#: ../plugins-config/config-youxi-portfolio.php:421
+#: ../plugins-config/config-youxi-portfolio.php:489
 #: ../theme-includes/helium-customizer.php:742
 msgid "Order By"
 msgstr ""
 
-#: ../plugins-config/config-youxi-portfolio.php:405
-#: ../plugins-config/config-youxi-portfolio.php:474
+#: ../plugins-config/config-youxi-portfolio.php:422
+#: ../plugins-config/config-youxi-portfolio.php:490
 msgid "Specify in what order the items should be displayed."
 msgstr ""
 
-#: ../plugins-config/config-youxi-portfolio.php:408
-#: ../plugins-config/config-youxi-portfolio.php:477
+#: ../plugins-config/config-youxi-portfolio.php:425
+#: ../plugins-config/config-youxi-portfolio.php:493
 #: ../theme-includes/helium-customizer.php:747
 msgid "Menu Order"
 msgstr ""
 
-#: ../plugins-config/config-youxi-portfolio.php:409
-#: ../plugins-config/config-youxi-portfolio.php:478
+#: ../plugins-config/config-youxi-portfolio.php:426
+#: ../plugins-config/config-youxi-portfolio.php:494
 #: ../theme-includes/helium-customizer.php:748
 msgid "Title"
 msgstr ""
 
-#: ../plugins-config/config-youxi-portfolio.php:417
-#: ../plugins-config/config-youxi-portfolio.php:486
-#: ../theme-includes/helium-customizer.php:754
+#: ../plugins-config/config-youxi-portfolio.php:428
+#: ../plugins-config/config-youxi-portfolio.php:496
+#: ../theme-includes/helium-customizer.php:750
+msgid "Random"
+msgstr ""
+
+#: ../plugins-config/config-youxi-portfolio.php:435
+#: ../plugins-config/config-youxi-portfolio.php:502
+#: ../theme-includes/helium-customizer.php:755
 msgid "Order"
 msgstr ""
 
-#: ../plugins-config/config-youxi-portfolio.php:418
-#: ../plugins-config/config-youxi-portfolio.php:487
+#: ../plugins-config/config-youxi-portfolio.php:436
+#: ../plugins-config/config-youxi-portfolio.php:503
 msgid "Specify how to order the items."
 msgstr ""
 
-#: ../plugins-config/config-youxi-portfolio.php:420
-#: ../plugins-config/config-youxi-portfolio.php:489
-#: ../theme-includes/helium-customizer.php:758
+#: ../plugins-config/config-youxi-portfolio.php:438
+#: ../plugins-config/config-youxi-portfolio.php:505
+#: ../theme-includes/helium-customizer.php:759
 msgid "Descending"
 msgstr ""
 
-#: ../plugins-config/config-youxi-portfolio.php:421
-#: ../plugins-config/config-youxi-portfolio.php:490
-#: ../theme-includes/helium-customizer.php:759
+#: ../plugins-config/config-youxi-portfolio.php:439
+#: ../plugins-config/config-youxi-portfolio.php:506
+#: ../theme-includes/helium-customizer.php:760
 msgid "Ascending"
 msgstr ""
 
-#: ../plugins-config/config-youxi-portfolio.php:429
+#: ../plugins-config/config-youxi-portfolio.php:447
 msgid "Specify the portfolio layout."
 msgstr ""
 
-#: ../plugins-config/config-youxi-portfolio.php:431
-#: ../theme-includes/helium-customizer.php:769
+#: ../plugins-config/config-youxi-portfolio.php:449
+#: ../theme-includes/helium-customizer.php:770
 msgid "Classic"
 msgstr ""
 
-#: ../plugins-config/config-youxi-portfolio.php:432
-#: ../theme-includes/helium-customizer.php:768
+#: ../plugins-config/config-youxi-portfolio.php:450
+#: ../theme-includes/helium-customizer.php:769
 msgid "Masonry"
 msgstr ""
 
-#: ../plugins-config/config-youxi-portfolio.php:433
-#: ../theme-includes/helium-customizer.php:770
+#: ../plugins-config/config-youxi-portfolio.php:451
+#: ../theme-includes/helium-customizer.php:771
 msgid "Justified"
 msgstr ""
 
-#: ../plugins-config/config-youxi-portfolio.php:441
+#: ../plugins-config/config-youxi-portfolio.php:459
 msgid ""
 "Specify in how many columns the items should be displayed in the masonry/"
 "classic layout."
 msgstr ""
 
-#: ../plugins-config/config-youxi-portfolio.php:455
+#: ../plugins-config/config-youxi-portfolio.php:473
 msgid "Page Template: Portfolio Slider"
 msgstr ""
 
-#: ../plugins-config/config-youxi-portfolio.php:462
+#: ../plugins-config/config-youxi-portfolio.php:478
 msgid "Number of Slides"
 msgstr ""
 
-#: ../plugins-config/config-youxi-portfolio.php:463
+#: ../plugins-config/config-youxi-portfolio.php:479
 msgid "Specify how many portfolio items to show on the slider."
-msgstr ""
-
-#: ../plugins-config/config-youxi-portfolio.php:480
-msgid "Random"
 msgstr ""
 
 #: ../plugins-config/config-youxi-post-format.php:16
@@ -1685,137 +1675,137 @@ msgstr ""
 msgid "Justified Gallery"
 msgstr ""
 
-#: ../plugins-config/config-youxi-shortcodes.php:197
+#: ../plugins-config/config-youxi-shortcodes.php:171
 msgid "Heading Alignment"
 msgstr ""
 
-#: ../plugins-config/config-youxi-shortcodes.php:198
+#: ../plugins-config/config-youxi-shortcodes.php:172
 msgid "Choose here the heading text alignment."
 msgstr ""
 
-#: ../plugins-config/config-youxi-shortcodes.php:201
+#: ../plugins-config/config-youxi-shortcodes.php:175
 msgid "Center"
 msgstr ""
 
-#: ../plugins-config/config-youxi-shortcodes.php:209
+#: ../plugins-config/config-youxi-shortcodes.php:183
 msgid "Heading Style"
 msgstr ""
 
-#: ../plugins-config/config-youxi-shortcodes.php:210
+#: ../plugins-config/config-youxi-shortcodes.php:184
 msgid "Choose the heading style."
 msgstr ""
 
-#: ../plugins-config/config-youxi-shortcodes.php:212
+#: ../plugins-config/config-youxi-shortcodes.php:186
 #: ../theme-includes/helium-demo.php:14
 msgid "Default"
 msgstr ""
 
-#: ../plugins-config/config-youxi-shortcodes.php:213
+#: ../plugins-config/config-youxi-shortcodes.php:187
 msgid "Bordered"
 msgstr ""
 
-#: ../plugins-config/config-youxi-shortcodes.php:214
+#: ../plugins-config/config-youxi-shortcodes.php:188
 msgid "Striped"
 msgstr ""
 
-#: ../plugins-config/config-youxi-shortcodes.php:220
+#: ../plugins-config/config-youxi-shortcodes.php:194
 msgid "Uppercase Letters"
 msgstr ""
 
-#: ../plugins-config/config-youxi-shortcodes.php:221
+#: ../plugins-config/config-youxi-shortcodes.php:195
 msgid "Switch to make the text uppercase."
 msgstr ""
 
-#: ../plugins-config/config-youxi-shortcodes.php:227
+#: ../plugins-config/config-youxi-shortcodes.php:201
 msgid "Remove Margins"
 msgstr ""
 
-#: ../plugins-config/config-youxi-shortcodes.php:229
+#: ../plugins-config/config-youxi-shortcodes.php:203
 msgid "Choose here which margins to remove from the heading."
 msgstr ""
 
-#: ../plugins-config/config-youxi-shortcodes.php:232
+#: ../plugins-config/config-youxi-shortcodes.php:206
 msgid "Bottom"
 msgstr ""
 
-#: ../plugins-config/config-youxi-shortcodes.php:251
-#: ../plugins-config/config-youxi-shortcodes.php:512
-#: ../plugins-config/config-youxi-shortcodes.php:561
+#: ../plugins-config/config-youxi-shortcodes.php:225
+#: ../plugins-config/config-youxi-shortcodes.php:486
+#: ../plugins-config/config-youxi-shortcodes.php:535
 msgid "Extra CSS Classes"
 msgstr ""
 
-#: ../plugins-config/config-youxi-shortcodes.php:252
+#: ../plugins-config/config-youxi-shortcodes.php:226
 msgid "Enter here your custom CSS classes to apply to the heading."
 msgstr ""
 
-#: ../plugins-config/config-youxi-shortcodes.php:270
+#: ../plugins-config/config-youxi-shortcodes.php:244
 msgid "Styling"
 msgstr ""
 
-#: ../plugins-config/config-youxi-shortcodes.php:360
+#: ../plugins-config/config-youxi-shortcodes.php:334
 msgid "Subtitle"
 msgstr ""
 
-#: ../plugins-config/config-youxi-shortcodes.php:361
+#: ../plugins-config/config-youxi-shortcodes.php:335
 msgid "Specify the subtitle to show below the title."
 msgstr ""
 
-#: ../plugins-config/config-youxi-shortcodes.php:391
+#: ../plugins-config/config-youxi-shortcodes.php:365
 msgid "Enter here the progressbar label."
 msgstr ""
 
-#: ../plugins-config/config-youxi-shortcodes.php:501
+#: ../plugins-config/config-youxi-shortcodes.php:475
 msgid "Wrap Mode"
 msgstr ""
 
-#: ../plugins-config/config-youxi-shortcodes.php:502
+#: ../plugins-config/config-youxi-shortcodes.php:476
 msgid ""
 "Choose the row wrapping method. When choosing values other than "
 "<strong>none</strong>, make sure the page layout setting has <strong>Wrap "
 "Content</strong> disabled."
 msgstr ""
 
-#: ../plugins-config/config-youxi-shortcodes.php:506
+#: ../plugins-config/config-youxi-shortcodes.php:480
 msgid "Inner"
 msgstr ""
 
-#: ../plugins-config/config-youxi-shortcodes.php:513
+#: ../plugins-config/config-youxi-shortcodes.php:487
 msgid "Enter here your custom CSS classes to apply to the row."
 msgstr ""
 
-#: ../plugins-config/config-youxi-shortcodes.php:550
+#: ../plugins-config/config-youxi-shortcodes.php:524
 msgid "Separator Size"
 msgstr ""
 
-#: ../plugins-config/config-youxi-shortcodes.php:551
+#: ../plugins-config/config-youxi-shortcodes.php:525
 msgid "Choose the height of the separator."
 msgstr ""
 
-#: ../plugins-config/config-youxi-shortcodes.php:562
+#: ../plugins-config/config-youxi-shortcodes.php:536
 msgid "Enter here your custom CSS classes to apply to the separator."
 msgstr ""
 
-#: ../plugins-config/config-youxi-shortcodes.php:650
+#: ../plugins-config/config-youxi-shortcodes.php:624
 msgid "Social Profiles"
 msgstr ""
 
-#: ../plugins-config/config-youxi-shortcodes.php:651
+#: ../plugins-config/config-youxi-shortcodes.php:625
 msgid "Specify the social profiles of this team member."
 msgstr ""
 
-#: ../plugins-config/config-youxi-shortcodes.php:657
+#: ../plugins-config/config-youxi-shortcodes.php:631
 msgid "Icon"
 msgstr ""
 
-#: ../plugins-config/config-youxi-shortcodes.php:659
+#: ../plugins-config/config-youxi-shortcodes.php:633
 msgid "Choose here the profile icon."
 msgstr ""
 
-#: ../plugins-config/config-youxi-shortcodes.php:664
+#: ../plugins-config/config-youxi-shortcodes.php:638
 msgid "Enter here the profile URL."
 msgstr ""
 
-#: ../plugins-config/config-youxi-shortcodes.php:697
+#: ../plugins-config/config-youxi-shortcodes.php:671
 msgid "Social"
 msgstr ""
 
@@ -1965,7 +1955,7 @@ msgid "Header"
 msgstr ""
 
 #: ../theme-includes/helium-customizer.php:61
-#: ../theme-includes/helium-functions.php:23
+#: ../theme-includes/helium-functions.php:12
 msgid "&copy; Youxi Themes. 2012-2014. All Rights Reserved."
 msgstr ""
 
@@ -2059,12 +2049,12 @@ msgid "Posts"
 msgstr ""
 
 #: ../theme-includes/helium-customizer.php:310
-#: ../theme-includes/helium-customizer.php:884
+#: ../theme-includes/helium-customizer.php:885
 msgid "Show Tags"
 msgstr ""
 
 #: ../theme-includes/helium-customizer.php:317
-#: ../theme-includes/helium-customizer.php:891
+#: ../theme-includes/helium-customizer.php:892
 msgid "Show Sharing Buttons"
 msgstr ""
 
@@ -2086,13 +2076,13 @@ msgstr ""
 
 #: ../theme-includes/helium-customizer.php:351
 #: ../theme-includes/helium-customizer.php:594
-#: ../theme-includes/helium-customizer.php:918
+#: ../theme-includes/helium-customizer.php:919
 msgid "Show Lightbox"
 msgstr ""
 
 #: ../theme-includes/helium-customizer.php:352
 #: ../theme-includes/helium-customizer.php:595
-#: ../theme-includes/helium-customizer.php:919
+#: ../theme-includes/helium-customizer.php:920
 msgid "Go to Post"
 msgstr ""
 
@@ -2131,32 +2121,32 @@ msgid "Titles"
 msgstr ""
 
 #: ../theme-includes/helium-customizer.php:463
-#: ../theme-includes/helium-functions.php:46
+#: ../theme-includes/helium-functions.php:35
 msgid "Welcome to Our Blog"
 msgstr ""
 
 #: ../theme-includes/helium-customizer.php:467
-#: ../theme-includes/helium-functions.php:47
+#: ../theme-includes/helium-functions.php:36
 msgid "Currently Reading"
 msgstr ""
 
 #: ../theme-includes/helium-customizer.php:471
-#: ../theme-includes/helium-functions.php:48
+#: ../theme-includes/helium-functions.php:37
 msgid "Category: {category}"
 msgstr ""
 
 #: ../theme-includes/helium-customizer.php:475
-#: ../theme-includes/helium-functions.php:49
+#: ../theme-includes/helium-functions.php:38
 msgid "Posts Tagged &lsquo;{tag}&rsquo;"
 msgstr ""
 
 #: ../theme-includes/helium-customizer.php:479
-#: ../theme-includes/helium-functions.php:50
+#: ../theme-includes/helium-functions.php:39
 msgid "Posts by {author}"
 msgstr ""
 
 #: ../theme-includes/helium-customizer.php:483
-#: ../theme-includes/helium-functions.php:51
+#: ../theme-includes/helium-functions.php:40
 msgid "Archive for {date}"
 msgstr ""
 
@@ -2206,98 +2196,98 @@ msgid "Single Item"
 msgstr ""
 
 #: ../theme-includes/helium-customizer.php:574
-#: ../theme-includes/helium-customizer.php:898
+#: ../theme-includes/helium-customizer.php:899
 msgid "Show Related Items"
 msgstr ""
 
 #: ../theme-includes/helium-customizer.php:581
-#: ../theme-includes/helium-customizer.php:905
+#: ../theme-includes/helium-customizer.php:906
 msgid "Related Items Count"
 msgstr ""
 
 #: ../theme-includes/helium-customizer.php:590
-#: ../theme-includes/helium-customizer.php:914
+#: ../theme-includes/helium-customizer.php:915
 msgid "Related Items Behavior"
 msgstr ""
 
 #: ../theme-includes/helium-customizer.php:612
-#: ../theme-includes/helium-functions.php:55
+#: ../theme-includes/helium-functions.php:44
 msgid "Portfolio Archive"
 msgstr ""
 
 #: ../theme-includes/helium-customizer.php:619
-#: ../theme-includes/helium-customizer.php:942
+#: ../theme-includes/helium-customizer.php:943
 msgid "Page Title"
 msgstr ""
 
 #: ../theme-includes/helium-customizer.php:628
-#: ../theme-includes/helium-customizer.php:951
+#: ../theme-includes/helium-customizer.php:952
 msgid "Grid Settings"
 msgstr ""
 
 #: ../theme-includes/helium-customizer.php:643
-#: ../theme-includes/helium-customizer.php:962
-#: ../theme-includes/helium-functions.php:58
-#: ../theme-includes/helium-functions.php:76
+#: ../theme-includes/helium-customizer.php:963
+#: ../theme-includes/helium-functions.php:47
+#: ../theme-includes/helium-functions.php:65
 msgid "Load More"
 msgstr ""
 
 #: ../theme-includes/helium-customizer.php:647
-#: ../theme-includes/helium-customizer.php:966
-#: ../theme-includes/helium-functions.php:59
-#: ../theme-includes/helium-functions.php:77
+#: ../theme-includes/helium-customizer.php:967
+#: ../theme-includes/helium-functions.php:48
+#: ../theme-includes/helium-functions.php:66
 msgid "No More Items"
 msgstr ""
 
 #: ../theme-includes/helium-customizer.php:687
-#: ../theme-includes/helium-customizer.php:987
+#: ../theme-includes/helium-customizer.php:988
 msgid "Pagination"
 msgstr ""
 
 #: ../theme-includes/helium-customizer.php:713
-#: ../theme-includes/helium-customizer.php:1013
+#: ../theme-includes/helium-customizer.php:1014
 msgid "Items per Page"
 msgstr ""
 
 #: ../theme-includes/helium-customizer.php:727
-#: ../theme-includes/helium-customizer.php:1027
+#: ../theme-includes/helium-customizer.php:1028
 msgid "Uncheck all to include all categories."
 msgstr ""
 
-#: ../theme-includes/helium-customizer.php:776
+#: ../theme-includes/helium-customizer.php:777
 msgid "Columns (Masonry/Classic)"
 msgstr ""
 
-#: ../theme-includes/helium-customizer.php:805
+#: ../theme-includes/helium-customizer.php:806
 msgid "Easy Digital Downloads"
 msgstr ""
 
-#: ../theme-includes/helium-customizer.php:810
+#: ../theme-includes/helium-customizer.php:811
 msgid "EDD"
 msgstr ""
 
-#: ../theme-includes/helium-customizer.php:832
+#: ../theme-includes/helium-customizer.php:833
 msgid "Show Cart in Header"
 msgstr ""
 
-#: ../theme-includes/helium-customizer.php:841
+#: ../theme-includes/helium-customizer.php:842
 msgid "Single Downloads"
 msgstr ""
 
-#: ../theme-includes/helium-customizer.php:877
+#: ../theme-includes/helium-customizer.php:878
 msgid "Show Categories"
 msgstr ""
 
-#: ../theme-includes/helium-customizer.php:935
-#: ../theme-includes/helium-functions.php:74
+#: ../theme-includes/helium-customizer.php:936
+#: ../theme-includes/helium-functions.php:63
 msgid "Downloads Archive"
 msgstr ""
 
-#: ../theme-includes/helium-customizer.php:1043
+#: ../theme-includes/helium-customizer.php:1044
 msgid "Number of Columns"
 msgstr ""
 
-#: ../theme-includes/helium-functions.php:186
+#: ../theme-includes/helium-functions.php:165
 msgid "Home"
 msgstr ""
 

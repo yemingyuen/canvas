@@ -238,7 +238,10 @@ jQuery.Youxi = jQuery.Youxi || {};
 				var label = category.args.label, 
 					models = $.map( category.shortcodes, function( args, tag ) {
 						if( ! args.internal && ( builder.settings.enableContainer || _.indexOf( builder.settings.containerShortcodes, tag ) < 0 ) ) {
-							return new builder.model.ShortcodeButton( _.extend( {}, args, { tag: tag } ) );
+							return new builder.model.ShortcodeButton( _.extend( {}, args, {
+								tag: tag, 
+								icon: builder.settings.icons[ tag ] || ''
+							}));
 						}
 					});
 

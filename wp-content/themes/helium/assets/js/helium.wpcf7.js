@@ -1,4 +1,4 @@
-!function($) {
+(function($) {
 
 	var old_wpcf7InitForm = $.fn.wpcf7InitForm;
 	$.fn.wpcf7InitForm = function() {
@@ -41,4 +41,4 @@
 		});
 	};
 
-}(jQuery);
+})(jQuery);

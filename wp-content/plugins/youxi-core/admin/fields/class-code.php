@@ -8,8 +8,8 @@ if ( ! defined( 'ABSPATH' ) ) {
  * This class renders a code editor form field.
  *
  * @package   Youxi Core
- * @author    Mairel Theafila <maimairel@gmail.com>
- * @copyright Copyright (c) 2013-2015, Mairel Theafila
+ * @author    Mairel Theafila <maimairel@yahoo.com>
+ * @copyright Copyright (c) 2013, Mairel Theafila
  */
 if( ! class_exists( 'Youxi_Code_Form_Field' ) ) {
 
@@ -45,23 +45,23 @@ if( ! class_exists( 'Youxi_Code_Form_Field' ) ) {
 				wp_register_script(
 					'codemirror', 
 					self::field_assets_url( "plugins/codemirror/codemirror{$suffix}.js" ), 
-					array(), '5.0.1', true
+					array(), '4.4', true
 				);
 				wp_register_script(
 					'codemirror-javascript', 
 					self::field_assets_url( "plugins/codemirror/mode/javascript{$suffix}.js" ), 
-					array( 'codemirror' ), '5.0.1', true
+					array( 'codemirror' ), '4.4', true
 				);
 				wp_register_script(
 					'codemirror-css', 
 					self::field_assets_url( "plugins/codemirror/mode/css{$suffix}.js" ), 
-					array( 'codemirror' ), '5.0.1', true
+					array( 'codemirror' ), '4.4', true
 				);
 
 				wp_enqueue_style(
 					'codemirror', 
 					self::field_assets_url( 'plugins/codemirror/codemirror.css' ), 
-					array(), '5.0.1'
+					array(), '4.4'
 				);
 
 				wp_enqueue_script(

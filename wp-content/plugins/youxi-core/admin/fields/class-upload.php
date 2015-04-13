@@ -8,8 +8,8 @@ if ( ! defined( 'ABSPATH' ) ) {
  * This class creates a file uploader using WordPress 3.5 media uploader.
  *
  * @package   Youxi Core
- * @author    Mairel Theafila <maimairel@gmail.com>
- * @copyright Copyright (c) 2013-2015, Mairel Theafila
+ * @author    Mairel Theafila <maimairel@yahoo.com>
+ * @copyright Copyright (c) 2013, Mairel Theafila
  */
 if( ! class_exists( 'Youxi_Upload_Form_Field' ) ) {
 
@@ -26,7 +26,6 @@ if( ! class_exists( 'Youxi_Upload_Form_Field' ) ) {
 				'upload_btn_text'   => __( 'Select File', 'youxi' ), 
 				'remove_btn_text'   => __( 'Remove File', 'youxi' ), 
 				'always_return_url' => false, 
-				'enable_embed'      => true, 
 				'library_type'      => ''
 			));
 
@@ -86,7 +85,6 @@ if( ! class_exists( 'Youxi_Upload_Form_Field' ) ) {
 				'data-title'             => esc_attr( $this->get_option( 'frame_title' ) ), 
 				'data-button-text'       => esc_attr( $this->get_option( 'frame_btn_text' ) ), 
 				'data-always-return-url' => esc_attr( $this->get_option( 'always_return_url' ) ), 
-				'data-enable-embed'      => esc_attr( $this->get_option( 'enable_embed' ) ), 
 				'data-library-type'      => esc_attr( $this->get_option( 'library_type' ) )
 			));
 		}

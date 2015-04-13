@@ -3,19 +3,13 @@
 Plugin Name: Youxi Page Builder
 Plugin URI: http://www.themeforest.net/user/nagaemas
 Description: This plugin adds the ability to build pages using a user friendly drag and drop interface that's tightly integrated into the WordPress editor. This plugin is completely independent, and only requires Youxi Shortcodes plugin to work. All content generated with the help of this plugin can still work as long the shortcode plugin is active.
-Version: 2.3
+Version: 2.2
 Author: YouxiThemes
 Author URI: http://www.themeforest.net/user/nagaemas
 License: Envato Marketplace Licence
 
 Changelog:
-2.3 - 09/03/2015
-- Fix Integration with WordPress 4.1+
-- Update: Translation files
-- Update: FontAwesome v4.3
-- Improvement: Remove explicit builder icon definitions
-
-2.2- 14/09/2014
+2.2 - 14/09/2014
 - Fix TinyMCE integration bug caused by WordPress 4.0 changes
 - Reduce dependency on jQuery-UI to prevent styling conflicts if jQuery-UI CSS is enqueud
 - Updated for Youxi Shortcode 3.1 new features compatibility
@@ -77,7 +71,7 @@ function youxi_builder_plugins_loaded() {
 
 	} else {
 
-		if( version_compare( YOUXI_SHORTCODE_VERSION, '3.1', '<' ) ) {
+		if( -1 === version_compare( YOUXI_SHORTCODE_VERSION, '3.1' ) ) {
 			if( ! class_exists( 'Youxi_Admin_Notice' ) ) {
 				require( plugin_dir_path( __FILE__ ) . 'class-admin-notice.php' );
 			}
@@ -87,7 +81,7 @@ function youxi_builder_plugins_loaded() {
 
 	}
 
-	define( 'YOUXI_BUILDER_VERSION', '2.3' );
+	define( 'YOUXI_BUILDER_VERSION', '2.2' );
 
 	define( 'YOUXI_BUILDER_DIR', plugin_dir_path( __FILE__ ) );
 	define( 'YOUXI_BUILDER_URL', plugin_dir_url( __FILE__ ) );

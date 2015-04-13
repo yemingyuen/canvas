@@ -1,9 +1,8 @@
 
-!function($) {
+// Youxi Justified Grids
+;(function( $, window, document, undefined ) {
 
 	"use strict";
-
-	var _win = $( window );
 	
 	/* ==========================================================================
 		Justified Image Grids. Algorithm thanks to Terry Mun
@@ -14,38 +13,34 @@
 		return this.init( options );
 	};
 
-	/* Core */
 	JustifiedGrids.prototype = {
 
 		defaults: {
-			selector: false
-			, ratio: false
-			, target: false
+			selector: false, 
+			ratio: false, 
+			target: false, 
 
-			, assignHeight: true
-			, assignBottomMargin: false
-			, margin: 0
-			, minWidth: 320
-			, minHeight: 240
+			assignHeight: true, 
+			margin: 0, 
+			minWidth: 320, 
+			minHeight: 240, 
 
-			, justifyLastRow: true
-			, immediateLayout: true
+			justifyLastRow: true, 
+			immediateLayout: true, 
 
-			, mainClass: 'justified-grids'
-			, gridBreakClass: 'justified-grids-break'
+			mainClass: 'justified-grids', 
+			failClass: 'justified-grids-fail', 
+			gridBreakClass: 'justified-grids-break', 
+			lastColumnClass: 'last-col', 
+			lastRowClass: 'last-row'
+		}, 
 
-			, itemClass: 'justified-grids-item'
-			, failClass: 'justified-grids-item-fail'
-			, lastColumnClass: 'last-col'
-			, lastRowClass: 'last-row'
-		}
-
-		, init: function( options ) {
+		init: function( options ) {
 
 			if( ! this.isInitialized ) {
 
 				this.instanceId = '.jg' + ( JustifiedGrids.instanceId++ );
-				this.options = $.extend( true, {}, this.defaults, options, this.extractOptions( this.element.data() ) );
+				this.options = $.extend( true, {}, this.defaults, options );
 
 				this.element.addClass( this.options.mainClass );
 				this.items = this.element.children( this.options.selector );
@@ -64,317 +59,14 @@
 
 				this.isInitialized = true;
 			}
-		}
-
-		, destroy: function() {
-
-			var _this = this
-				, _opts = this.options;
-
-			this.element.removeClass( _opts.mainClass );
-			this.element.find( '.' + _opts.gridBreakClass ).remove();
-			this.items
-				.css({ display: '', marginRight: '', marginBottom: '' })
-				.removeClass( [ _opts.itemClass, _opts.failClass, _opts.lastRowClass, _opts.lastColumnClass ].join( ' ' ) )
-				.each(function() {
-					var data = $.data( this, _this.instanceId );
-					$.removeData( this, _this.instanceId );
-					if( data && data.target && data.target.length ) {
-						data.target.css({ width: '', height: '' });
-					}
-				});
-
-			this.resizeTimeout && clearTimeout( this.resizeTimeout );
-			_win.off( this.instanceId );
-
-			$.removeData( this.element.get( 0 ), 'jg.instance' );
-
-			this.element = null;
-			this.items = null;
-			this.visibleItems = null;
-			this.activeFilter = null;
-			this.visibleLastRow = null;
-		}
-
-		, extractOptions: function( data ) {
-
-			var options = {};
-			$.each( data, function( key, value ) {
-				if( /^justified(.+)/.test( key ) ) {
-					key = key.match( /^justified(.+)/ )[1];
-					key = key.charAt(0).toLowerCase() + key.substr( 1 );
-					options[ key ] = value;
-				}
-			});
-			return options;
-		}
-
-		, layout: function() {
-
-			// Hide all items except for the visible items
-			this.items.not( this.visibleItems.css( 'display', '' ) )
-				.css( 'display', 'none' );
-
-			// Reset item classes
-			this.items.removeClass( [
-				this.options.lastRowClass, 
-				this.options.lastColumnClass
-			].join( ' ' ) );
-
-			// Process the visible items
-			this._doLayout();
-		}
-
-		, _bindHandlers: function() {
-
-			var _this = this;
-
-			// Refresh on window resize
-			_win.on( 'resize' + this.instanceId + ' orientationchange' + this.instanceId, function() {
-				_this.resizeTimeout && clearTimeout( _this.resizeTimeout );
-				_this.resizeTimeout = setTimeout(function() {
-					_this.layout();
-				}, 50 );
-			});
-		}
-
-		, _prepare: function( items ) {
-
-			var i, len, w, h
-				, ratio, item, target
-				, _opts = this.options;
-
-			if( ! items || ! items.length ) {
-				return;
-			}
-
-			// Only proceed with items inside this instance's items collection
-			items = this.items.filter( items );
-
-			// Image data are stored in an array with the index referencing the item index
-			for( i = 0, len = items.length; i < len; i++ ) {
-
-				target = ! _opts.target ? $( items[i] ) 
-					: $( items[i] ).find( _opts.target );
-
-				// Get the ratio from a callback
-				if( $.isFunction( _opts.ratio ) ) {
-
-					ratio = _opts.ratio.apply( this.element, [ items[i], _opts ] );
-
-				} else {
-
-					item = ! _opts.ratio ? $( items[i] ) 
-						: $( items[i] ).find( _opts.ratio );
-
-					if( item.length ) {
-
-						if( item.is( 'img' ) ) {
-
-							// Try getting ratio from the image width and height attributes
-							if( ( w = item.attr( 'width' ) ) && ( h = item.attr( 'height' ) ) ) {
-
-								ratio = parseInt( w ) / parseInt( h );
-
-							// Fallback, use nativeWidth/nativeHeight
-							} else if( item[0].complete ) {
-								ratio = JustifiedGrids.getImageRatio( item[0] );
-							}
-
-						} else if( ratio = item.data( 'aspect-ratio' ) ) {
-
-							ratio = ratio.split( ':' );
-							if( ratio.length >= 2 ) {
-								ratio = ( parseInt( ratio[0] ) / Math.max( 1, parseInt( ratio[1] ) ) );
-							}
-						}
-					}
-				}
-
-				// Failed retrieving ratio, assign hidden class to this item
-				if( ! ratio ) {
-					$( items[i] ).addClass( _opts.failClass );
-					continue;
-				} else {
-					$( items[i] ).addClass( _opts.itemClass );
-				}
-
-				$.data( items[i], this.instanceId, {
-					item: items[i], 
-					target: target, 
-					ratio: ratio, 
-					calcWidth: Math.max( _opts.minWidth, ratio * _opts.minHeight )
-				});
-			}
-		}
-
-		, _doLayout: function( items, keepBreaks ) {
-
-			var i, len, item
-				, elementWidth, currentWidth
-				, afterWidth, totalWidth
-				, calculatedWidth
-				, sumRatios
-				, rows, currentRow
-				, _opts = this.options
-				, attempts = 0;
-
-			if( ! items || ! items.length ) {
-				items = this.visibleItems;
-			}
-
-			if( items.length ) {
-
-				while( attempts++ < 3 ) {
-
-					// Initialize variables
-					totalWidth = 0;
-					sumRatios = 0;
-					rows = [];
-					currentRow = [];
-
-					if( ! elementWidth ) {
-						elementWidth = JustifiedGrids.getWidth( this.element );
-					}
-
-					// Do the algorithm
-					for( i = 0, len = items.length; i < len; i++ ) {
-
-						if( item = $.data( items[i], this.instanceId ) ) {
-
-							// Calculate the width respecting minHeight and minWidth
-							calculatedWidth = Math.min( item.calcWidth, elementWidth ) + _opts.margin;
-
-							/* 
-								The row is full, generate the row and move the current item to the next row.
-								Since the last row won't have margins, we'll try substracting the margin from totalWidth and 
-								check if it overflows in case a very wide margin is set.
-							*/
-							if( totalWidth + calculatedWidth - _opts.margin >= elementWidth ) {
-
-								rows.push({ row: currentRow, totalWidth: totalWidth, sumRatios: sumRatios });
-								totalWidth = 0;
-								sumRatios = 0;
-								currentRow = [];
-							}
-
-							// Keep filling the row
-							currentRow.push( item );
-
-							// Push the current ratio
-							sumRatios += item.ratio;
-
-							// Accumulate the filled row width
-							totalWidth += calculatedWidth;
-						}
-					}
-
-					// If there are still rows left
-					if( currentRow.length ) {
-						rows.push({ row: currentRow, totalWidth: totalWidth, sumRatios: sumRatios });
-					}
-
-					// Remove breaks if specified
-					if( ! keepBreaks ) {
-						this.element.find( '.' + _opts.gridBreakClass ).remove();
-					}
-
-					// Now layout all the items in each row
-					for( i = 0, len = rows.length; i < len; i++ ) {
-						this._layoutRow( rows[i], elementWidth, i + 1 == len );
-					}
-
-					// Check for overflows
-					currentWidth = JustifiedGrids.getWidth( this.element );
-					if( elementWidth != currentWidth ) {
-						elementWidth = currentWidth;
-					} else {
-						break;
-					}
-				}
-			}
-		}
-
-		, _layoutRow: function( rowData, elementWidth, isLastRow ) {
-
-			var row = rowData.row
-				, sumRatios = rowData.sumRatios
-				, availableWidth
-				, height, css, curr
-				, $currItem, i
-				, len = row.length
-				, _opts = this.options;
-
-			if( isLastRow && ! _opts.justifyLastRow ) {
-				elementWidth = rowData.totalWidth;
-			}
-
-			availableWidth = elementWidth;
-			if( _opts.margin ) {
-				availableWidth -= ( len - 1 ) * _opts.margin;
-			}
-
-			height = Math.max( _opts.minHeight, availableWidth / sumRatios );
-
-			// Process the row
-			for( i = 0; i < len; i++ ) {
-
-				curr = row[i];
-				$currItem = $( curr.item );
-
-				if( curr.target.length ) {
-
-					css = {};
-					css.width = ( height * curr.ratio );
-
-					// Only one item in this row
-					if( css.width > elementWidth ) {
-						css.width = elementWidth;
-						height = elementWidth / curr.ratio;
-					}
-
-					if( _opts.assignHeight ) {
-						css.height = height;
-					}
-
-					curr.target.css( css );
-				}
-
-				if( i + 1 == len ) {
-
-					$currItem.addClass( _opts.lastColumnClass ).css( 'marginRight', '' );
-
-					if( ! isLastRow ) {
-						$currItem.after( '<br class="' + _opts.gridBreakClass + '" />' );
-					}
-				} else {
-					$currItem.css( 'marginRight', _opts.margin );
-				}
-
-				if( ! isLastRow && _opts.assignBottomMargin ) {
-					$currItem.css( 'marginBottom', _opts.margin );
-				}
-			}
-
-			if( isLastRow ) {
-				this.visibleLastRow = $( row ).map(function() {
-					return this.item;
-				}).addClass( _opts.lastRowClass ).css( 'marginBottom', '' );
-			}
-		}
-	};
-
-	/* Filter and append methods */
-	$.extend( JustifiedGrids.prototype, {
+		}, 
 
 		append: function( items, layoutLastRow ) {
 
-			var visibleItems
-				, itemsNeedLayout
-				, _opts = this.options;
+			var visibleItems, itemsNeedLayout;
 
 			// Extract only proper items
-			items = $( items ).filter( _opts.selector );
+			items = $( items ).filter( this.options.selector );
 
 			// Add the items to the collection
 			this.items = this.items.add( items );
@@ -389,9 +81,6 @@
 			items.not( visibleItems.css( 'display', '' ) ).css( 'display', 'none' );
 
 			// Add the visible items to the visible items collection
-			if( ! this.visibleItems ) {
-				this.visibleItems = this.items;
-			}
 			this.visibleItems = this.visibleItems.add( visibleItems );
 
 			// Prepare items that need layout
@@ -401,18 +90,47 @@
 			if( itemsNeedLayout.length ) {
 
 				// If we need to layout last row
-				if( layoutLastRow || ! _opts.justifyLastRow ) {
+				if( layoutLastRow || ! this.options.justifyLastRow ) {
 					itemsNeedLayout = this.getLastRow().add( itemsNeedLayout );
 				}
 
-				this._doLayout( itemsNeedLayout, true );
+				this._doLayout( itemsNeedLayout );
 			}
 
 			// Return all items that need layout
 			return itemsNeedLayout;
-		}
+		}, 
 
-		, filter: function( filter, preventLayout ) {
+		destroy: function() {
+
+			var self = this;
+
+			this.element.removeClass( this.options.mainClass );
+			this.element.find( '.' + this.options.gridBreakClass ).remove();
+			this.items
+				.css({ display: '', marginRight: '' })
+				.removeClass( [ this.options.lastRowClass, this.options.lastColumnClass, this.options.failClass ].join( ' ' ) )
+				.each(function() {
+					var data = $.data( this, self.instanceId );
+					$.removeData( this, self.instanceId );
+					if( data && data.target && data.target.length ) {
+						data.target.css({ width: '', height: '' });
+					}
+				});
+
+			if( this.resizeTimeout ) clearTimeout( this.resizeTimeout );
+			$( window ).off( this.instanceId );
+
+			$.removeData( this.element.get( 0 ), 'jg.instance' );
+
+			this.element = null;
+			this.items = null;
+			this.visibleItems = null;
+			this.activeFilter = null;
+			this.visibleLastRow = null;
+		}, 
+
+		filter: function( filter, preventLayout ) {
 			
 			if( ! this.activeFilter || filter != this.activeFilter ) {
 
@@ -428,19 +146,272 @@
 					this.layout();
 				}
 			}
-		}
+		}, 
 
-		, getItems: function( visibleOnly ) {
+		getItems: function( visibleOnly ) {
 			return visibleOnly ? this.visibleItems : this.items;
-		}
+		}, 
 
-		, getLastRow: function() {
+		getLastRow: function() {
 			if( this.visibleLastRow && this.visibleLastRow.length ) {
 				return $( this.visibleLastRow );
 			}
 			return $();
+		}, 
+
+		layout: function() {
+
+			// Hide all items except for the visible items
+			this.items.not( this.visibleItems.css( 'display', '' ) )
+				.css( 'display', 'none' );
+
+			// Reset item classes
+			this.items.removeClass( [ this.options.lastRowClass, this.options.lastColumnClass ].join( ' ' ) );
+
+			// Process the visible items
+			this._doLayout();
+		}, 
+
+		_bindHandlers: function() {
+
+			var self = this;
+
+			// Refresh on window resize
+			$( window ).on( 'resize' + this.instanceId + ' orientationchange' + this.instanceId, function() {
+				if( self.resizeTimeout ) {
+					clearTimeout( self.resizeTimeout );
+				}
+				self.resizeTimeout = setTimeout(function() {
+					self.layout();
+				}, 50 );
+			});
+		}, 
+
+		_prepare: function( items ) {
+
+			var i
+			, len
+			, w, h
+			, ratio
+			, item
+			, target;
+
+			if( ! items || ! items.length ) {
+				return;
+			}
+
+			// Only proceed with items inside this instance's items collection
+			items = this.items.filter( items );
+
+			// Image data are stored in an array with the index referencing the item index
+			for( i = 0, len = items.length; i < len; i++ ) {
+
+				target = ! this.options.target ? $( items[i] ) 
+					: $( items[i] ).find( this.options.target );
+
+				// Get the ratio from a callback
+				if( $.isFunction( this.options.ratio ) ) {
+
+					ratio = this.options.ratio.apply( this.element, [ items[i], this.options ] );
+
+				} else {
+
+					item = ! this.options.ratio ? $( items[i] ) 
+						: $( items[i] ).find( this.options.ratio );
+
+					if( item.length ) {
+
+						if( item.is( 'img' ) ) {
+
+							// Try getting ratio from the image width and height attributes
+							if( ( w = item.attr( 'width' ) ) && ( h = item.attr( 'height' ) ) ) {
+
+								ratio = parseInt( w ) / parseInt( h );
+
+							// Fallback, use nativeWidth/nativeHeight
+							} else {
+
+								// Get the image ratio, only if it's already loaded
+								if( item[0].complete ) {
+									ratio = JustifiedGrids.getImageRatio( item[0] );
+								}
+							}
+
+						} else if( ratio = item.data( 'aspect-ratio' ) ) {
+
+							ratio = ratio.split( ':' );
+							if( ratio.length >= 2 ) {
+								ratio = ( parseInt( ratio[0] ) / Math.max( 1, parseInt( ratio[1] ) ) );
+							}
+						}
+					}
+				}
+
+				// Failed retrieving ratio, assign hidden class to this item
+				if( ! ratio ) {
+					$( items[i] ).addClass( this.options.failClass );
+					return;
+				}
+
+				$.data( items[i], this.instanceId, {
+					item: items[i], 
+					target: target, 
+					ratio: ratio, 
+					calcWidth: Math.max( this.options.minWidth, ratio * this.options.minHeight )
+				});
+			}
+		}, 
+
+		_doLayout: function( layoutItems ) {
+
+			var items = layoutItems;
+
+			if( ! items || ! items.length ) {
+				items = this.visibleItems;
+			}
+
+			// Bail if no items supplied
+			if( items.length ) {
+
+				var data
+				, i, len
+				, calculatedWidth
+				, attempts = 0
+				, elementWidth
+				, afterWidth
+				, totalWidth
+				, sumRatios
+				, rows
+				, currentRow;
+
+				do {
+
+					// Initialize variables
+					totalWidth = 0;
+					sumRatios = 0;
+					rows = [];
+					currentRow = [];
+
+					elementWidth = JustifiedGrids.getWidth( this.element );
+
+					// Remove all breaks first
+					if( ! layoutItems ) {
+						this.element.find( '.' + this.options.gridBreakClass ).remove();
+					}
+
+					// Do the algorithm
+					for( i = 0, len = items.length; i < len; i++ ) {
+
+						if( data = $.data( items[i], this.instanceId ) ) {
+
+							/*
+								Calculate the width following minHeight and minWidth. 
+								We'll try setting all items width and height as long as it doesn't overflow the container.
+							*/
+							calculatedWidth = Math.min( data.calcWidth, elementWidth );
+							calculatedWidth += this.options.margin;
+
+							/* The row is full, generate the row and move the current item to the next row */
+							if( totalWidth + calculatedWidth >= elementWidth ) {
+
+								/* 
+									Since the last row won't have margins, we'll try substracting the margin from totalWidth and 
+									check if it still overflows in case a very wide margin is set.
+								*/
+								if( totalWidth + calculatedWidth - this.options.margin >= elementWidth ) {
+
+									rows.push({ row: currentRow, totalWidth: totalWidth, sumRatios: sumRatios });
+									totalWidth = 0;
+									sumRatios = 0;
+									currentRow = [];
+								}
+							}
+
+							// Keep filling the row
+							currentRow.push( data );
+
+							// Push the current ratio
+							sumRatios += data.ratio;
+
+							// Accumulate the filled row width
+							totalWidth += calculatedWidth;
+						}
+					}
+
+					// If there are still rows left
+					if( currentRow.length ) {
+						rows.push({ row: currentRow, totalWidth: totalWidth, sumRatios: sumRatios });
+					}
+
+					// Now layout all the items in each row
+					for( i = 0, len = rows.length; i < len; i++ ) {
+						if( i + 1 == len ) {
+							this._layoutRow( rows[i], true, this.options.justifyLastRow ? elementWidth : rows[i].totalWidth );
+						} else {
+							this._layoutRow( rows[i], false, elementWidth );
+						}
+					}
+
+				} while( elementWidth != JustifiedGrids.getWidth( this.element ) && ++attempts < 3 );
+			}
+		}, 
+
+		_layoutRow: function( rowData, isLastRow, elementWidth ) {
+
+			var row = rowData.row, 
+				sumRatios  = rowData.sumRatios, 
+				availableWidth = elementWidth, 
+				height, css, curr, 
+				i, len = row.length;
+
+			availableWidth = elementWidth;
+			if( this.options.margin ) {
+				availableWidth -= ( len - 1 ) * this.options.margin;
+			}
+
+			height = Math.max( this.options.minHeight, availableWidth / sumRatios );
+
+			// Process the row
+			for( i = 0; i < len; i++ ) {
+
+				curr = row[i];
+
+				if( curr.target.length ) {
+
+					css = {};
+					css.width = ( height * curr.ratio );
+					if( css.width > elementWidth ) {
+						css.width = elementWidth;
+					}
+
+					if( this.options.assignHeight ) {
+						css.height = height;
+					}
+
+					curr.target.css( css );
+				}
+
+				if( i + 1 == len ) {
+
+					$( curr.item )
+						.addClass( this.options.lastColumnClass )
+						.css( 'marginRight', '' );
+
+					if( ! isLastRow ) {
+						$( curr.item ).after( '<div class="' + this.options.gridBreakClass + '"></div>' );
+					}
+				} else {
+					$( curr.item ).css( 'marginRight', this.options.margin );
+				}
+			}
+
+			if( isLastRow ) {
+				this.visibleLastRow = $( row ).map(function() {
+					return this.item;
+				}).addClass( this.options.lastRowClass );
+			}
 		}
-	});
+	};
 
 	$.fn.justifiedGrids = function( options ) {
 
@@ -504,7 +475,7 @@
 		
 		var computedStyle, width;
 
-		elem = $( elem )[0];
+		elem = $( elem ).get( 0 );
 		if( window.getComputedStyle ) {
 			computedStyle = getComputedStyle( elem );
 		} else {
@@ -521,4 +492,4 @@
 		return elem.offsetWidth;
 	}
 
-}( jQuery );
+})( jQuery, window, document );

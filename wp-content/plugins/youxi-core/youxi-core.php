@@ -3,33 +3,12 @@
 Plugin Name: Youxi Core
 Plugin URI: http://www.themeforest.net/user/nagaemas
 Description: Youxi Themes core plugin that is required by most Youxi Themes plugins to work. The plugin basically provides classes for form creation, post types, metaboxes and custom fields registration.
-Version: 1.4.1
+Version: 1.3.2
 Author: YouxiThemes
 Author URI: http://www.themeforest.net/user/nagaemas
 License: Envato Marketplace Licence
 
 Changelog:
-1.4.1 - 20/03/2015
-- Fix: Bug with page templates metabox toggling if not located in theme root
-
-1.4 - 24/01/2015
-- Addition: Gallery form field
-- Addition: Toggle metabox based on selected page template
-- Addition: Youxi_Likes class to add `Like This` functionality to posts
-- Addition: Ability to deactivate the embed state on upload form field
-- Improvement: Form field CSS and JS tweaks
-- Fix: Bug on image uploader field caused by criteria checks
-- Fix: Bug with TinyMCE on RTL languages
-- Update: Translation files
-- Update: FontAwesome v4.3
-- Update: Switchery v0.7.0
-- Update: Select2 v3.5.2
-- Update: CodeMirror v5.0.0
-- Update: jQuery.mousewheel v3.1.12
-
-1.3.3 - 07/01/2015
-- Fix: Bug on image uploader field that prevents saving when no image(s) are selected
-
 1.3.2 - 07/11/2014
 - Update: Switchery v0.6.3
 - Improvement: Metabox fields can now be saved as a scalar value
@@ -104,7 +83,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	die( 'Hi there!  I\'m just a plugin, not much I can do when called directly.' );
 }
 
-define( 'YOUXI_CORE_VERSION', '1.4.1' );
+define( 'YOUXI_CORE_VERSION', '1.3.2' );
 
 define( 'YOUXI_CORE_DIR', plugin_dir_path( __FILE__ ) );
 
@@ -115,7 +94,6 @@ define( 'YOUXI_CORE_LANG_DIR', dirname( plugin_basename( __FILE__ ) ) . '/langua
 require_once( YOUXI_CORE_DIR . '/class-metabox.php' );
 require_once( YOUXI_CORE_DIR . '/class-post-type.php' );
 require_once( YOUXI_CORE_DIR . '/class-taxonomy.php' );
-require_once( YOUXI_CORE_DIR . '/class-likes.php' );
 require_once( YOUXI_CORE_DIR . '/admin/class-js.php' );
 
 if( is_admin() ) {

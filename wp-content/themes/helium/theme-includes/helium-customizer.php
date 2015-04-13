@@ -746,7 +746,8 @@ class Helium_Customize_Manager extends Youxi_Customize_Manager {
 				'date' => __( 'Date', 'helium' ), 
 				'menu_order' => __( 'Menu Order', 'helium' ), 
 				'title' => __( 'Title', 'helium' ), 
-				'ID' => __( 'ID', 'helium' )
+				'ID' => __( 'ID', 'helium' ), 
+				'rand' => __( 'Random', 'helium' )
 			), 
 			'priority' => 7
 		));

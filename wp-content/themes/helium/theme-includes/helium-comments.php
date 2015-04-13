@@ -27,7 +27,7 @@ function helium_comment( $comment, $args, $depth ) {
 				<?php echo get_avatar( $comment, 120 ); ?>
 			</figure>
 			<div class="comment-text">
-				<header class="comment-head clearfix">
+				<header class="comment-head">
 					<h5 class="comment-author-name">
 						<span itemprop="creator"><?php comment_author_link(); ?></span>
 						<?php if( $comment->user_id === $post->post_author ):

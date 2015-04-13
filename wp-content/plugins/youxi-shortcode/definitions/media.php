@@ -31,7 +31,7 @@ function youxi_shortcode_google_map_cb( $atts, $content, $tag ) {
 	if( is_string( $atts['controls'] ) ) {
 		$controls = array();
 		foreach( explode( ',', $atts['controls'] ) as $control ) {
-			$controls[ $control ] = true;
+			$controls[ $control ] = 1;
 		}
 	} elseif( is_array( $atts['controls'] ) ) {
 		$controls = $atts['controls'];
@@ -192,7 +192,6 @@ function define_media_shortcodes( $manager ) {
 		'label' => __( 'Audio', 'youxi' ), 
 		'category' => 'media', 
 		'priority' => 0, 
-		'icon' => 'fa fa-music', 
 		'third_party' => true, 
 		'atts' => array(
 			'src' => array(
@@ -233,7 +232,6 @@ function define_media_shortcodes( $manager ) {
 		'label' => __( 'Embed', 'youxi' ), 
 		'category' => 'media', 
 		'priority' => 10, 
-		'icon' => 'fa fa-code', 
 		'insert_nl' => false, 
 		'third_party' => true, 
 		'content' => array(
@@ -250,7 +248,6 @@ function define_media_shortcodes( $manager ) {
 		'label' => __( 'Google Map', 'youxi' ), 
 		'category' => 'media', 
 		'priority' => 20, 
-		'icon' => 'fa fa-map-marker', 
 		'scripts' => array(
 			'gmap3' => array(
 				'src' => YOUXI_SHORTCODE_URL . "frontend/plugins/gmap/gmap3{$suffix}.js", 
@@ -345,6 +342,7 @@ function define_media_shortcodes( $manager ) {
 				'type' => 'checkboxlist', 
 				'label' => __( 'Controls', 'youxi' ), 
 				'description' => __( 'Choose here the controls to display on the map.', 'youxi' ), 
+				'uncheckable' => true, 
 				'choices' => array(
 					'pan' => __( 'Pan', 'youxi' ), 
 					'zoom' => __( 'Zoom', 'youxi' ), 
@@ -353,12 +351,26 @@ function define_media_shortcodes( $manager ) {
 					'street-view' => __( 'Street View', 'youxi' ), 
 					'overview-map' => __( 'Overview Map', 'youxi' )
 				), 
-				'std' => array(), 
+				'std' => array(
+					'pan' => false, 
+					'zoom' => false, 
+					'map-type' => false, 
+					'scale' => false, 
+					'street-view' => false, 
+					'overview-map' => false
+				), 
 				'serialize' => 'js:function( data ) {
-					return ( data || [] ).join(",");
+					return $.map( data, function( data, key ) {
+						if( !! parseInt( data ) )
+							return key;
+					});
 				}', 
 				'deserialize' => 'js:function( data ) {
-					return ( data + "" ).split(",");
+					var temp = {};
+					_.each( ( data + "" ).split( "," ), function( c ) {
+						temp[ c ] = 1;
+					});
+					return temp;
 				}'
 			), 
 			'markers' => array(
@@ -412,22 +424,33 @@ function define_media_shortcodes( $manager ) {
 		'label' => __( 'Slider', 'youxi' ), 
 		'category' => 'media', 
 		'priority' => 30, 
-		'icon' => 'fa fa-photo', 
 		'atts' => array(
 			'controls' => array(
 				'type' => 'checkboxlist', 
 				'label' => __( 'Controls', 'youxi' ), 
 				'description' => __( 'Choose here the slider controls to display.', 'youxi' ), 
+				'uncheckable' => true, 
 				'choices' => array(
 					'pagers' => __( 'Pagers', 'youxi' ), 
 					'arrows' => __( 'Arrows', 'youxi' )
 				), 
-				'std' => array( 'pagers' , 'arrows' ), 
+				'std' => array(
+					'pagers' => true, 
+					'arrows' => true
+				), 
 				'serialize' => 'js:function( data ) {
-					return ( data || [] ).join(",");
+					return $.map( data, function( val, key ) {
+						if( !! parseInt( val ) ) {
+							return key;
+						}
+					});
 				}', 
 				'deserialize' => 'js:function( data ) {
-					return ( data + "" ).split(",");
+					var temp = {};
+					_.each( ( data + "" ).split( "," ), function( c ) {
+						temp[ c ] = 1;
+					});
+					return temp;
 				}'
 			), 
 			'interval' => array(
@@ -445,16 +468,28 @@ function define_media_shortcodes( $manager ) {
 				'type' => 'checkboxlist', 
 				'label' => __( 'Behaviors', 'youxi' ), 
 				'description' => __( 'Choose here the behaviors of the slider.', 'youxi' ), 
+				'uncheckable' => true, 
 				'choices' => array(
 					'pause' => __( 'Pause on Hover', 'youxi' ), 
 					'wrap'  => __( 'Allow Wrapping', 'youxi' )
 				), 
-				'std' => array( 'wrap' ), 
+				'std' => array(
+					'pause' => false, 
+					'wrap' => true
+				), 
 				'serialize' => 'js:function( data ) {
-					return ( data || [] ).join(",");
+					return $.map( data, function( val, key ) {
+						if( !! parseInt( val ) ) {
+							return key;
+						}
+					});
 				}', 
 				'deserialize' => 'js:function( data ) {
-					return ( data + "" ).split(",");
+					var temp = {};
+					_.each( ( data + "" ).split( "," ), function( c ) {
+						temp[ c ] = 1;
+					});
+					return temp;
 				}'
 			)
 		), 
@@ -509,7 +544,6 @@ function define_media_shortcodes( $manager ) {
 		'label' => __( 'Twitter', 'youxi' ), 
 		'category' => 'media', 
 		'priority' => 40, 
-		'icon' => 'fa fa-twitter', 
 		'atts' => array(
 			'username' => array(
 				'type' => 'text', 
@@ -540,7 +574,6 @@ function define_media_shortcodes( $manager ) {
 		'label' => __( 'Video', 'youxi' ), 
 		'category' => 'media', 
 		'priority' => 50, 
-		'icon' => 'fa fa-video-camera', 
 		'third_party' => true, 
 		'atts' => array(
 			'src' => array(

@@ -4,10 +4,11 @@
 ============================================================================= */
 
 .site-wrap {
-	min-height: 100vh;
-	.transition-transform(.6s @ease-out-expo);
-	.header-open & {
-		.translate(@header-content-width, 0);
+	position: relative;
+	left: 0;
+	.transition(left .6s @ease-out-expo);
+	&.header-open {
+		left: @header-content-width;
 	}
 }
 
@@ -17,11 +18,12 @@
 
 .back-to-top {
 	position: fixed;
-	z-index: 410;
+	z-index: 999999;
 	right: 0;
 	bottom: 0;
-	.btn {
+	a {
 		font-size: @font-size-large;
+		display: block;
 		background-color: #fff;
 		.size(@content-nav-height, @content-nav-height);
 		line-height: @content-nav-height;
@@ -48,7 +50,7 @@
 	height: 100%;
 	top: 0;
 	left: 0;
-	z-index: 402;
+	z-index: 9999;
 	background-color: rgba(255, 255, 255, 0.95);
 	text-align: center;
 	visibility: hidden;
@@ -94,7 +96,10 @@
 	+ .search-entry {
 		border-top: 1px solid @base-border-color;
 	}
-	
+
+	.search-entry-wrap {
+		.clearfix();
+	}
 	.search-entry-thumbnail {
 		float: left;
 		width: 150px;
@@ -113,7 +118,7 @@
 		a {
 			color: @headings-color;
 			&:hover {
-				color: @brand-primary;
+				color: @link-color;
 			}
 		}
 	}
@@ -128,6 +133,7 @@
 	border: solid @base-border-color;
 	border-width: 0 0 1px 0;
 	font-size: @header-font-size-base;
+	min-height: 100%;
 }
 
 .header-content-top {
@@ -146,6 +152,7 @@
 	margin-top: -10px;
 	text-align: center;
 	ul {
+		&:extend(ul.inline-list all);
 		li {
 			margin-right: .6em;
 			a {
@@ -173,31 +180,14 @@
 }
 
 .header-content-bottom {
-	padding: @header-content-bottom-padding;
 	background-color: @header-bg;
 	border-right: 1px solid @base-border-color;
 	position: absolute;
-	width: @header-content-width;
 	top: 0;
 	right: 100%;
-
-	.header-open & {
-		position: static;
-		float: left;
-		margin-top: -@header-content-top-height;
-		margin-left: -@header-content-width;
-	}
-
-	&:before {
-		content: '';
-		position: absolute;
-		z-index: -1;
-		top: 0; bottom: 0;
-		left: -@header-content-width;
-		width: @header-content-width;
-		background-color: inherit;
-		border-right: inherit;
-	}
+	padding: @header-content-bottom-padding;
+	width: @header-content-width;
+	min-height: 100%;
 }
 
 .header-copyright {
@@ -215,67 +205,64 @@
 ============================================================================= */
 
 .header-toggle {
-	width: 44px;
-	height: 44px;
+	width: @header-content-top-height;
+	height: 100%;
 	text-align: center;
 	display: block;
 	position: absolute;
-	left: ( @header-content-top-height - 44px ) / 2;
-	top: ( @header-content-top-height - 44px ) / 2;
+	left: 0;
+	top: 0;
 	z-index: 1;
-	padding: 0 12px;
-	.transition-transform(.6s @ease-out-expo);
+	.transition(left .6s @ease-out-expo);
 
-	.header-open & {
-		.translate(-@header-content-top-height, 0);
+	.site-wrap.header-open & {
+		left: -@header-content-top-height;
 	}
 
-	span {
-		display: block;
-		position: relative;
-		height: 4px;
+	.hamburger {
+		display: inline-block;
+		vertical-align: top;
+		padding: ( @header-content-top-height - 4px ) / 2 0;
 		.transition(.3s);
-	}
-
-	> span {
 		> span {
-			&, 
-			&:before, 
-			&:after {
+			position: relative;
+
+			&, > span {
+				display: block;
+				width: 20px;
+				height: 4px;
 				background: #333;
 				border-radius: 3px;
+				.transition(0.3s);
 			}
 
-			&:before, 
-			&:after {
-				content: '';
+			> span {
 				position: absolute;
-				left: 0;
-				top: 0;
-				width: 100%;
-				height: 100%;
-			}
+				&:first-child {
+					top: -6px;
+				}
 
-			&:before {
-				.translate(0, -6px);
-			}
-
-			&:after {
-				.translate(0, 6px);
+				&:last-child {
+					top: 6px;
+				}
 			}
 		}
 	}
 
 	.header-open & {
-		> span {
+		.hamburger {
 			.scale(0.8);
 			> span {
 				background: transparent;
-				&:before {
-					.rotate(45deg);
-				}
-				&:after {
-					.rotate(-45deg);
+				> span {
+					top: 0;
+
+					&:first-child {
+						.rotate(45deg);
+					}
+					&:last-child {
+						.rotate(-45deg);
+					}
 				}
 			}
 		}
@@ -346,7 +333,7 @@
 
 			&.current-menu-item > a, 
 			> a:hover{
-				color: @brand-primary;
+				color: @link-color;
 			}
 
 			.subnav-close {
@@ -397,7 +384,6 @@
 
 .content-area-wrap {
 	.content-area {
-		overflow: hidden;
 		&.fullwidth {
 			&, .content-header-affix {
 				max-width: none;
@@ -423,6 +409,7 @@
 }
 
 .content-header-affix {
+	.clearfix();
 	text-align: center;
 	background-color: @content-header-bg;
 	border-bottom: 1px solid @base-border-color;
@@ -448,7 +435,20 @@
 .content-area {
 	.content-wrap, 
 	.content-header-affix > * {
-		.transition(opacity .35s @ease-out-quad);
+		.desktop & {
+			.transition(opacity .35s @ease-out-quad);
+		}
+	}
+
+	&.unloading {
+		.content-wrap, 
+		.content-header-affix > * {
+			opacity: 0;
+		}
+
+		.content-title.preloading {
+			opacity: 1;
+		}
 	}
 
 	&.beforeload {
@@ -466,6 +466,7 @@
 .content-box {
 	position: relative;
 	z-index: 1;
+	.clearfix();
 	background-color: @content-inner-bg;
 	border-bottom: 1px solid @base-border-color;
 
@@ -597,6 +598,7 @@
 	color: @content-nav-color;
 
 	ul {
+		&:extend(ul.plain-list);
 		display: table-row;
 		&, li {
 			height: 100%;
@@ -659,17 +661,11 @@
 				margin-right: 0;
 			}
 		}
-		
-		&.gridlist-infinite-link {
-			pointer-events: none;
-		}
 	}
 
 	&.disabled {
-		> a, 
-		> span {
-			color: #d5d5d5;
-			pointer-events: none;
+		> a, > span {
+			opacity: 0.2;
 		}
 	}
 
@@ -700,24 +696,25 @@
 
 .pages-nav {
 	font-size: @font-size-base;
-	
-	ul li {
-		a {
-			display: block;
-			.pages-nav-item {
-				background-color: #f8f8f8;
-				color: @text-muted;
+	ul {
+		&:extend(ul.inline-list all);
+		li {
+			a {
+				display: block;
+				.pages-nav-item {
+					background-color: #f8f8f8;
+					color: @text-muted;
+				}
+				&:hover .pages-nav-item {
+					color: #fff;
+					background-color: @brand-primary;
+				}
 			}
-			&:hover .pages-nav-item {
-				color: #fff;
-				background-color: @brand-primary;
+			+ li {
+				margin-left: 4px;
 			}
-		}
-		+ li {
-			margin-left: 4px;
 		}
 	}
-
 	.pages-nav-item {
 		display: inline-block;
 		padding: 9px 12px;
@@ -756,6 +753,8 @@
 	.item-sidebar {
 
 		.item-details {
+			&:extend(ul.plain-list);
+
 			color: @item-detail-color;
 			margin-top: @content-spacing-md;
 			padding-top: @item-detail-spacing;
@@ -842,7 +841,7 @@
 			a {
 				color: @headings-color;
 				&:hover {
-					color: @brand-primary;
+					color: @link-color;
 				}
 			}
 		}

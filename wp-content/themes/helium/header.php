@@ -16,7 +16,7 @@
 <body <?php body_class() ?> itemscope itemtype="http://schema.org/WebPage">
 
 	<div class="back-to-top">
-		<button class="btn btn-ui"><i class="fa fa-angle-up"></i></button>
+		<a href="#"><i class="fa fa-angle-up"></i></a>
 	</div>
 
 	<?php if( helium_get_option( 'show_search' ) ):
@@ -57,7 +57,7 @@
 						<div class="header-content-top">
 
 							<div class="header-links">
-								<ul class="inline-list"><?php
+								<ul><?php
 
 									if( helium_get_option( 'show_search' ) ):
 
@@ -96,9 +96,11 @@
 
 							</div>
 
-							<button class="header-toggle btn btn-ui">
-								<span><span></span></span>
-							</button>
+							<a class="header-toggle" href="#">
+								<span class="hamburger">
+									<span><span></span><span></span></span>
+								</span>
+							</a>
 
 						</div>
 

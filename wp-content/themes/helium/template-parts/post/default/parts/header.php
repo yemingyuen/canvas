@@ -24,7 +24,7 @@
 
 					?><div class="post-meta">
 
-						<ul class="post-meta-list inline-list"><?php
+						<ul class="post-meta-list"><?php
 
 							if( is_sticky() && ! is_single() ):
 

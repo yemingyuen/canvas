@@ -13,8 +13,8 @@ function helium_demo_content( $demo ) {
 			'screenshot' => get_template_directory_uri() . '/screenshot.png', 
 			'name' => __( 'Default', 'helium' ), 
 			'content' => array(
-				'xml' => get_template_directory() . '/demo/helium.wordpress.2015-03-27.xml', 
-				'widgets' => '{"header_widget_area":{"text-1":{"title":"About","text":"We\u2019re Helium, a web design agency. We love design and we try to make the web a better place.","filter":false},"social-widget-1":{"title":"We\'re Social","items":[{"url":"#","title":"Facebook","icon":"facebook"},{"url":"#","title":"Twitter","icon":"twitter"},{"url":"#","title":"Google+","icon":"googleplus"},{"url":"#","title":"Pinterest","icon":"pinterest"},{"url":"#","title":"RSS","icon":"rss"}]},"flickr-widget-1":{"title":"My Flickr Feed","flickr_id":"","limit":8},"instagram-widget-1":{"title":"Instagram Feed","username":"kinfolk","count":8},"twitter-widget-1":{"title":"Recent Tweets","username":"envato","count":2}}}', 
+				'xml' => get_template_directory() . '/demo/helium.wordpress.2014-11-08.xml', 
+				'widgets' => '{"header_widget_area":{"text-2":{"title":"About","text":"We\u2019re Helium, a web design agency. We love design and we try to make the web a better place.","filter":false},"social-widget-2":{"title":"We\'re Social","items":[{"url":"#","title":"Facebook","icon":"facebook"},{"url":"#","title":"Twitter","icon":"twitter"},{"url":"#","title":"Google+","icon":"googleplus"},{"url":"#","title":"Pinterest","icon":"pinterest"},{"url":"#","title":"RSS","icon":"rss"}]},"flickr-widget-2":{"title":"My Flickr Feed","flickr_id":"","limit":8},"instagram-widget-2":{"title":"Instagram Feed","username":"judesi_lau","count":8},"twitter-widget-2":{"title":"Recent Tweets","username":"envato","count":2}}}', 
 				'theme-options' => '', 
 				'frontpage_displays' => array(
 					'show_on_front'  => 'page', 
@@ -29,13 +29,12 @@ function helium_demo_content( $demo ) {
 	));
 }
 endif;
-add_filter( 'youxi_demo_importer_demos', 'helium_demo_content' );
 
-if( ! function_exists( 'helium_demo_importer_tasks' ) ):
+if( apply_filters( 'helium_show_demo_importer', true ) ) {
 
-function helium_demo_importer_tasks( $tasks ) {
-	unset( $tasks['customizer-options'] );
-	return $tasks;
+	if( is_readable( get_template_directory() . '/lib/importer/class-importer.php' ) ) {
+		
+		require( get_template_directory() . '/lib/importer/class-importer.php' );
+		add_filter( 'youxi_demo_importer_demos', 'helium_demo_content' );
+	}
 }
-endif;
-add_filter( 'youxi_demo_importer_tasks', 'helium_demo_importer_tasks' );

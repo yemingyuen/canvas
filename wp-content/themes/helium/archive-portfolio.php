@@ -51,10 +51,6 @@ if(  is_post_type_archive( youxi_portfolio_cpt_name() ) ) {
 			$grid_settings['posts_per_page'] = -1;
 		}
 
-		if( 'menu_order' == $grid_settings['orderby'] ) {
-			$grid_settings['order'] = 'ASC';
-		}
-
 		/* Prepare query arguments */
 		$_query = array(
 			'post_type'        => youxi_portfolio_cpt_name(), 
@@ -103,7 +99,7 @@ $wp_query = $the_query;
 
 		<div class="content-header">
 
-			<div class="content-header-affix clearfix"><?php
+			<div class="content-header-affix"><?php
 
 				?><h1 class="content-title">
 					<?php echo $the_title; ?>
@@ -158,7 +154,7 @@ $wp_query = $the_query;
 					?><div class="grid-list-filter">
 						<span class="filter-label"><?php esc_html_e( 'Filter', 'youxi' ); ?></span><?php
 
-						?><ul class="filter-items plain-list"><?php
+						?><ul class="filter-items"><?php
 
 							?><li>
 								<a href="<?php echo esc_url( get_post_type_archive_link( youxi_portfolio_cpt_name() ) ); ?>" class="filter active" data-filter="*">

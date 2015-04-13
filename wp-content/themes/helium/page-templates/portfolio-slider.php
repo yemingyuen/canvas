@@ -15,10 +15,6 @@ $slider_settings = wp_parse_args( $post->portfolio_slider_settings, array(
 	'order' => 'DESC'
 ));
 
-if( 'menu_order' == $slider_settings['orderby'] ) {
-	$slider_settings['order'] = 'ASC';
-}
-
 $featured_posts = get_posts(array(
 	'posts_per_page' => $slider_settings['posts_per_page'], 
 	'post_type' => youxi_portfolio_cpt_name(), 
@@ -44,7 +40,7 @@ get_header();
 
 		<div class="content-header">
 
-			<div class="content-header-affix clearfix"><?php
+			<div class="content-header-affix"><?php
 
 				the_title( '<h1 class="content-title">', '</h1>' ); ?>
 

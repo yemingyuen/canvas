@@ -3,20 +3,12 @@
 Plugin Name: Youxi Shortcode
 Plugin URI: http://www.themeforest.net/user/nagaemas
 Description: This plugin functions as a shortcode manager that by default registers a set of shortcodes, while not restricting the possibilities to extend and alter the shortcodes as you need through another plugin/theme. This plugin also provides a TinyMCE shortcode plugin to use on the WordPress editor.
-Version: 3.2
+Version: 3.1
 Author: YouxiThemes
 Author URI: http://www.themeforest.net/user/nagaemas
 License: Envato Marketplace Licence
 
 Changelog:
-3.2 - 12/03/2015
-- Added `icon` attribute to shortcodes
-- Added utility function to dump registered shortcodes
-- Improvement: Optimize serializer/deserializer scripts
-- Improvement: Don't minify serializers/deserializers when SCRIPT_DEBUG is enabled
-- Update: Specify the `icon` attribute on shortcode definitions
-- Update: Translation files
-
 3.1 - 07/11/2014
 - Added `shortcode_exists` method to the shortcode manager
 - Added several static methods to Youxi_Shortcode class to get shortcode definitions
@@ -104,7 +96,7 @@ function youxi_shortcode_plugins_loaded() {
 		return;
 	}
 
-	define( 'YOUXI_SHORTCODE_VERSION', '3.2' );
+	define( 'YOUXI_SHORTCODE_VERSION', '3.1' );
 
 	define( 'YOUXI_SHORTCODE_DIR', plugin_dir_path( __FILE__ ) );
 

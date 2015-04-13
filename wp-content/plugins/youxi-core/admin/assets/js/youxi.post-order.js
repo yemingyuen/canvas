@@ -4,8 +4,8 @@
  * This script contains the initialization code for the post order screen.
  *
  * @package   Youxi Core
- * @author    Mairel Theafila <maimairel@gmail.com>
- * @copyright Copyright (c) 2013-2015, Mairel Theafila
+ * @author    Mairel Theafila <maimairel@yahoo.com>
+ * @copyright Copyright (c) 2013, Mairel Theafila
  */
 ;(function( $, window, document, undefined ) {
 
@@ -24,7 +24,8 @@
 					wp.ajax.post( 'youxi-post-order-save', {
 						menu_order: orderResult, 
 						nonce: YouxiPostOrder.nonce
-					}).done( $.noop ).fail(function( error ) {
+					}).done(function( response ) {
+					}).fail(function( error ) {
 						console.log( error );
 					});
 				}

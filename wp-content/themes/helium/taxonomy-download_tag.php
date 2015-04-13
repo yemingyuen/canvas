@@ -11,7 +11,7 @@ get_header();
 
 		<div class="content-header">
 
-			<div class="content-header-affix clearfix"><?php
+			<div class="content-header-affix"><?php
 
 				?><h1 class="content-title">
 					<?php single_term_title( helium_get_option( 'edd_archive_page_title' ) . ': ' ); ?>

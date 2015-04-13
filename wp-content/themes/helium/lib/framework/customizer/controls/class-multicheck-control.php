@@ -1,28 +1,16 @@
 <?php
-if ( ! defined( 'ABSPATH' ) ) {
-	die();
-}
-
-/**
- * Youxi Customize Multicheck Control
- *
- * This class adds a multiple select control to WordPress customizer
- *
- * @package   Youxi Themes Theme Utils
- * @author    Mairel Theafila <maimairel@yahoo.com>
- * @copyright Copyright (c) 2014-2015, Mairel Theafila
- */
-
 class Youxi_Customize_Multicheck_Control extends WP_Customize_Control {
 
 	public $type = 'youxi_multicheck';
 
+	/**
+	 * Enqueue control related scripts/styles.
+	 *
+	 * @since 3.4.0
+	 */
 	public function enqueue() {
-
-		$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
-
 		wp_enqueue_script( 'youxi-multicheck-control', 
-			get_template_directory_uri() . "/lib/framework/customizer/controls/assets/js/multicheck-control{$suffix}.js", 
+			get_template_directory_uri() . '/lib/framework/customizer/controls/assets/js/multicheck-control.js', 
 			array( 'jquery' ), '1.0', true
 		);
 	}

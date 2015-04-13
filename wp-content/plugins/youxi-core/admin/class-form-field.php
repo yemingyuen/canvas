@@ -8,8 +8,8 @@ if ( ! defined( 'ABSPATH' ) ) {
  * This class is the base class for all form fields.
  *
  * @package   Youxi Core
- * @author    Mairel Theafila <maimairel@gmail.com>
- * @copyright Copyright (c) 2013-2015, Mairel Theafila
+ * @author    Mairel Theafila <maimairel@yahoo.com>
+ * @copyright Copyright (c) 2013, Mairel Theafila
  */
 if( ! class_exists( 'Youxi_Form_Field' ) ) {
 
@@ -315,7 +315,7 @@ if( ! class_exists( 'Youxi_Form_Field' ) ) {
 				);
 
 				if( ! wp_style_is( 'font-awesome', 'registered' ) ) {
-					wp_register_style( 'font-awesome', '//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css', array(), '4.3', 'screen' );
+					wp_register_style( 'font-awesome', '//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css', array(), '4.2', 'screen' );
 				}
 
 				wp_enqueue_style(
@@ -518,11 +518,6 @@ if( ! class_exists( 'Youxi_Form_Field' ) ) {
 							require( plugin_dir_path( __FILE__ ) . 'fields/class-colorpicker.php' );
 						}
 						return new Youxi_Colorpicker_Form_Field( $scope, $options );
-					case 'gallery':
-						if( ! class_exists( 'Youxi_Gallery_Form_Field' ) ) {
-							require( plugin_dir_path( __FILE__ ) . 'fields/class-gallery.php' );
-						}
-						return new Youxi_Gallery_Form_Field( $scope, $options );
 					case 'iconchooser':
 						if( ! class_exists( 'Youxi_Icon_Chooser_Form_Field' ) ) {
 							require( plugin_dir_path( __FILE__ ) . 'fields/class-icon-chooser.php' );

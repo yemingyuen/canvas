@@ -17,7 +17,7 @@
 		a {
 			color: @headings-color;
 			&:hover {
-				color: @brand-primary;
+				color: @link-color;
 			}
 		}
 	}
@@ -26,6 +26,7 @@
 		font-size: @post-meta-font-size;
 		color: @post-meta-color;
 		.post-meta-list {
+			&:extend(ul.inline-list all);
 			li {
 				vertical-align: top;
 				margin-right: @post-meta-list-horizontal-margin;
@@ -219,6 +220,7 @@
 		}
 
 		.comment-head {
+			.clearfix();
 			line-height: 1;
 
 			.comment-author-name {
@@ -265,6 +267,7 @@
 ============================================================================= */
 
 .post-comments-nav {
+	.clearfix();
 	margin-top: @content-wrap-inner-padding-vert * 0.45;
 	padding-top: @content-wrap-inner-padding-vert * 0.45;
 	border-top: 1px dotted @dotted-border-color;

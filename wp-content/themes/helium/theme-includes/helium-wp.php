@@ -296,15 +296,12 @@ add_action( 'wp_head', 'helium_add_favicon' );
 
 if( ! function_exists( 'helium_wp_enqueue_script' ) ):
 
-function helium_wp_enqueue_script() {
+function helium_wp_enqueue_script( $hook ) {
+
+	global $is_mobile, $post;
 	
-	/* Get theme version */
 	$wp_theme = wp_get_theme();
 	$theme_version = $wp_theme->exists() ? $wp_theme->get( 'Version' ) : false;
-
-	/* Get script debug status */
-	$script_debug = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG;
-	$suffix = $script_debug ? '' : '.min';
 
 	if( function_exists( 'is_customize_preview' ) ) {
 		$is_customize_preview = is_customize_preview();
@@ -315,28 +312,92 @@ function helium_wp_enqueue_script() {
 
 	$suffix = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? '' : '.min';
 
-	/* Parse Google Fonts */
-	$font_settings = Youxi_Google_Font::parse( helium_font_options(), helium_default_font_options() );
-
 	/* Register Core Styles */
-	wp_register_style( 'bootstrap', get_template_directory_uri() . "/assets/bootstrap/css/bootstrap{$suffix}.css", array(), '3.3.4', 'screen' );
+	wp_register_style( 'bootstrap', get_template_directory_uri() . "/assets/bootstrap/css/bootstrap{$suffix}.css", array(), '3.2.1', 'screen' );
 	wp_register_style( 'helium', get_stylesheet_uri(), array( 'bootstrap' ), $theme_version, 'screen' );
 
-	wp_register_style( 'google-fonts', Youxi_Google_Font::request_url( $font_settings['families'], $font_settings['subsets'] ), array(), $theme_version, 'screen' );
+	$font_vars = array();
+	$font_families = array();
+
+	foreach( array(
+		'headings_1234_font' => array(
+			'default' => 'Roboto:700', 
+			'include_weight_set' => true
+		), 
+		'headings_56_font' => array(
+			'default' => 'Roboto:500', 
+			'include_weight_set' => true
+		), 
+		'body_font' => array(
+			'default' => 'Roboto:300', 
+			'include_weight_set' => true
+		), 
+		'menu_font' => array(
+			'default' => 'Roboto:700'
+		), 
+		'blockquote_font' => array(
+			'default' => 'Lora:italic'
+		), 
+		'gridlist_title_font' => array(
+			'default' => 'Roboto:700'
+		), 
+		'gridlist_subtitle_font' => array(), 
+		'content_nav_font' => array(
+			'default' => 'Roboto:700'
+		)
+	) as $key => $args ) {
+
+		$option = helium_get_option( $key );
+		if( ( isset( $args['default'] ) && $args['default'] === $option ) || ! $option ) {
+			if( ! isset( $args['default'] ) ) {
+				continue;
+			}
+			$option = $args['default'];
+		}
+
+		$font = Youxi_Google_Font::parse( $option );
+
+		if( isset( $font['family'] ) ) {
+			$font_vars[ str_replace( '_', '-', $key ) . '-family' ] = sprintf( '"%s"', str_replace( '+', ' ', $font['family'] ) );
+
+			if( ! isset( $font_families[ $font['family'] ] ) ) {
+				$font_families[ $font['family'] ] = array();
+			}
+
+			if( isset( $font['variant'] ) ) {
+				if( isset( $args['include_weight_set'] ) && $args['include_weight_set'] ) {
+					$font_families[ $font['family'] ] = array_merge( $font_families[ $font['family'] ], 
+						Youxi_Google_Font::weight_set( $font['family'], $font['variant'] ) );
+				} else {
+					$font_families[ $font['family'] ][] = $font['variant'];
+				}
+				$font_families[ $font['family'] ] = array_unique( $font_families[ $font['family'] ] );
+			}
+
+			if( isset( $font['weight'] ) ) {
+				$font_vars[ str_replace( '_', '-', $key ) . '-weight' ] = $font['weight'];
+			}
+			if( isset( $font['style'] ) ) {
+				$font_vars[ str_replace( '_', '-', $key ) . '-style' ] = $font['style'];
+			}
+		}
+	}
+
+	wp_register_style( 'google-fonts', Youxi_Google_Font::request_url( $font_families ), array(), $theme_version, 'screen' );
 
 	/* Register Icons */
-	wp_register_style( 'fontawesome', '//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css', array(), '4.3.0', 'screen' );
+	wp_register_style( 'fontawesome', '//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css', array(), '4.2.0', 'screen' );
 
 	/* Register Plugin Styles */
-	wp_register_style( 'magnific-popup', get_template_directory_uri() . "/assets/plugins/mfp/mfp.css", array(), '1.0.0', 'screen' );
+	wp_register_style( 'magnific-popup', get_template_directory_uri() . "/assets/plugins/mfp/mfp{$suffix}.css", array(), '0.9.9', 'screen' );
 	wp_register_style( 'royalslider', get_template_directory_uri() . "/assets/plugins/royalslider/royalslider{$suffix}.css", array(), '1.0.5', 'screen' );
 
 	/* Enqueue Icons */
-	wp_enqueue_style( 'google-fonts' );
 	wp_enqueue_style( 'fontawesome' );
 
 	/* Enqueue Core Styles */
-	wp_enqueue_style( 'helium' );	
+	wp_enqueue_style( 'helium' );
+	wp_enqueue_style( 'google-fonts' );
 
 	/* Make sure the LESS compiler exists */
 	if( ! class_exists( 'Youxi_LESS_Compiler' ) ) {
@@ -349,34 +410,35 @@ function helium_wp_enqueue_script() {
 
 	/* Custom accent color styles */
 	if( helium_default_accent_color() !== $brand_primary ) {
-		wp_add_inline_style( 'bootstrap', $less_compiler->compile( '/assets/less/mods/bootstrap.less', array( 'bs-override' => array( 'brand-primary' => $brand_primary ) ) ) );
+		wp_add_inline_style( 'bootstrap', $less_compiler->compile( '/assets/less/overrides/bootstrap.less', array( 'bs-override' => array( 'brand-primary' => $brand_primary ) ) ) );
+		wp_add_inline_style( 'helium', $less_compiler->compile( '/assets/less/overrides/core.less', array( 'core-override' => array( 'brand-primary' => $brand_primary ) ) ) );
 	}
 
 	/* Custom theme styles */
 	$header_logo_height = helium_get_option( 'logo_height' ) . 'px';
 
 	wp_add_inline_style( 'helium', $less_compiler->compile( '/assets/less/mods/theme-options.less', array(
-		'theme-options' => array_merge(
-			array( 'logo-height' => $header_logo_height, 'brand-primary' => $brand_primary ), 
-			helium_css_to_less_vars( $font_settings['css'] )
-		)
+		'theme-options' => array_merge( array( 'logo-height' => $header_logo_height ), $font_vars )
 	)));
 
 	/* Custom user styles */
 	wp_add_inline_style( 'helium', helium_get_option( 'custom_css' ) );
 
-	if( $script_debug ) {
+	if( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) {
+
+		/* Register core scripts */
 		wp_register_script( 'helium-plugins', get_template_directory_uri() . "/assets/js/helium.plugins.js", array( 'jquery' ), $theme_version, true );
-		wp_register_script( 'helium-gridlist', get_template_directory_uri() . "/assets/js/helium.gridlist.js", array( 'jquery' ), $theme_version, true );
-		wp_register_script( 'helium', get_template_directory_uri() . "/assets/js/helium.setup.js", array( 'jquery', 'helium-plugins', 'helium-gridlist' ), $theme_version, true );
+		wp_register_script( 'helium', get_template_directory_uri() . "/assets/js/helium.setup.js", array( 'jquery' ), $theme_version, true );
+		wp_register_script( 'helium-gridlist', get_template_directory_uri() . "/assets/js/helium.gridlist.js", array( 'helium' ), $theme_version, true );
+
 	} else {
 		wp_register_script( 'helium', get_template_directory_uri() . "/assets/js/helium.min.js", array( 'jquery' ), $theme_version, true );
 	}
 
 	/* Register plugin scripts */
-	wp_register_script( 'magnific-popup', get_template_directory_uri() . "/assets/plugins/mfp/jquery.mfp-1.0.0{$suffix}.js", array( 'jquery' ), '1.0.0', true );
-	wp_register_script( 'isotope', get_template_directory_uri() . "/assets/plugins/isotope/isotope.pkgd{$suffix}.js", array( 'jquery' ), '2.1.1', true );
-	wp_register_script( 'royalslider', get_template_directory_uri() . "/assets/plugins/royalslider/jquery.royalslider-9.5.7.min.js", array( 'jquery' ), '9.5.7', true );
+	wp_register_script( 'magnific-popup', get_template_directory_uri() . "/assets/plugins/mfp/jquery.mfp-0.9.9{$suffix}.js", array( 'jquery' ), '0.9.9', true );
+	wp_register_script( 'isotope', get_template_directory_uri() . "/assets/plugins/isotope/isotope.pkgd{$suffix}.js", array( 'jquery' ), '2.1.0', true );
+	wp_register_script( 'royalslider', get_template_directory_uri() . "/assets/plugins/royalslider/jquery.royalslider-9.5.6.min.js", array( 'jquery' ), '9.5.6', true );
 	wp_register_script( 'gmap3', get_template_directory_uri() . "/assets/plugins/gmap/gmap3{$suffix}.js", array( 'jquery' ), '6.0.0.', true );
 
 	/* AddThis widget script */
@@ -386,14 +448,20 @@ function helium_wp_enqueue_script() {
 	wp_localize_script( 'helium', '_helium', apply_filters( 'helium_js_vars', array(
 		'ajaxUrl'         => admin_url( 'admin-ajax.php' ), 
 		'homeUrl'         => home_url( '/' ), 
+		'isMobile'        => $is_mobile, 
 		'ajaxNavigation'  => helium_get_option( 'ajax_navigation' ) && ! $is_customize_preview ? array(
 			'scrollTop'   => helium_get_option( 'ajax_navigation_scroll_top' ), 
 			'loadingText' => helium_get_option( 'ajax_navigation_loading_text' ), 
-			'excludeUrls' => array( includes_url(), content_url(), wp_login_url(), plugins_url(), admin_url() )
+			'excludeUrls' => array( includes_url(), content_url(), wp_login_url(), plugins_url(), network_admin_url() )
 		) : false
 	)));
 
-	/* Enqueue core script */
+	/* Enqueue core scripts */
+	if( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) {
+		wp_enqueue_script( 'helium-plugins' );
+		wp_enqueue_script( 'helium-gridlist' );
+	}
+
 	wp_enqueue_script( 'helium' );
 
 	/* Enqueue plugins */
@@ -422,8 +490,8 @@ function helium_wp_enqueue_script() {
 		wp_localize_script( 'addthis', 'addthis_config', $addthis_config );
 	}
 
-	/* Enqueue comment-reply */
-	if( is_singular( 'post' ) && comments_open() && get_option( 'thread_comments' ) ) {
+	/* Enqueue comment-reply script */
+	if( is_a( $post, 'WP_Post' ) && post_type_supports( $post->post_type, 'comments' ) && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
 }

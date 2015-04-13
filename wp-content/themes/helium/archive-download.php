@@ -96,7 +96,7 @@ $wp_query = $the_query;
 
 		<div class="content-header">
 
-			<div class="content-header-affix clearfix"><?php
+			<div class="content-header-affix"><?php
 
 				?><h1 class="content-title">
 					<?php echo $the_title; ?>
@@ -145,7 +145,7 @@ $wp_query = $the_query;
 					?><div class="grid-list-filter">
 						<span class="filter-label"><?php esc_html_e( 'Filter', 'youxi' ); ?></span><?php
 
-						?><ul class="filter-items plain-list"><?php
+						?><ul class="filter-items"><?php
 
 							?><li>
 								<a href="<?php echo esc_url( get_post_type_archive_link( 'download' ) ); ?>" class="filter active" data-filter="*">

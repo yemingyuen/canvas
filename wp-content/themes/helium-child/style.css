@@ -10,7 +10,10 @@ Version: 1.0
 /* =Theme customization starts here
 ------------------------------------------------------- */
 
-.toc_list {
-    list-style: outside none none;
-    padding: 0;
+.fixed-inline {
+    position: fixed;
+}
+
+.content-box .content-wrap-inner {
+	padding: 0 !important;
 }

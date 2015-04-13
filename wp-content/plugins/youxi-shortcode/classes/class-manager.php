@@ -595,7 +595,7 @@ $js = ';(function( $ ) {
 
 ?><script type="text/javascript">
 /* <![CDATA[ */
-<?php echo ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? $js : Youxi_JS::minify( $js ) ); ?>
+<?php echo Youxi_JS::minify( $js ); ?>
 /* ]]> */
 </script>
 		<?php endif;
@@ -673,52 +673,6 @@ $js = ';(function( $ ) {
 				echo '</div>';
 			echo '</div>';
 		echo '</script>'."\n\n";
-	}
-
-	/**
-	 * Helper function to create a table of the shortcodes
-	 */
-	public function dump_table() {
-		
-		foreach( $this->categories as $category ) {
-
-			if( ! empty( $category->shortcodes ) ): ?>
-
-<h4><?php echo $category->label ?></h4>
-
-<table class="table table-striped table-bordered">
-	<thead>
-		<tr>
-			<th>Tag</th>
-			<th>Description</th>
-		</tr>
-	</thead>
-	<tbody><?php foreach( $category->shortcodes as $shortcode ): if( ! $shortcode->internal ): ?>
-
-		<tr>
-			<td>[<?php echo $shortcode->tag ?>]</td>
-			<td>
-				<?php if( $shortcode->atts ):
-
-				?><strong>Attributes: </strong><br>
-				<ul><?php foreach( $shortcode->atts as $attribute => $val ): ?>
-					
-					<li>
-						<strong><?php echo $attribute ?></strong><?php if( isset( $val['description'] ) ):
-						?>:<br>
-						<p><?php echo $val['description'] ?></p><?php endif; ?>
-
-					</li><?php endforeach; ?>
-
-				</ul><?php else: echo '<strong>No Attributes</strong>'; endif; ?>
-
-			</td>
-		</tr><?php endif; endforeach; ?>
-
-	</tbody>
-</table>
-			<?php endif;
-		}
 	}
 
 	/**

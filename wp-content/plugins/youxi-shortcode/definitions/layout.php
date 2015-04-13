@@ -123,7 +123,6 @@ function define_layout_shortcodes( $manager ) {
 		'label' => __( 'Container', 'youxi' ), 
 		'category' => 'layout', 
 		'priority' => 20, 
-		'icon' => 'fa fa-align-justify', 
 		'callback' => 'youxi_shortcode_container_cb'
 	));
 
@@ -134,7 +133,6 @@ function define_layout_shortcodes( $manager ) {
 		'label' => __( 'Fullwidth', 'youxi' ), 
 		'category' => 'layout', 
 		'priority' => 30, 
-		'icon' => 'fa fa-arrows-h', 
 		'callback' => 'youxi_shortcode_fullwidth_cb'
 	));
 
@@ -147,7 +145,6 @@ function define_layout_shortcodes( $manager ) {
 			'label' => __( 'Column', 'youxi' ), 
 			'category' => 'layout', 
 			'priority' => 40, 
-			'icon' => 'fa fa-th', 
 			'callback' => 'youxi_shortcode_columns_cb', 
 			'atts' => array(
 				'size' => array(
@@ -211,7 +208,6 @@ function define_layout_shortcodes( $manager ) {
 					'label' => $args['label'], 
 					'category' => 'layout', 
 					'priority' => 40 + ( $i * 10 ), 
-					'icon' => 'fa fa-th', 
 					'callback' => "youxi_shortcode_{$tag}_cb"
 				));
 			}
@@ -226,7 +222,6 @@ function define_layout_shortcodes( $manager ) {
 		'label' => __( 'Row', 'youxi' ), 
 		'category' => 'layout', 
 		'priority' => 160, 
-		'icon' => 'fa fa-align-justify', 
 		'callback' => 'youxi_shortcode_row_cb'
 	));
 
@@ -237,7 +232,6 @@ function define_layout_shortcodes( $manager ) {
 		'label' => __( 'Separator', 'youxi' ), 
 		'category' => 'layout', 
 		'priority' => 170, 
-		'icon' => 'fa fa-arrows-v', 
 		'callback' => 'youxi_shortcode_separator_cb'
 	));
 }

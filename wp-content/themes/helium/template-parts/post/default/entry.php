@@ -1,6 +1,6 @@
 <article <?php post_class(); ?> itemscope itemtype="http://schema.org/Article">
 
-	<div class="content-box clearfix">
+	<div class="content-box">
 
 		<?php get_template_part( 'template-parts/post/default/parts/header', get_post_format() ); ?>
 		<?php get_template_part( 'template-parts/post/default/media/media', get_post_format() ); ?>
@@ -31,7 +31,7 @@
 							<?php if( is_single() ):
 
 								wp_link_pages(array(
-									'before' => '<section class="posts-pages-nav"><nav class="pages-nav"><ul class="inline-list">', 
+									'before' => '<section class="posts-pages-nav"><nav class="pages-nav"><ul>', 
 									'after' => '</ul></nav></section>', 
 									'separator' => '', 
 									'pagelink' => '<span class="pages-nav-item">%</span>'

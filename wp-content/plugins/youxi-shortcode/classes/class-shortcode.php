@@ -63,14 +63,6 @@ final class Youxi_Shortcode {
 	private $callback;
 
 	/**
-	 * The shortcode icon class name
-	 *
-	 * @access private
-	 * @var string
-	 */
-	private $icon;
-
-	/**
 	 * Array of required JavaScripts required by this shortcode
 	 *
 	 * @access private
@@ -212,11 +204,6 @@ final class Youxi_Shortcode {
 		 * callback The callback of the shortcode
 		 */
 		'callback' => null, 
-
-		/**
-		 * icon The icon of the shortcode
-		 */
-		'icon' => '', 
 
 		/**
 		 * scripts Array of required JavaScripts required by this shortcode
@@ -472,14 +459,16 @@ final class Youxi_Shortcode {
 	public function get_args( $include = '*', $single = false ) {
 
 		/* Filter the allowed shortcode args */
-		$public_args = apply_filters( 'youxi_shortcode_allowed_shortcode_args', array( 'label', 'icon', 'inline', 'insert_nl', 'instant', 'escape', 'internal', 'third_party' ) );
+		$public_args = apply_filters( 'youxi_shortcode_allowed_shortcode_args', array( 'label', 'inline', 'insert_nl', 'instant', 'escape', 'internal', 'third_party' ) );
 
 		/* Get all accessible object vars */
 		$class_keys  = array_keys( get_object_vars( $this ) );
 
 		/* Validate the included args */
-		if( '*' == $include || ! is_array( $include ) ) {
+		if( '*' == $include ) {
 			$include = $public_args;
+		} else {
+			$include = (array) $include;
 		}
 
 		/* Intersect the includes to the allowed args */
@@ -522,7 +511,7 @@ final class Youxi_Shortcode {
 	 */
 	public function __get( $name ) {
 
-		if( preg_match( '/^(label|category|priority|tag|atts|content|callback|icon|s(cript|tyle)s|fieldsets|(de)?serializers|in(line|sert_nl|ternal)|third_party|escape)$/', $name ) ) {
+		if( preg_match( '/^(label|category|priority|tag|atts|content|callback|s(cript|tyle)s|fieldsets|(de)?serializers|in(line|sert_nl|ternal)|third_party|escape)$/', $name ) ) {
 			return $this->$name;
 		}
 

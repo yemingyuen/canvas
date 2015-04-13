@@ -2,19 +2,13 @@
 /*
 Plugin Name: Youxi Portfolio
 Plugin URI: http://www.themeforest.net/user/nagaemas
-Description: This plugin registers a portfolio custom post type and optionally registers a shortcode to ease displaying the portfolio. Through the filters and actions provided, you can freely add, modify or remove any post type argument/field.
-Version: 1.3
+Description: This plugin registers a portfolio custom post type and optionally registers a shortcode to ease displaying the portfolio. Through the filters and actions provided, you can freely add, modify or remove any post type argument/field. On version 1.2, a new Gallery post type useful for displaying photo/image galleries was introduced.
+Version: 1.2
 Author: YouxiThemes
 Author URI: http://www.themeforest.net/user/nagaemas
 License: Envato Marketplace Licence
 
 Changelog:
-1.3 - 12/03/2015
-- Move `gallery` post type into separate plugin
-- Rename [portfolio] shortcode to [portfolio_entries]
-- Remove the `exclude` attr from portfolio shortcode
-- Updated translation files
-
 1.2 - 18/12/2014
 - Introduce `gallery` post type
 - Move all portfolio functions to `Youxi_Portfolio` class
@@ -59,7 +53,7 @@ function youxi_portfolio_plugins_loaded() {
 		return;
 	}
 
-	define( 'YOUXI_PORTFOLIO_VERSION', '1.3' );
+	define( 'YOUXI_PORTFOLIO_VERSION', '1.2' );
 
 	define( 'YOUXI_PORTFOLIO_DIR', plugin_dir_path( __FILE__ ) );
 
@@ -71,6 +65,7 @@ function youxi_portfolio_plugins_loaded() {
 	load_plugin_textdomain( 'youxi', false, YOUXI_PORTFOLIO_LANG_DIR );
 
 	require_once( YOUXI_PORTFOLIO_DIR . 'class-portfolio.php' );
+	require_once( YOUXI_PORTFOLIO_DIR . 'class-gallery.php' );
 	
 	require_once( YOUXI_PORTFOLIO_DIR . 'portfolio-shortcode.php' );
 }

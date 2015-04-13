@@ -26,6 +26,10 @@ jQuery.Youxi = jQuery.Youxi || {};
 
 		template: wp.template( 'youxi-builder-wrapper' ), 
 
+		fixedHeights: {}, 
+
+		fixedMode: 'none', 
+
 		initialize: function() {
 			_.defaults( this.options, {
 				editorId: 'content'
@@ -40,23 +44,24 @@ jQuery.Youxi = jQuery.Youxi || {};
 			this.listenTo( this, 'show', this.importFromEditor );
 			this.listenTo( this.root, 'insert:tinymce', this.exportToEditor );
 
-			this.listenTo( this, 'show', this.hijackEditorExpand );
+			this.listenTo( this, 'show', this.disableEditorExpand );
 			this.listenTo( this, 'hide', this.restoreEditorExpand );
 		}, 
 
-		hijackEditorExpand: function() {
+		disableEditorExpand: function() {
 			this.editorExpandEnabled = ( 'on' == window.getUserSetting( 'editor_expand' ) );
-			window.editorExpand.off();
-			$( '#editor-expand-toggle' ).off( 'change' );
+			if( window.editorExpand && _.isFunction( window.editorExpand.off ) ) {
+				window.editorExpand.off();
+			}
 			$( document.getElementById( this.options.editorId ) ).hide();
 		}, 
 
 		restoreEditorExpand: function() {
-			if( builder.editorExpandChange ) {
-				$( '#editor-expand-toggle' ).on( 'change.editor-expand', builder.editorExpandChange );
+			if( this.editorExpandEnabled ) {
+				if( window.editorExpand && _.isFunction( window.editorExpand.on ) ) {
+					window.editorExpand.on();
+				}
 			}
-			this.editorExpandEnabled && window.editorExpand.on();
-			delete this.editorExpandEnabled;
 		}, 
 
 		createMenu: function() {

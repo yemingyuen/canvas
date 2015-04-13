@@ -6,7 +6,7 @@
 
 		<div class="content-header">
 
-			<div class="content-header-affix clearfix"><?php
+			<div class="content-header-affix"><?php
 
 					$the_title = '';
 

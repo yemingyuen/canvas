@@ -8,8 +8,8 @@ if ( ! defined( 'ABSPATH' ) ) {
  * This class helps creating a dropdown list for selecting icon fonts.
  *
  * @package   Youxi Core
- * @author    Mairel Theafila <maimairel@gmail.com>
- * @copyright Copyright (c) 2013-2015, Mairel Theafila
+ * @author    Mairel Theafila <maimairel@yahoo.com>
+ * @copyright Copyright (c) 2013, Mairel Theafila
  */
 if( ! class_exists( 'Youxi_Icon_Chooser_Form_Field' ) ) {
 
@@ -49,14 +49,14 @@ if( ! class_exists( 'Youxi_Icon_Chooser_Form_Field' ) ) {
 					'select2', 
 					self::field_assets_url( "plugins/select2/select2{$suffix}.js" ), 
 					array( 'jquery' ), 
-					'3.5.2', 
+					'3.5.1', 
 					true
 				);
 				wp_enqueue_style(
 					'select2', 
 					self::field_assets_url( 'plugins/select2/select2.css' ), 
 					array(), 
-					'3.5.2'
+					'3.5.1'
 				);
 
 				wp_enqueue_script(

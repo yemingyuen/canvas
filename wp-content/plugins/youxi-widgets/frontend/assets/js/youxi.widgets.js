@@ -48,10 +48,9 @@
 
 			$( '.instagram-feed' ).each(function() {
 
-				var _this = this, 
-					options = $.extend( { username: '', count: 8, imageSize: 'thumbnail' }, $( this ).data() );				
+				var self = this;
 
-				$.post( _youxiWidgets.ajaxUrl, { action: config.ajaxAction, instagram: options }, $.noop, 'json' )
+				$.post( _youxiWidgets.ajaxUrl, { action: config.ajaxAction, instagram: $( this ).data() }, $.noop, 'json' )
 				
 					.done(function( response ) {
 
@@ -61,22 +60,19 @@
 
 								.html( $.map( response.data, function( data ) {
 
-									var link = data.link || '#';
-									var caption = data.caption && data.caption.text || '';
-									var imageUrl = data.images && data.images.hasOwnProperty( options.imageSize ) ? data.images[ options.imageSize ].url : '';
-
-									/* Make sure image urls are in the same URL scheme */
-									imageUrl = imageUrl.replace( /^https?:\/\//, '//' );
-
 									return $( document.createElement( 'li' ) )
-										.html( $( document.createElement( 'a' ) )
-											.attr( { href: link, title: caption, target: '_blank' } )
-											.html( $( document.createElement( 'img' ) ) .attr( { src: imageUrl, alt: caption } ) )
-										);
-								})).prependTo( _this );
+										.html( $( document.createElement( 'a' ) ).attr({
+											href: data.link || '#', 
+											title: data.caption && data.caption.text || '', 
+											target: '_blank'
+										}).html( $( document.createElement( 'img' ) ).attr({
+											src: data.images && data.images.thumbnail && data.images.thumbnail.url || '', 
+											alt: data.caption && data.caption.text || ''
+										})));
+								})).prependTo( self );
 
 						} else {
-							$( _this ).html( '<div class="alert alert-danger">' + 
+							$( self ).html( '<div class="alert alert-danger">' + 
 								( response.data ? response.data.error_message : '' ) + '</div>' );
 						}
 					});

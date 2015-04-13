@@ -98,9 +98,6 @@
 .youxi-form .youxi-form-label .required {
   color: #f00;
 }
-.youxi-form .youxi-form-label:empty {
-  display: none;
-}
 /* Form Inputs
 ================================================== */
 .youxi-form .youxi-form-item {
