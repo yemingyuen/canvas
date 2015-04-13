@@ -12,10 +12,14 @@ Version: 1.0
 
 @media (min-width: 992px) {
 .content-box .content-wrap-inner {
-  padding: 40px 0;
+  padding: 15px 0;
  }
 .fixnav {
-	padding: 14px;
+	width: 15%;
+	right: 35px;
+	margin-top: 14px;
+	padding: 5px 5px 8px;
+	background-color: #fbfbfb;
 	border: 1px solid #ccc;
 }
 
@@ -34,7 +38,7 @@ Version: 1.0
 }
 
 .content-box .content-wrap-inner {
-  padding: 40px 0;
+  padding: 15px 0;
 }
 
 #Contents {
@@ -42,6 +46,12 @@ Version: 1.0
 	text-align: left;
 }
 
+.breadcrumbs{
+	margin-left: 40px;
+	line-height: 60px;
+	vertical-align: middle;
+}
+
 .entry-title-page {
 	margin-left: 20px;
-}
+	}
