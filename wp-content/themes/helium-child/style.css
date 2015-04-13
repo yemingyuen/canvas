@@ -10,10 +10,38 @@ Version: 1.0
 /* =Theme customization starts here
 ------------------------------------------------------- */
 
-.fixed-inline {
-    position: fixed;
+@media (min-width: 992px) {
+.content-box .content-wrap-inner {
+  padding: 40px 0;
+ }
+.fixnav {
+	padding: 14px;
+	border: 1px solid #ccc;
+}
+
+}
+
+
+@media (min-width: 768px and media="screen"){
+.content-box .content-wrap-inner {
+  padding: 75px 55px;
+}
+}
+@media (min-width: 480px){
+.content-box .content-wrap-inner {
+  padding: 65px 45px;
+}
 }
 
 .content-box .content-wrap-inner {
-	padding: 0 !important;
+  padding: 40px 0;
+}
+
+#Contents {
+	margin: 0;
+	text-align: left;
+}
+
+.entry-title-page {
+	margin-left: 20px;
 }
