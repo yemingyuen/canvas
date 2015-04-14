@@ -50,7 +50,7 @@ if( have_posts() ): the_post();
 							<div class="col-lg-12">
 							<?php endif; ?>
 							<div class="entry-title-page">
-								<?php the_title('<h2 class="bordered">', '</h2>'); ?>
+								<?php the_title('<h3 class="bordered no-margin">', '</h3>'); ?>
 							</div>
 								<div class="entry-content">
 									<?php the_content(); ?>
