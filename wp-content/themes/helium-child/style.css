@@ -64,6 +64,7 @@ h3.bordered {
 	margin-left: 40px;
 	line-height: 60px;
 	vertical-align: middle;
+	color: #FCBD0E;
 }
 
 .breadcrumbs i { color: #231f20;}
@@ -82,6 +83,8 @@ h3.bordered {
 .bordered.no-margin-top i {
 	line-height: 1.2em;
 	margin-right: 1px;
+	padding: 0 2px;
+	border-right:1px solid #fff;
 }
 	
 .bordered.no-margin-top {
@@ -103,4 +106,19 @@ h3.bordered {
     padding: 0;
     position: relative;
     width: 100%;
+}
+
+.b-view {
+    position: relative;
+    padding-left: 20px;
+    padding-bottom: 90%; // (450 ÷ 500 = 0.9 = 90%)
+    height: 0;
+}
+
+.b-view iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
 }
